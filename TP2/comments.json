@@ -1,0 +1,92 @@
+[
+  {
+    "nombre": "Pedro Gómez",
+    "fecha_publicacion": "2025-09-10",
+    "puntuacion": 2,
+    "comentario": "El juego tenía buena pinta, pero la jugabilidad me resultó repetitiva."
+  },
+  {
+    "nombre": "Lucía Fernández",
+    "fecha_publicacion": "2025-09-11",
+    "puntuacion": 4,
+    "comentario": "Gráficos excelentes y buena historia, aunque algunos niveles cargan lento."
+  },
+  {
+    "nombre": "Martín Ruiz",
+    "fecha_publicacion": "2025-09-12",
+    "puntuacion": 5,
+    "comentario": "Increíble experiencia, la campaña me atrapó de principio a fin."
+  },
+  {
+    "nombre": "Sofía Martínez",
+    "fecha_publicacion": "2025-09-13",
+    "puntuacion": 3,
+    "comentario": "Está bien para pasar el rato, pero no tiene mucha rejugabilidad."
+  },
+  {
+    "nombre": "Diego López",
+    "fecha_publicacion": "2025-09-14",
+    "puntuacion": 1,
+    "comentario": "Se cuelga constantemente y los servidores están siempre caídos."
+  },
+  {
+    "nombre": "Valentina Castro",
+    "fecha_publicacion": "2025-09-15",
+    "puntuacion": 5,
+    "comentario": "Uno de los mejores juegos que probé, la música y la ambientación son espectaculares."
+  },
+  {
+    "nombre": "Julián Torres",
+    "fecha_publicacion": "2025-09-16",
+    "puntuacion": 2,
+    "comentario": "La idea es buena, pero los controles son poco intuitivos."
+  },
+  {
+    "nombre": "Camila Ríos",
+    "fecha_publicacion": "2025-09-17",
+    "puntuacion": 3,
+    "comentario": "Divertido en multijugador, aunque el modo historia es corto."
+  },
+  {
+    "nombre": "Federico Navarro",
+    "fecha_publicacion": "2025-09-18",
+    "puntuacion": 5,
+    "comentario": "Todo perfecto, la jugabilidad es fluida y el online funciona genial."
+  },
+  {
+    "nombre": "Agustina Molina",
+    "fecha_publicacion": "2025-09-19",
+    "puntuacion": 2,
+    "comentario": "Esperaba más, los gráficos no están a la altura de otros títulos actuales."
+  },
+  {
+    "nombre": "Tomás Herrera",
+    "fecha_publicacion": "2025-09-20",
+    "puntuacion": 4,
+    "comentario": "Muy buen juego, aunque la curva de dificultad es un poco brusca."
+  },
+  {
+    "nombre": "Carla Domínguez",
+    "fecha_publicacion": "2025-09-21",
+    "puntuacion": 3,
+    "comentario": "Entretenido, pero después de unas horas se vuelve repetitivo."
+  },
+  {
+    "nombre": "Nicolás Vega",
+    "fecha_publicacion": "2025-09-22",
+    "puntuacion": 0,
+    "comentario": "Muy mala experiencia, lleno de bugs y sin soporte técnico."
+  },
+  {
+    "nombre": "Florencia Paredes",
+    "fecha_publicacion": "2025-09-23",
+    "puntuacion": 5,
+    "comentario": "Me encantó, la historia es emocionante y los personajes memorables."
+  },
+  {
+    "nombre": "Matías Correa",
+    "fecha_publicacion": "2025-09-24",
+    "puntuacion": 3,
+    "comentario": "Está bien, pero el modo online tarda mucho en emparejar partidas."
+  }
+]
