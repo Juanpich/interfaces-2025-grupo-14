@@ -1,4 +1,7 @@
-
+/*Btn play */
+  document.querySelector('.spin-x-button').addEventListener('click', function () {
+    this.classList.add('clicked');
+  });
 /*Multimedia*/
 document.querySelectorAll(".img-mult").forEach(img =>
   img.addEventListener("click", () => {

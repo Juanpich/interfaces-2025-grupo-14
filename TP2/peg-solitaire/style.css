@@ -102,73 +102,6 @@ header {
     transform: scale(1.1);
 }
 
-/* --- Versión escritorio (default) --- */
-@media (min-width: 768px) {
-    .search {
-        display: block;
-    }
-}
-
-/* --- Versión móvil --- */
-@media (max-width: 767px) {
-    .action-header .icon-simpl {
-        margin-left: 5px;
-    }
-
-    .search-container {
-        position: relative;
-        justify-content: flex-end;
-    }
-
-    /* Oculto el buscador inicialmente */
-    .search {
-        display: none;
-        position: absolute;
-        top: 0;
-        right: 30px;
-        height: 50px;
-        background-color: var(--background-color);
-        animation: slideInLeft 0.3s forwards;
-    }
-
-    .search.active {
-        display: block;
-    }
-
-    .search-input {
-        width: 180px;
-        height: 30px;
-        /* ancho ajustado a móvil */
-    }
-
-    /* Animación desde la izquierda hacia el ícono */
-    @keyframes slideInLeft {
-        from {
-            transform: translateX(-20px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-
-    /* El icono se mantiene visible */
-    .icon-simpl {
-        z-index: 2;
-        position: relative;
-    }
-
-}
-
-
-/**/
-
-
-
-
-
 .action-header {
     padding: 0px 20px 0px 0px;
     display: flex;
@@ -489,6 +422,51 @@ header {
     box-shadow: 0px 4px 8px 0px var(--acento-color);
 }
 
+.btn-play {
+    font-family: var(--font-parrafo);
+    font-weight: bold;
+    font-size: 22px;
+    height: 60px;
+    width: auto;
+    padding: 10px 12px 10px 12px;
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    cursor: pointer;
+    transition: background-color 1s ease-in-out, border-color 1s ease-in-out;
+}
+/* Botón centrado con flexbox */
+.spin-x-button {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 400px;
+  transform: translate(-50%, -50%);
+  transition: transform 0.3s ease;
+}
+.btn-play:hover{
+  background-color: var(--primary-color-700); 
+  border: 1px solid var(--primary-color-700);
+}
+
+/* Activación de animación */
+.spin-x-button.clicked {
+  animation: spin-button-play 1.5s ease-out forwards;
+}
+
+/* Animación: rotación + desplazamiento horizontal */
+
+.btn-play svg {
+    fill: var(--secondary-color);
+    width: 30px;
+    height: 30px;
+}
+
 .img-peg-solitarie {
     width: 1340px;
     height: 650px;
@@ -546,7 +524,7 @@ header {
     box-shadow: 0 0 12px 0 var(--gradient-color);
     position: absolute;
     background: var(--background-color);
-    top: 820px;;
+    top: 820px;
     right: 400px;
     bottom: unset;
 }
@@ -1033,11 +1011,11 @@ header {
     box-shadow: 0 0 4px 0 var(--primary-color);
 }
 
-.btn-secondary-big:hover {
+.btn-secondary-big:hover, .btn-secondary-small:hover {
     background-color: var(--primary-shadow-800);
 }
 
-.btn-primary-small:hover {
+.btn-primary-small:hover, .copy-btn:hover{
     background-color: var(--primary-color-700);
     border: 1px solid var(--primary-color-700);
     box-shadow: 0 0 4px 0 var(--primary-color-700);
@@ -1064,9 +1042,69 @@ header {
     background: transparent;
 }
 
+
 /*Sin seleccionar*/
 .deselected {
     display: none;
+}
+/* --- Versión escritorio (default) --- */
+@media (min-width: 768px) {
+    .search {
+        display: block;
+    }
+}
+
+/* --- Versión móvil --- */
+@media (max-width: 767px) {
+    .action-header .icon-simpl {
+        margin-left: 5px;
+    }
+
+    .search-container {
+        position: relative;
+        justify-content: flex-end;
+    }
+
+    /* Oculto el buscador inicialmente */
+    .search {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 30px;
+        height: 50px;
+        background-color: var(--background-color);
+        animation: slideInLeft 0.3s forwards;
+    }
+
+    .search.active {
+        display: block;
+    }
+
+    .search-input {
+        width: 180px;
+        height: 30px;
+        /* ancho ajustado a móvil */
+    }
+
+    /* Animación desde la izquierda hacia el ícono */
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    /* El icono se mantiene visible */
+    .icon-simpl {
+        z-index: 2;
+        position: relative;
+    }
+
 }
 
 @keyframes loading {
@@ -1145,8 +1183,18 @@ header {
         opacity: 1;
     }
 
-    to {
+    to { 
         right: -10vw;
         opacity: 0;
     }
+}
+@keyframes spin-button-play {
+  0% {
+    transform: translateX(-50%) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(400%) rotate(720deg);
+    opacity: 0;
+  }
 }
