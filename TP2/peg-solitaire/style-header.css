@@ -12,7 +12,6 @@ header {
     justify-content: center;
     background: var(--background-color);
     padding: 0px;
-    width: 1920px;
     /*position: fixed;
     top: 0;
     left: 0;*/
@@ -440,7 +439,6 @@ header {
     .search-input {
         width: 180px;
         height: 30px;
-        /* ancho ajustado a móvil */
     }
 
     /* Animación desde la izquierda hacia el ícono */
