@@ -19,6 +19,9 @@
     --font-title: 'Jockey One', sans-serif;
     --font-name-page: 'Audiowide', cursive;
 }
+#header{
+    width: 100%;
+}
 /*Botones*/
 .btn-primary-small {
     cursor: pointer;
