@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jockey+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <img src="../Recursos/icons/Logo-celeste.png" alt="logo vorterix" class="logo">
+        <h2>vorterix</h2>
+    </header>
+
+    <section>
+        <div class="tituloSecion">
+            <h2>¡Se parte de nuestra comunidad!</h2>
+        </div>
+        <!-- secion de inputs reguistro -->
+        <div class="reguistroContenido">
+            <div class="reguistro">
+
+                <!-- Reguistro Con Redes Sociales -->
+                <div class="redesInicioSesion">
+                    <button class="btn-social google">
+                        <div class="contnedeorlogoimg">
+                            <img src="../Recursos/icons/google.png" alt="Google">
+                        </div>
+                        <span>Continúe con Google</span>
+                    </button>
+
+                    <button class="btn-social facebook">
+                        <img src="../Recursos/icons/facebook.png" alt="Facebook">
+                        <span>Continúe con Facebook</span>
+                    </button>
+
+                </div>
+
+                <!-- Inicio Secion-->
+                <div class="inicioSecionConcuneta">
+                    <p>¿Ya tenés cuenta?</p>
+                    <button><span>Iniciar Sesión</span></button>
+                </div>
+
+                <!-- Separador -->
+                <div class="separadorDeinicioSecionYFormulario">
+                    <hr>
+                    <p>O</p>
+                    <hr>
+                </div>
+
+                <h3>Crea tu cuenta</h3>
+                <div class="inputReguistro">
+                    <!-- Nombre -->
+                    <div class="inputConError">
+                        <div class="inputValor">
+                            <input type="text" id="nombre" placeholder=" ">
+                            <div class="valorDelinput">
+                                <label for="nombre">Nombre</label>
+                            </div>
+                            <span class="required">*</span>
+                        </div>
+                        <p class="mensaje-error" id="mensajeError-nombre">El nombre debe tener al menos 3 caracteres</p>
+                    </div>
+
+                    <!-- Apellido -->
+                    <div class="inputConError">
+                        <div class="inputValor">
+                            <input type="text" id="apellido" placeholder=" ">
+                            <div class="valorDelinput">
+                                <label for="apellido">Apellido</label>
+                            </div>
+                            <span class="required">*</span>
+                        </div>
+                        <p class="mensaje-error" id="mensajeError-apellido">El apellido debe tener al menos 3 caracteres
+                        </p>
+                    </div>
+
+                    <!-- Edad -->
+                    <div class="inputConError">
+                        <div class="inputValor">
+                            <input type="number" id="edad" placeholder=" ">
+                            <div class="valorDelinput">
+                                <label for="edad">Edad</label>
+                            </div>
+                            <span class="required">*</span>
+                        </div>
+                        <p class="mensaje-error" id="mensajeError-edad">La edad debe ser un número mayor a 0</p>
+                    </div>
+
+                    <!-- Nombre de usuario -->
+                    <div class="inputConError">
+                        <div class="inputValor">
+                            <input type="text" id="nombreUsuario" placeholder=" ">
+                            <div class="valorDelinput">
+                                <label for="nombreUsuario">Nombre de usuario</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="inputConError">
+                        <div class="inputValor">
+                            <input type="email" id="email" placeholder=" ">
+                            <div class="valorDelinput">
+                                <label for="email">Email</label>
+                            </div>
+                            <span class="required">*</span>
+                        </div>
+                        <p class="mensaje-error" id="mensajeError-email">No es un email válido</p>
+                    </div>
+
+                    <!-- Contraseña -->
+                    <div class="inputConError">
+                        <div class="inputValor inputConIconos">
+                            <img src="../Recursos/icons/Candado.png" alt="candado" class="icon-candado">
+                            <input type="password" id="contrasena" placeholder=" ">
+                            <div class="valorDelinput">
+                                <label for="contrasena">Contraseña</label>
+                            </div>
+                            <img src="../Recursos/icons/ojo.png" class="toggle-eye">
+                        </div>
+                        <p class="mensaje-error" id="mensajeError-contrasena">
+                            La contraseña debe tener al menos 8 caractere
+                        </p>
+                    </div>
+
+                    <!-- Repetir contraseña -->
+                    <div class="inputConError">
+                        <div class="inputValor inputConIconos">
+                            <img src="../Recursos/icons/Candado.png" alt="candado" class="icon-candado">
+                            <input type="password" id="contrasena2" placeholder=" ">
+                            <div class="valorDelinput">
+                                <label for="contrasena2">Repite la contraseña</label>
+                            </div>
+                            <img src="../Recursos/icons/ojo.png" class="toggle-eye">
+                        </div>
+                        <p class="mensaje-error" id="mensajeError-contrasena2">Las contraseñas no coinciden</p>
+                    </div>
+
+                    <!-- Captcha -->
+                    <div class="inputConError">
+                        <div class="inputValor">
+                            <img src="../Recursos/icons/recapchat.png" height="78px" width="300px" alt="captcha">
+
+                        </div>
+                    </div>
+
+                    <!-- Mensaje general de error -->
+                    <p class="mensaje-error-general" id="mensajeGeneral"></p>
+
+                    <!-- Botones -->
+                    <button class="btn-registrarme" type="button">Registrarme</button>
+                    <button class="btn-volver" type="button">Volver al inicio</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="pantallaExito" class="pantalla-exito">
+        <div class="contenido-exito">
+            <div class="icono-exito">✔️</div>
+            <h2>Reguistro exitoso</h2>
+            <p>Serás redirigido al inicio en unos segundos...</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+
+</html>
