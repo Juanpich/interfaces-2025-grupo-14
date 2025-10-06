@@ -581,14 +581,7 @@ header {
     font-weight: bold;
     transition: background 0.2s ease;
 }
-
-
-
-
-
-
 /* Sector de la multimedia y como jugar */
-
 .section-howPlay>article {
     width: 1134px;
     height: 518px;
