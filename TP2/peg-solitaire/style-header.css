@@ -1,0 +1,489 @@
+@import url('./global.css');
+body{
+    margin: 0px;
+}
+/*header*/
+header {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+    justify-content: center;
+    background: var(--background-color);
+    padding: 0px;
+    width: 1920px;
+    /*position: fixed;
+    top: 0;
+    left: 0;*/
+}
+
+.header-center #logo {
+    width: 126px;
+    height: 100%;
+    font-family: var(--font-name-page);
+    font-size: 22px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.header-center #logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.header-center #logo:hover {
+    cursor: pointer;
+}
+
+.action-header .icon-simpl {
+    margin-left: 30px;
+}
+
+/*Buscador*/
+/* --- Vista general --- */
+.search-container {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    position: relative;
+}
+
+.search-input {
+    font-family: var(--font-parrafo);
+    font-size: 14px;
+    border: 1px solid var(--gradient-color);
+    width: 300px;
+    height: 100%;
+    background-color: var(--background-color);
+    color: white;
+    border-radius: 12px;
+    padding: 4px 0px 4px 5px;
+    box-shadow: 0 0px 4px 1px var(--gradient-color);
+}
+
+.search-container>.icon-simpl {
+    margin-left: 0px;
+    transition: transform 0.2s ease;
+}
+
+.icon-simpl:hover {
+    transform: scale(1.1);
+}
+
+.action-header {
+    padding: 0px;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/*Logo*/
+.header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Menu hamburguesa*/
+.hamburger-menu {
+    display: flex;
+    cursor: pointer;
+    padding: 20px;
+    margin: 0px;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-menu-hamburger {
+    background-color: var(--background-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px 0 var(--gradient-color);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 1000;
+    animation: slideInFromLeftHamburgerMenu 0.5s ease-out forwards;
+}
+
+.nav-menu-hamburger.is-closing {
+    animation: slideOutToLeftHamburgerMenu 0.5s ease-in forwards;
+}
+
+.nav-menu-hamburger ul {
+    list-style: none;
+    align-items: start;
+    padding: 0px;
+}
+
+.nav-menu-hamburger ul li {
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    margin: 10px 0px 10px 15px;
+    cursor: pointer;
+    width: 200px;
+}
+
+.text-category {
+    margin: 5px 0px 0px 10px;
+    text-align: center;
+    font-family: var(--font-parrafo);
+    font-size: 16px;
+    color: white;
+    transition: margin-left 0.2s ease-in
+}
+
+.nav-menu-hamburger ul li:hover .text-category {
+    color: var(--gradient-color);
+    margin-left: 20px;
+}
+
+.icon-simpl {
+    fill: var(--primary-color);
+    cursor: pointer;
+    margin: 0px;
+    width: 24px;
+    height: 24px;
+}
+
+.icon-img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease;
+}
+
+.icon-img:hover {
+    transform: scale(1.1);
+}
+
+
+/*carrito*/
+.shopping-cart {
+    color:white;
+    width: 375px;
+    height: 726px;
+    background-color: var(--background-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px 0 var(--gradient-color);
+    font-family: var(--font-title);
+    font-size: 22px;
+    position: absolute;
+    top: 0px;
+    right: 2px;
+    z-index: 1000;
+    animation: slideInFromRightCart 0.5s ease-out forwards;
+}
+
+.shopping-cart.is-closing {
+    animation: slideOutToRightCart 0.5s ease-in forwards;
+}
+
+.title-cart {
+    font-size: 24px;
+    text-align: center;
+    margin: 0px;
+    padding: 16px 0px 16px 0px;
+}
+
+.finalize-purchase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px 0px 16px 0px;
+
+}
+
+.total-cart {
+    width: 90%;
+    text-align: center;
+    padding: 16px 0px 8px 0px;
+    margin: 0px 10px 0px 10px;
+    font-family: var(--font-parrafo);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#total-price-cart {
+    color: var(--primary-color)
+}
+
+
+
+
+/*Articulos del carrito*/
+.items-cart {
+    height: 430px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px 0px 10px;
+    margin: 0px;
+}
+
+/* Estilo del track (fondo de la barra) */
+.items-cart::-webkit-scrollbar {
+    width: 8px;
+    margin-right: 2px;
+}
+
+.items-cart::-webkit-scrollbar-track {
+    background: var(--background-color);
+    border-radius: 8px;
+}
+
+/* Estilo del "thumb" (la parte que se mueve) */
+.items-cart::-webkit-scrollbar-thumb {
+    background: var(--gradient-color);
+    border-radius: 8px;
+}
+
+.items-cart .item-cart {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 4px 0px 4px 0px;
+
+}
+
+.items-cart .item-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 0px 0px 0px 0px;
+    width: 70%;
+}
+
+.item-img {
+    width: 105px;
+    height: 60px;
+    border-radius: 8px;
+}
+
+.item-name {
+    font-family: var(--font-parrafo);
+    font-size: 16px;
+    margin: 0px;
+}
+
+.item-price {
+    font-size: 14px;
+    margin: 0px;
+    font-family: var(--font-parrafo);
+    color: var(--primary-color);
+}
+
+/*USer menu*/
+.user-menu {
+    color:white;
+    width: 375px;
+    height: 525px;
+    background-color: var(--background-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px 0 var(--gradient-color);
+    font-family: var(--font-parrafo);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 0px;
+    right: 2px;
+    z-index: 1000;
+    animation: slideInFromRightCart 0.5s ease-out forwards;
+}
+
+.user-menu.is-closing {
+    animation: slideOutToRightCart 0.5s ease-out forwards;
+}
+
+.info-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 0px 0px 0px;
+}
+
+.hello-name-user {
+    font-size: 21px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.email-user {
+    font-size: 18px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.action-user {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+}
+
+.action-user svg {
+    fill: var(--secondary-color);
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    background-color: var(--gradient-color);
+    padding: 5px;
+    border-radius: 50%;
+    margin: 0px 10px 0px 10px
+}
+
+.option-menu-user svg {
+    fill: var(--primary-color);
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.option-menu-user {
+    list-style: none;
+    padding: 0px;
+    margin: 20px 0px 0px 0px;
+}
+
+.option-menu-user li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 0px 8px 20px;
+    cursor: pointer;
+}
+
+.user-menu button {
+    margin-top: 20px;
+
+}
+
+.container-close-cart {
+    display: flex;
+    justify-content: end;
+    padding: 16px 0px 0px 0px;
+    width: 98%;
+}
+@keyframes slideInFromLeftHamburgerMenu {
+    from {
+        left: -10vw;
+        opacity: 0;
+    }
+
+    to {
+        left: 0px;
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToLeftHamburgerMenu {
+    from {
+        left: 0px;
+        opacity: 1;
+    }
+
+    to {
+        left: -10vw;
+        opacity: 0;
+    }
+}
+/*Sin seleccionar*/
+.deselected {
+    display: none;
+}
+/* --- Versión escritorio (default) --- */
+@media (min-width: 768px) {
+    .search {
+        display: block;
+    }
+}
+
+/* --- Versión móvil --- */
+@media (max-width: 767px) {
+    .action-header .icon-simpl {
+        margin-left: 5px;
+    }
+
+    .search-container {
+        position: relative;
+        justify-content: flex-end;
+    }
+
+    /* Oculto el buscador inicialmente */
+    .search {
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 30px;
+        height: 50px;
+        background-color: var(--background-color);
+        animation: slideInLeft 0.3s forwards;
+    }
+
+    .search.active {
+        display: block;
+    }
+
+    .search-input {
+        width: 180px;
+        height: 30px;
+        /* ancho ajustado a móvil */
+    }
+
+    /* Animación desde la izquierda hacia el ícono */
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    /* El icono se mantiene visible */
+    .icon-simpl {
+        z-index: 2;
+        position: relative;
+    }
+
+}
+/*carrito*/
+@keyframes slideInFromRightCart {
+    from {
+        right: -10vw;
+        opacity: 0;
+    }
+
+    to {
+        right: 2px;
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutToRightCart {
+    from {
+        right: 2px;
+        opacity: 1;
+    }
+
+    to { 
+        right: -10vw;
+        opacity: 0;
+    }
+}
