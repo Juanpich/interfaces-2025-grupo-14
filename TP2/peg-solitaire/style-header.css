@@ -1,6 +1,6 @@
 @import url('./global.css');
 body{
-    margin: 0px;
+    margin: 60px 0px 0px 0px;
 }
 /*header*/
 header {
@@ -12,9 +12,9 @@ header {
     justify-content: center;
     background: var(--background-color);
     padding: 0px;
-    /*position: fixed;
+    position: fixed;
     top: 0;
-    left: 0;*/
+    left: 0;
 }
 
 .header-center #logo {
@@ -101,7 +101,7 @@ header {
     background-color: var(--background-color);
     border-radius: 12px;
     box-shadow: 0 4px 12px 0 var(--gradient-color);
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
     z-index: 1000;
@@ -172,7 +172,7 @@ header {
     box-shadow: 0 4px 12px 0 var(--gradient-color);
     font-family: var(--font-title);
     font-size: 22px;
-    position: absolute;
+    position: fixed;
     top: 0px;
     right: 2px;
     z-index: 1000;
@@ -293,7 +293,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
+    position: fixed;
     top: 0px;
     right: 2px;
     z-index: 1000;
@@ -329,18 +329,14 @@ header {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    gap:10px
 
 }
 
 .action-user svg {
-    fill: var(--secondary-color);
     cursor: pointer;
-    width: 20px;
-    height: 20px;
-    background-color: var(--gradient-color);
-    padding: 5px;
-    border-radius: 50%;
-    margin: 0px 10px 0px 10px
+    width: 30px;
+    height: 30px;
 }
 
 .option-menu-user svg {
