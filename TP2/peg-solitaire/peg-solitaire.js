@@ -194,14 +194,28 @@ function calcularTiempoPublicacion(date) {
 
 function getStarsHTML(rating) {
   let starsHTML = '';
-  for (let i = 0; i < rating; i++) {
-    starsHTML += '<svg class="star star-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 14" fill="none"><path d="M9.04883 4.78418L9.16504 5.03809L9.44238 5.07129L13.3291 5.54785L10.457 8.25293L10.2568 8.44141L10.3086 8.71191L11.0615 12.6006L7.65039 10.6797L7.40527 10.541L7.16016 10.6797L3.74902 12.6006L4.50195 8.71191L4.55371 8.44141L4.35352 8.25293L1.48047 5.54883L5.36816 5.07129L5.64551 5.03809L5.76172 4.78418L7.40527 1.19824L9.04883 4.78418Z" /></svg>';
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.5;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+  // Estrellas completas
+  for (let i = 0; i < fullStars; i++) {
+    starsHTML += '<svg class="star star-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 14"><path d="M9.04883 4.78418L9.16504 5.03809L9.44238 5.07129L13.3291 5.54785L10.457 8.25293L10.2568 8.44141L10.3086 8.71191L11.0615 12.6006L7.65039 10.6797L7.40527 10.541L7.16016 10.6797L3.74902 12.6006L4.50195 8.71191L4.55371 8.44141L4.35352 8.25293L1.48047 5.54883L5.36816 5.07129L5.64551 5.03809L5.76172 4.78418L7.40527 1.19824L9.04883 4.78418Z"/></svg>';
   }
-  for (let i = rating; i < 5; i++) {
-    starsHTML += '<svg class="star star-empty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 14" fill="none"><path d="M9.04883 4.78418L9.16504 5.03809L9.44238 5.07129L13.3291 5.54785L10.457 8.25293L10.2568 8.44141L10.3086 8.71191L11.0615 12.6006L7.65039 10.6797L7.40527 10.541L7.16016 10.6797L3.74902 12.6006L4.50195 8.71191L4.55371 8.44141L4.35352 8.25293L1.48047 5.54883L5.36816 5.07129L5.64551 5.03809L5.76172 4.78418L7.40527 1.19824L9.04883 4.78418Z" /></svg>';
+
+  // Media estrella
+  if (hasHalfStar) {
+    starsHTML += '<svg class="star star-half" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 14"><defs><linearGradient id="half"><stop offset="50%" stop-color="var(--acento-color)" /><stop offset="50%" stop-color="transparent" /></linearGradient></defs><path fill="url(#half)" stroke="var(--acento-color)" d="M9.04883 4.78418L9.16504 5.03809L9.44238 5.07129L13.3291 5.54785L10.457 8.25293L10.2568 8.44141L10.3086 8.71191L11.0615 12.6006L7.65039 10.6797L7.40527 10.541L7.16016 10.6797L3.74902 12.6006L4.50195 8.71191L4.55371 8.44141L4.35352 8.25293L1.48047 5.54883L5.36816 5.07129L5.64551 5.03809L5.76172 4.78418L7.40527 1.19824L9.04883 4.78418Z"/></svg>';
   }
+
+  // Estrellas vacías
+  for (let i = 0; i < emptyStars; i++) {
+    starsHTML += '<svg class="star star-empty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 14"><path d="M9.04883 4.78418L9.16504 5.03809L9.44238 5.07129L13.3291 5.54785L10.457 8.25293L10.2568 8.44141L10.3086 8.71191L11.0615 12.6006L7.65039 10.6797L7.40527 10.541L7.16016 10.6797L3.74902 12.6006L4.50195 8.71191L4.55371 8.44141L4.35352 8.25293L1.48047 5.54883L5.36816 5.07129L5.64551 5.03809L5.76172 4.78418L7.40527 1.19824L9.04883 4.78418Z"/></svg>';
+  }
+
   return starsHTML;
 }
+
 /*Animacion de los comentarios */
 
 /*Carga automatica de comentarios */
