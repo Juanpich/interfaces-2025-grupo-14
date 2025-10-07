@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Jockey+One&display=swap');
+
+:root {
+    /* Colors */
+    --primary-color: #00f5e9;
+    --primary-color-700: #00A39B;
+    --secondary-color: #F70808;
+    --primary-shadow-800: #1B3F3C;
+    --primary-shadow-700: #1F534F;
+    --primary-shadow-600: #226863;
+    --primary-shadow-900: #162B29;
+    --acento-color: #FFE500;
+    --gradient-color: rgba(244, 244, 244, 0.64);
+    --background-color: #1b1b1b;
+    /*fonts*/
+    --font-parrafo: 'Khula', sans-serif;
+    --font-title: 'Jockey One', sans-serif;
+    --font-name-page: 'Audiowide', cursive;
+}
+/*Botones*/
+.btn-primary-small {
+    cursor: pointer;
+    width: auto;
+    height: 38px;
+    font-family: var(--font-parrafo);
+    color: black;
+    font-weight: bold;
+    background-color: var(--primary-color);
+    font-size: 16px;
+    border-radius: 4px;
+    padding: 3px 9px 3px 9px;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 4px 0 var(--primary-color);
+}
+
+.btn-secondary-big {
+    width: auto;
+    height: 61px;
+    color: var(--primary-color);
+    background-color: transparent;
+    font-size: 22px;
+    border-radius: 12px;
+    padding: 6px 12px 6px 12px;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 4px 0 var(--primary-color);
+}
+
+.btn-secondary-big:hover, .btn-secondary-small:hover {
+    background-color: var(--primary-shadow-800);
+}
+
+.btn-primary-small:hover, .copy-btn:hover{
+    background-color: var(--primary-color-700);
+    border: 1px solid var(--primary-color-700);
+    box-shadow: 0 0 4px 0 var(--primary-color-700);
+}
+
+.btn-secondary-small {
+    width: auto;
+    height: 38px;
+    border-radius: 8px;
+    border: 1.5px solid var(--primary-color);
+    background: transparent;
+    color: var(--primary-color);
+    font-size: 16px;
+    font-family: var(--font-parrafo);
+    cursor: pointer;
+    padding: 0px 18px 0px 18px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.btn-secondary-small:disabled {
+    color: var(--gradient-color);
+    border-color: var(--gradient-color);
+    cursor: not-allowed;
+    background: transparent;
+}
