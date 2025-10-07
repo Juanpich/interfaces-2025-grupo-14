@@ -136,22 +136,6 @@ body {
     right: 400px;
     bottom: unset;
 }
-
-.icon-s-n {
-    cursor: pointer;
-    margin: 0px;
-    width: 24px;
-    height: 24px;
-    fill: var(--secondary-color);
-    border-radius: 50%;
-    padding: 8px;
-    background-color: white;
-    display: grid;
-    grid-template-areas: "icons"
-        "share";
-
-}
-
 .icons {
     grid-area: "icons";
     display: flex;
@@ -452,6 +436,9 @@ body {
 .star-full {
     fill: var(--acento-color);
     stroke: var(--acento-color);
+}
+.star-half {
+  stroke: var(--acento-color);
 }
 
 .star-empty {
