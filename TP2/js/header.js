@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 /*User menu*/
-let btn_cerrar_sesion = document.querySelector("#btn-cerrar-sesion").addEventListener('click', ()=>{
+let btn_cerrar_sesion = document.querySelector(".btn-cerrar-sesion").addEventListener('click', ()=>{
    window.location.href = '../index.html';
 })
 let user_button = document.querySelector("#user-menu")
