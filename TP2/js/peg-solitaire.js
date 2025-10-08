@@ -49,7 +49,7 @@ btn_how_to_play.addEventListener("click", () => {
 })
 /*Home*/
 let btn_home =document.querySelector('#btn-home').addEventListener('click', ()=>{
-   window.location.href = '../index.html';
+   window.location.href = '../home/index.html';
 });
 /*Compartir*/
 let section_share = document.querySelector(".action-share")

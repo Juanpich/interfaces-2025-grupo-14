@@ -91,7 +91,12 @@ document.querySelectorAll(".btn-cerrar-sesion").forEach(btn => {
     window.location.href = '../index.html';
   });
 });
-
+/*volver al home */
+document.querySelectorAll(".btn-ir-home").forEach(btn => {
+  btn.addEventListener('click', () => {
+    window.location.href = '../home/index.html';
+  });
+});
 let user_button = document.querySelector("#user-menu")
 let close_user_menu = document.querySelector("#close-user-menu");
 let user_menu = document.querySelector(".user-menu")
