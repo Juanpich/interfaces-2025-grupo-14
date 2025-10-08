@@ -1,6 +1,7 @@
-@import url('./global.css');
+@import url('../css/global.css');
 body{
-    margin: 60px 0px 0px 0px;
+    margin: 0px;
+    padding: 60px 0px 0px 0px;
 }
 /*header*/
 header {
@@ -13,9 +14,9 @@ header {
     background: var(--background-color);
     padding: 0px;
     position: fixed;
+    z-index: 999;
     top: 0;
     left: 0;
-    z-index: 999;
 }
 
 .header-center #logo {

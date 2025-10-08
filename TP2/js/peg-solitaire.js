@@ -47,6 +47,10 @@ btn_how_to_play.addEventListener("click", () => {
   btn_multimedia.classList.remove("btn-how-play-selected")
   btn_description.classList.remove("btn-how-play-selected")
 })
+/*Home*/
+let btn_home =document.querySelector('#btn-home').addEventListener('click', ()=>{
+   window.location.href = '../index.html';
+});
 /*Compartir*/
 let section_share = document.querySelector(".action-share")
 let btn_share = document.querySelector("#btn-share")
@@ -216,12 +220,11 @@ function getStarsHTML(rating) {
   return starsHTML;
 }
 
-/*Animacion de los comentarios */
 
 /*Carga automatica de comentarios */
 async function automaticLoadingComment() {
   try {
-    const response = await fetch("../comments.json");
+    const response = await fetch("../json/comments.json");
     const data = await response.json();
     data.forEach(comment => {
       postComment(comment["nombre"], comment["fecha_publicacion"], comment["comentario"], comment["puntuacion"])

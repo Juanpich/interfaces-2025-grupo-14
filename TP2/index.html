@@ -12,12 +12,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Estilos -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./css/iniciar-sesion-style.css">
 </head>
 
 <body>
   <header>
-    <img src="../Recursos/icons/Logo-celeste.png" alt="logo vorterix" class="logo">
+    <img src="./img/icons/Logo-celeste.png" alt="logo vorterix" class="logo">
     <h2>vorterix</h2>
   </header>
 
@@ -36,13 +36,13 @@
         <div class="redesInicioSesion">
           <button class="btn-social google">
             <div class="contnedeorlogoimg">
-              <img src="../Recursos/icons/google.png" alt="Google">
+              <img src="./img/icons/google.png" alt="Google">
             </div>
             <span>Continúe con Google</span>
           </button>
 
           <button class="btn-social facebook">
-            <img src="../Recursos/icons/facebook.png" alt="Facebook">
+            <img src="./img/icons/facebook.png" alt="Facebook">
             <span>Continúe con Facebook</span>
           </button>
         </div>
@@ -62,7 +62,7 @@
             <!-- Email -->
             <div class="inputConError">
               <div class="inputValor inputConIconos">
-                <img src="../Recursos/icons/Perosona.png" alt="Persona" class="icon-candado">
+                <img src="./img/icons/Perosona.png" alt="Persona" class="icon-candado">
                 <input type="email" id="emailLogin" required placeholder=" ">
                 <div class="valorDelinput">
                   <label for="emailLogin">Email</label>
@@ -74,12 +74,12 @@
             <!-- Contraseña -->
             <div class="inputConError">
               <div class="inputValor inputConIconos">
-                <img src="../Recursos/icons/Candado.png" alt="candado" class="icon-candado">
+                <img src="./img/icons/Candado.png" alt="candado" class="icon-candado">
                 <input type="password" id="passwordLogin" required placeholder=" ">
                 <div class="valorDelinput">
                   <label for="passwordLogin">Contraseña</label>
                 </div>
-                <img src="../Recursos/icons/ojo.png" class="toggle-eye">
+                <img src="./img/icons/ojo.png" class="toggle-eye">
               </div>
               <p class="mensaje-error" id="mensaje-error-passwordLogin">La contraseña debe tener al menos 8 caracteres
               </p>
@@ -88,7 +88,7 @@
             <!-- Detalles de cuenta -->
             <div class="detallesCuenta">
               <p><a href="recuperar.html">¿Olvidaste tu contraseña?</a></p>
-              <p>¿No tienes cuenta? <a href="../Reguistrarse/index.html">Crear cuenta</a></p>
+              <p>¿No tienes cuenta? <a href="./html/registrarse.html">Crear cuenta</a></p>
             </div>
 
 
@@ -100,7 +100,7 @@
 
             <!-- Botón de inicio de sesión -->
             <button class="btn-IniciarSecion" type="button">Iniciar Sesión</button>
-            <button class="btn-volver">Volver al inicio</button>
+            <button class="btn-volver" href="./html/peg-solitaire.html" >Volver al inicio</button>
 
           </div>
 
@@ -122,7 +122,7 @@
   </div>
   <!-- Script -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="script.js"></script>
+  <script src="./js/iniciar-sesion.js"></script>
 </body>
 
 </html>
