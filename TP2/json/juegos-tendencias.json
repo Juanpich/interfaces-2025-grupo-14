@@ -14,7 +14,9 @@
       { "id": 4, "name": "Action" },
       { "id": 99, "name": "Tendencies" }
     ],
-    "description": "La nueva entrega de Rockstar con narrativa expandida, tres protagonistas y mundo abierto más vivo que nunca."
+    "description": "La nueva entrega de Rockstar con narrativa expandida, tres protagonistas y mundo abierto más vivo que nunca.",
+    "pagina": "peg-solitaire"
+
   },
   {
     "id": 30002,
@@ -31,7 +33,9 @@
       { "id": 5, "name": "RPG" },
       { "id": 99, "name": "Tendencies" }
     ],
-    "description": "Ecosistemas dinámicos, criaturas colosales y combate refinado en un mundo salvaje."
+    "description": "Ecosistemas dinámicos, criaturas colosales y combate refinado en un mundo salvaje.",
+    "pagina": ""
+
   },
   {
     "id": 30003,
@@ -49,7 +53,9 @@
       { "id": 10, "name": "Strategy" },
       { "id": 99, "name": "Tendencies" }
     ],
-    "description": "Remake con sigilo modernizado, físicas realistas y ambientación selvática."
+    "description": "Remake con sigilo modernizado, físicas realistas y ambientación selvática.",
+    "pagina": ""
+
   },
   {
     "id": 30004,
@@ -64,7 +70,9 @@
       { "id": 5, "name": "RPG" },
       { "id": 99, "name": "Tendencies" }
     ],
-    "description": "Roguelike mitológico con nuevos personajes, alquimia y combate refinado."
+    "description": "Roguelike mitológico con nuevos personajes, alquimia y combate refinado.",
+    "pagina": ""
+
   },
   {
     "id": 30005,
@@ -81,7 +89,9 @@
       { "id": 4, "name": "Action" },
       { "id": 99, "name": "Tendencies" }
     ],
-    "description": "Ambientado en Japón feudal, con samurái y ninja como protagonistas jugables."
+    "description": "Ambientado en Japón feudal, con samurái y ninja como protagonistas jugables.",
+    "pagina": ""
+
   },
   {
     "id": 30006,
@@ -97,7 +107,9 @@
       { "id": 5, "name": "RPG" },
       { "id": 99, "name": "Tendencies" }
     ],
-    "description": "Remake visual estilo Octopath Traveler con combate clásico y narrativa renovada."
+    "description": "Remake visual estilo Octopath Traveler con combate clásico y narrativa renovada.",
+    "pagina": ""
+
   },
   {
     "id": 30007,
@@ -112,7 +124,9 @@
       { "id": 5, "name": "RPG" },
       { "id": 99, "name": "Tendencies" }
     ],
-    "description": "Nueva entrega con mundo abierto futurista, exploración urbana y mecánicas renovadas."
+    "description": "Nueva entrega con mundo abierto futurista, exploración urbana y mecánicas renovadas.",
+    "pagina": ""
+
   },
   {
     "id": 30008,
@@ -129,7 +143,9 @@
       { "id": 2, "name": "Shooter" },
       { "id": 99, "name": "Tendencies" }
     ],
-    "description": "Nuevo juego del creador de BioShock con ambientación distópica y decisiones morales."
+    "description": "Nuevo juego del creador de BioShock con ambientación distópica y decisiones morales.",
+    "pagina": ""
+
   },
   {
     "id": 30009,
@@ -145,7 +161,8 @@
       { "id": 4, "name": "Action" },
       { "id": 99, "name": "Tendencies" }
     ],
-    "description": "Aventura sureña con criaturas mitológicas, combate mágico y exploración narrativa."
+    "description": "Aventura sureña con criaturas mitológicas, combate mágico y exploración narrativa.",
+    "pagina": ""
   },
   {
     "id": 30010,
@@ -162,6 +179,8 @@
       { "id": 14, "name": "Fighting" },
       { "id": 99, "name": "Tendencies" }
     ],
-    "description": "Regreso de Ryu Hayabusa con combate frenético y narrativa dual."
+    "description": "Regreso de Ryu Hayabusa con combate frenético y narrativa dual.",
+    "pagina": ""
+
   }
 ]
