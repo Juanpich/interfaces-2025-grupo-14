@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Khula:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap');
-@import url('global.css');
-@import url('style-header.css');
-@import url('style-footer.css');
+@import url('./global.css');
+@import url('./fat-footer-style.css');
+@import url('./style-header.css');
 
 body{
     background-color: #1b1b1b;

@@ -5,7 +5,7 @@ body {
 
     /* Fondo oscuro encima de la imagen */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                url(../Recursos/img/fondo.jpg) no-repeat center fixed;
+                url(../img/fondo.jpg) no-repeat center fixed;
 
     background-repeat: no-repeat; 
     background-size: cover;       /* Hace que la imagen cubra toda la pantalla */
@@ -169,7 +169,7 @@ header > h2 {
     color: #00F5E9;
     font-family: 'Khula', sans-serif;
     font-size: 19px;
-    font-weight: 400;
+    font-weight: bold;
 }
 
 .inicioSecionConcuneta button:hover {
@@ -361,7 +361,7 @@ h3 {
     font-family: 'Khula', sans-serif;
     font-size: 22px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: bold;
     line-height: normal;
     cursor: pointer;
     transition: all 0.2s ease-in-out;

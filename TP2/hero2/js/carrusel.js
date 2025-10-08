@@ -10,7 +10,7 @@ async function api() {
         }
         
         const generosConJuegos = {};
-        let juegosJson = await jsonJuegos("/js/juegos.json")
+        let juegosJson = await jsonJuegos("../json/juegos.json")
         data.forEach(juego => {
             juego.genres?.forEach(genero => {
                 const nombreGenero = genero.name;
@@ -73,7 +73,7 @@ async function separarCategorias(generosConJuegos) {
 }
 /*Tendencias */
 async function generarCarruselTendencias(){
-    let tendencias = await jsonJuegos("/js/juegos-tendencias.json");
+    let tendencias = await jsonJuegos("../json//juegos-tendencias.json");
     let div_tendencias = document.querySelector(".carrusel-tendencia")
     nombreGenero = "Tendencies";
     let tendenciasJuegos = [];
@@ -88,7 +88,6 @@ async function generarCarruselTendencias(){
         });
     let string = generarCarrusel(nombreGenero, tendenciasJuegos)
     div_tendencias.innerHTML += string;
-    console.log(string)
     api()
 }
 
