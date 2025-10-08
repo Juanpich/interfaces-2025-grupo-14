@@ -29,10 +29,10 @@ eyes.forEach(eye => {
     const input = eye.previousElementSibling.previousElementSibling;
     if (input.type === "password") {
       input.type = "text";
-      eye.src = "../Recursos/icons/ojo-abierto.png";
+      eye.src = "../img/icons/ojo.png";
     } else {
       input.type = "password";
-      eye.src = "../Recursos/icons/ojo.png";
+      eye.src = "../img/icons/ojo-abierto.png";
     }
   });
 });
