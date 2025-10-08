@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap'); 
 /* =========================
    RESET & GLOBAL
 ========================= */
@@ -8,7 +9,7 @@ body {
 
     /* Fondo oscuro encima de la imagen */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-                url(../Recursos/img/fondo3.jpg) no-repeat center fixed;
+                url(../img/fondo.jpg) no-repeat center fixed;
 
     background-repeat: no-repeat; 
     background-size: cover;       /* Hace que la imagen cubra toda la pantalla */
@@ -36,8 +37,10 @@ header img.logo {
 }
 
 header > h2 {
-  margin: 0;       
+  margin: 0;   
+  padding: 0;    
   font-size: 2rem; 
+  font-family: 'Exo 2', sans-serif;
 }
 
 /* =========================
