@@ -1,9 +1,9 @@
 [
     {
     "id": 30001,
-    "name": "GTA VI",
-    "released": "2025-10-25",
-    "background_image": "https://image.api.playstation.com/vulcan/ap/rnd/202505/0616/c9f078c260d79339cb581054ce5ca49f2b56ab943d1beb20.png",
+    "name": "Peg-solitaire",
+    "released": "2025-10-7",
+    "background_image": "../img/multimedia-juego/img-mult-1.jpg",
     "rating": 4.9,
     "platforms": [
       { "id": 1, "name": "PC" },
@@ -14,7 +14,7 @@
       { "id": 4, "name": "Action" },
       { "id": 99, "name": "Tendencies" }
     ],
-    "description": "La nueva entrega de Rockstar con narrativa expandida, tres protagonistas y mundo abierto más vivo que nunca.",
+    "description": "Peg solitaire desarrolada por tudai",
     "pagina": "peg-solitaire"
 
   },

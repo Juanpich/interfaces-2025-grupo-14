@@ -37,7 +37,8 @@ async function api() {
             name: juego.name,
             released: juego.released,   
             rating: juego.rating,
-            background_image: juego.background_image
+            background_image: juego.background_image,
+            pagina: ""
             });
         });
         });
@@ -83,12 +84,20 @@ async function generarCarruselTendencias(){
             name: juego.name,
             released: juego.released,   
             rating: juego.rating,
-            background_image: juego.background_image
+            background_image: juego.background_image,
+            pagina:  juego.pagina
             });
         });
     let string = generarCarrusel(nombreGenero, tendenciasJuegos)
     div_tendencias.innerHTML += string;
+    activarRedirigirPeg()
     api()
+}
+/*activarRedirigirPeg */
+function activarRedirigirPeg(){
+  document.querySelector("#peg-solitaire").addEventListener("click", ()=>{
+    window.location.href = '../pegSolitaire/index.html';
+  })
 }
 
 
@@ -135,7 +144,7 @@ function generarCard(juegos){
                     <div class="stars-valoration">
                         ${getStarsHTML(juego.rating)}
                     </div>
-                    <div class="container-action-game-free">
+                    <div class="container-action-game-free" ${juego.pagina ? `id="${juego.pagina}"` : ''}>
                         <p>Jugar</p>
                         <svg width="13" height="15" viewBox="0 0 13 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M8.6875 3.4375C8.6875 3.72477 8.63092 4.00922 8.52099 4.27462C8.41105 4.54002 8.24992 4.78117 8.0468 4.9843C7.84367 5.18742 7.60252 5.34855 7.33712 5.45849C7.07172 5.56842 6.78727 5.625 6.5 5.625C6.21273 5.625 5.92828 5.56842 5.66288 5.45849C5.39748 5.34855 5.15633 5.18742 4.9532 4.9843C4.75008 4.78117 4.58895 4.54002 4.47901 4.27462C4.36908 4.00922 4.3125 3.72477 4.3125 3.4375C4.3125 2.85734 4.54297 2.30094 4.9532 1.8907C5.36344 1.48047 5.91984 1.25 6.5 1.25C7.08016 1.25 7.63656 1.48047 8.0468 1.8907C8.45703 2.30094 8.6875 2.85734 8.6875 3.4375Z" stroke="#F70808" stroke-width="1.5"/>
