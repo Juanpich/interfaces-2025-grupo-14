@@ -214,7 +214,7 @@ function mostrarInicioSesionExito() {
   setTimeout(() => {
     pantalla.style.opacity = 0;
     setTimeout(() => {
-      window.location.href = "../"; // redirige al home
+      window.location.href = "../home/index.html"; // redirige al home
     }, 800); // tiempo para el fade-out
   }, 2500);
 }
