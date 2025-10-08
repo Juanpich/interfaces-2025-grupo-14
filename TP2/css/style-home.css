@@ -156,6 +156,12 @@ font-family: 'Jockey One', sans-serif;
     text-align: center;
 }
 
+.button-card-major:hover{
+    background-color: var(--primary-color-700);
+    border: 1px solid var(--primary-color-700);
+    box-shadow: 0 0 4px 0 var(--primary-color-700);
+}
+
 /*Div que contiene el boton - info hero*/
 .container-boton{
     text-align: center;
