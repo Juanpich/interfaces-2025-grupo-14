@@ -29,10 +29,17 @@ eyes.forEach(eye => {
     const input = eye.previousElementSibling.previousElementSibling;
     if (input.type === "password") {
       input.type = "text";
+<<<<<<< HEAD
       eye.src = "../img/icons/ojo-abierto.png";
     } else {
       input.type = "password";
       eye.src = "../img/icons/ojo.png";
+=======
+      eye.src = "../img/icons/ojo.png";
+    } else {
+      input.type = "password";
+      eye.src = "../img/icons/ojo-abierto.png";
+>>>>>>> eccd0ff (actualizacion de css de login y reguistro y arreglos en js, y css)
     }
   });
 });

@@ -19,10 +19,10 @@ eyesLogin.forEach(eye => {
     const input = eye.previousElementSibling.previousElementSibling;
     if (input.type === "password") {
       input.type = "text";
-      eye.src = "../img/icons/ojo-abierto.png";
+      eye.src = "./img/icons/ojo-abierto.png";
     } else {
       input.type = "password";
-      eye.src = "../img/icons/ojo.png";
+      eye.src = "./img/icons/ojo.png";
     }
   });
 });
