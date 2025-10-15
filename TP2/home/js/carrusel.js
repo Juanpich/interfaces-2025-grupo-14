@@ -235,16 +235,16 @@ function getStarsHTML(rating) {
 /* Funcion scroll*/
 function scroll(){
     const carruseles = document.querySelectorAll(".container-function-carrusel");
-console.log(carruseles);
+// console.log(carruseles);
 carruseles.forEach((carrusel, index) => {
-  console.log(carrusel);
+  // console.log(carrusel);
   const puntos = carrusel
     .closest(".carrusel") // contenedor general (ajustá el selector si tu HTML usa otro nombre)
     .querySelectorAll(".indicadores-carrusel-cards-games span");
-  console.log(puntos);
+  // console.log(puntos);
   // Escuchamos el evento de scroll en cada carrusel
   carrusel.addEventListener("scroll", () => {
-  console.log("Estoy haciendo scrol")
+  // console.log("Estoy haciendo scrol")
   const scrollMaxCarrusel = carrusel.scrollWidth - carrusel.clientWidth;
   const scrollPosCarrusel = carrusel.scrollLeft;
 

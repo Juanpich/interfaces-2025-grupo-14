@@ -1,7 +1,3 @@
-
-
-
-
 /*Menu hamburguesa*/
   let hamburger_menu = document.querySelector("#hamburger-menu");
   let nav_menu = document.querySelector(".nav-menu-hamburger");

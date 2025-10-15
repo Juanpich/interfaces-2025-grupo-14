@@ -29,5 +29,32 @@ document.getElementById("arrow-left").addEventListener("click", () => {
 });
 
 updateCarousel();
-
+CargaHome();
+// Carga home
+function CargaHome() {
+    const loadingComment = document.querySelector('.loading-comment-animation');
+    const textLoading = document.querySelector('.text-loading');
+    const valores = [10, 25, 50, 80, 100];
+      setTimeout(() => {
+        textLoading.innerHTML = `...${valores[0]}%`;
+      }, 1000);
+      setTimeout(() => {
+        textLoading.innerHTML = `...${valores[1]}%`;
+      }, 2200);
+      setTimeout(() => {
+        textLoading.innerHTML = `...${valores[2]}%`;
+      }, 2500);
+      setTimeout(() => {
+        textLoading.innerHTML = `...${valores[3]}%`;
+      }, 3800);
+      setTimeout(() => {
+        textLoading.innerHTML = `...${valores[4]}%`;
+      }, 4000);
+    setTimeout(()=>{
+      loadingComment.classList.add("deselected");
+    }, 5000);
+    let dotCount = 0;
+    const maxDots = 3;
+    const intervalTime = 500;
+}
 
