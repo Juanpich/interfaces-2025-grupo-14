@@ -577,8 +577,8 @@ font-family: 'Jockey One', sans-serif;
     box-shadow: 0 0 12px #FFFFFF;
     margin: 27px;
     position: absolute;
-    transition: transform 0.5s, filter 0.5s;
-    filter: blur(3px);
+    transition: transform 1s, filter 5s;
+    filter: blur(2px);
     transform: scale(0.8);
     opacity: 0.6;
 }
@@ -625,7 +625,8 @@ font-family: 'Jockey One', sans-serif;
 }
 
 /* Estilo de la card activa */
-.card.active {
+.carousel-cards-major-view .card.card.active {
+    box-shadow: 0px 0px 12px #FFE500;
     transform: scale(1) translateX(0);
     filter: blur(0);
     opacity: 1;
@@ -636,11 +637,21 @@ font-family: 'Jockey One', sans-serif;
 /* Animacion de cuando aparece la card activa */
 @keyframes activateCardBounce {
     0% {
-        transform: scale(0.9) translateY(-10px); /* Comienza más pequeña y elevada */
-        opacity: 0.8;
+        transform: scale(0.6) translateY(-15px); /* Comienza más pequeña y elevada */
+        opacity: 0;
+        
     }
-    50% {
-        transform: scale(1) translateY(-5px); /* Rebote hacia abajo */
+    40%{
+        transform: scale(0.8) translateY(-10px); /* Rebote hacia abajo */
+        opacity: 0.5;
+    }
+    60% {
+        transform: scale(1.3) translateY(-5px); /* Rebote hacia abajo */
+        opacity: 0.9;
+
+    }
+    80%{
+        transform: scale(0.9) translateY(-2px); /* Rebote hacia abajo */
         opacity: 0.9;
     }
     100% {
@@ -651,19 +662,21 @@ font-family: 'Jockey One', sans-serif;
 
 /* Manejo del movimiento de las cards, unas estan mas cerca que las otras */
 .card.side-left {
-  transform: translateX(-640px) scale(0.8); /* Tarjeta más alejada a la izquierda */
+    filter:blur(10px);
+    transform: translateX(-640px) scale(0.7); /* Tarjeta más alejada a la izquierda */
 }
 
 .card.side-right {
-  transform: translateX(640px) scale(0.8); /* Tarjeta más alejada a la derecha */
+    transform: translateX(640px) scale(0.7); /* Tarjeta más alejada a la derecha */
+    filter:blur(10px);
 }
 
 .card.side-left-cerca {
-  transform: translateX(-320px) scale(0.9); /* Tarjeta más cercana a la izquierda */
+  transform: translateX(-349px) scale(0.8); /* Tarjeta más cercana a la izquierda */
 }
 
 .card.side-right-cerca {
-  transform: translateX(320px) scale(0.9); /* Tarjeta más cercana a la derecha */
+  transform: translateX(349px) scale(0.8); /* Tarjeta más cercana a la derecha */
 }
 
 /* Estilos responsivos para dispositivos móviles */
