@@ -53,8 +53,6 @@ function CargaHome() {
     setTimeout(()=>{
       loadingComment.classList.add("deselected");
     }, 10000);
-    let dotCount = 0;
-    const maxDots = 3;
-    const intervalTime = 500;
+
 }
 
