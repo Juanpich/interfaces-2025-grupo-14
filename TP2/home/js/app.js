@@ -27,9 +27,9 @@ document.getElementById("arrow-left").addEventListener("click", () => {
   current = (current - 1 + cards.length) % cards.length; // retroceder cíclicamente
   updateCarousel();
 });
-
-updateCarousel();
 CargaHome();
+updateCarousel();
+
 // Carga home
 function CargaHome() {
     const loadingComment = document.querySelector('.loading-comment-animation');
@@ -40,19 +40,19 @@ function CargaHome() {
       }, 1000);
       setTimeout(() => {
         textLoading.innerHTML = `...${valores[1]}%`;
-      }, 2200);
+      }, 3000);
       setTimeout(() => {
         textLoading.innerHTML = `...${valores[2]}%`;
-      }, 2500);
+      }, 5500);
       setTimeout(() => {
         textLoading.innerHTML = `...${valores[3]}%`;
-      }, 3800);
+      }, 6800);
       setTimeout(() => {
         textLoading.innerHTML = `...${valores[4]}%`;
-      }, 4000);
+      }, 8000);
     setTimeout(()=>{
       loadingComment.classList.add("deselected");
-    }, 5000);
+    }, 10000);
     let dotCount = 0;
     const maxDots = 3;
     const intervalTime = 500;
