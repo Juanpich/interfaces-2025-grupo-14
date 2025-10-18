@@ -1,8 +1,13 @@
 console.log("App JS cargado");
 const canvas = document.getElementById("myCanvas-2");//canva principal
 const ctx = canvas.getContext("2d");
-const btn_comenzar = document.getElementById("btn_comenzar");//btn de comenzar
-const select_cols = document.getElementById("select_levels");// selector de cuadrantes
+const btn_comenzar = document.getElementById("btn_comenzar");//btn de comenzar 
+let section_finished_level = document.querySelector(".finished-level");//seccion de nivel terminado
+let iconos_level = document.querySelectorAll(".op-icono");//icocno de ayuda y de como jugar
+let flotante_ayuda = document.querySelector(".help");//seccion de ayuda
+let flotante_instrucciones = document.querySelector(".instructions");//seccion de instrucciones
+let opciones_level = document.querySelectorAll(".op-cuadrantes");//opciones de niveles
+let btn_acceot_ayudin = document.querySelector(".btn-accept");//boton de aceptar la ayuda
 
 let numCols = 2;
 let numRows = 2;
@@ -13,8 +18,7 @@ let ImagenHTML5 = null;
 let canvasBW = null;
 let imgAleatoria = null
 
-let opciones_level = document.querySelectorAll(".op-cuadrantes");
-
+//manejo de seleccion de nivel
 opciones_level.forEach(opcion => {
   opcion.addEventListener("click", () => {
     // Remover la clase de todos los elementos
@@ -25,9 +29,6 @@ opciones_level.forEach(opcion => {
   });
 });
 
-let iconos_level = document.querySelectorAll(".op-icono");
-let flotante_instrucciones = document.querySelector(".instructions");
-let flotante_ayuda = document.querySelector(".help");
 
 iconos_level.forEach(icon => {
   icon.addEventListener("click", () => {
@@ -35,11 +36,11 @@ iconos_level.forEach(icon => {
     icon.classList.add("op-active");
 
     if (icon.getAttribute("data-value") === "ayudin") {
-      flotante_ayuda.classList.add("visibility-flotante");
-      flotante_instrucciones.classList.remove("visibility-flotante"); // opcional, para ocultar la otra
+      flotante_ayuda.classList.remove("deselected");
+      flotante_instrucciones.classList.add("deselected"); // opcional, para ocultar la otra
     } else if (icon.getAttribute("data-value") === "instrucciones") {
-      flotante_instrucciones.classList.add("visibility-flotante");
-      flotante_ayuda.classList.remove("visibility-flotante"); // opcional
+      flotante_instrucciones.classList.remove("deselected");
+      flotante_ayuda.classList.add("deselected"); // opcional
     }
   });
 });
@@ -51,22 +52,27 @@ cruz_icon_skip.forEach(icon => {
   icon.addEventListener("click", () => {
     const value = icon.getAttribute("data-value");
     if (value === "instrucciones") {
-      flotante_instrucciones.classList.remove("visibility-flotante"); // ocultar
+      flotante_instrucciones.classList.add("deselected"); // ocultar
+
     } else if (value === "ayuda") {
-      flotante_ayuda.classList.remove("visibility-flotante"); // ocultar
+      flotante_ayuda.classList.add("deselected"); // ocultar
     }
+    iconos_level.forEach(o => o.classList.remove("op-active"));
   });
 });
 
+/*Boton de comenzar el juego */
 btn_comenzar.addEventListener("click", () => {
-  let opcion = document.querySelector(".level-active");
-  numCols = parseInt(opcion.getAttribute("data-value"));
-  numRows = 2;
+  btn_comenzar.classList.add("deselected");
   comenzar();
 });
 
 
 function comenzar() {
+   let opcion = document.querySelector(".level-active");
+  numCols = parseInt(opcion.getAttribute("data-value"));
+  numRows = 2;
+  section_finished_level.classList.add("deselected");
   rects = [];
   // Ajustar el ancho del canvas según el número de columnas
   if(numCols === 4){
@@ -189,7 +195,20 @@ canvas.addEventListener("mousedown", e => {
     ImagenHTML5.onload = () => {
       ctx.drawImage(ImagenHTML5, 0, 0, canvas.width, canvas.height);
     };
+    section_finished_level.classList.remove("deselected");
+    rects = [];
   }
+});
+
+
+
+
+
+/*Siguiente nivel*/
+let btn_next_level = document.querySelector("#btn_next_level");
+btn_next_level.addEventListener("click", () => {
+  //sumar el nivel y ajustar numCols
+  comenzar();
 });
 
 

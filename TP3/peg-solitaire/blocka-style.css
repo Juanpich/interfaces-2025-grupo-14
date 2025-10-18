@@ -24,6 +24,7 @@ body{
     right: 0;
     color: black;
     padding-top: 20px;
+    z-index: 2;
 }
 
 /* Botones x4, x6, x8 */
@@ -50,6 +51,7 @@ body{
     padding: 0%;
     fill: #FFFFFF;
     margin-left: 7px;
+    cursor: pointer;
 }
 
 /* Icono presionado */
@@ -60,12 +62,14 @@ body{
 /* Propiedades compartidas en instructiones y ayuda */
 .instructions , .help{
     display: grid;
+    position:absolute;
+    top:10px;
     gap: 17px;
     background-color: var(--background-floating);
     box-shadow: 0px 0px 45px 2px #FFFFFF;
     border-radius: 12px;
     padding-top: 15px;
-    display: none;
+    z-index: 9999;
 }
 
 /* Activar flotantes */
@@ -92,6 +96,7 @@ body{
 
 .container-cruz svg{
     margin-right: 10px;
+    cursor: pointer;
 }
 
 /* Intrucciones de la blocka */
@@ -183,5 +188,25 @@ B
 /*Como jugar*/
 .btn-controls svg {
     fill: #FFFFFF;
+}
+/*Seccion de nivel finalizado*/
+.finished-level{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background-floating);
+    box-shadow: 0px 0px 45px 2px #FFFFFF;
+    border-radius: 12px;
+    padding: 40px;
+    display: grid;
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+}
+
+.deselected{
+    display: none;
 }
 
