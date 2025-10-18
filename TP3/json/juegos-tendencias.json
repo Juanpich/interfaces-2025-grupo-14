@@ -1,0 +1,186 @@
+[
+    {
+    "id": 30001,
+    "name": "Peg-solitaire",
+    "released": "2025-10-7",
+    "background_image": "../img/multimedia-juego/img-mult-1.jpg",
+    "rating": 4.9,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" }
+    ],
+    "genres": [
+      { "id": 4, "name": "Action" },
+      { "id": 99, "name": "Tendencies" }
+    ],
+    "description": "Peg solitaire desarrolada por tudai",
+    "pagina": "peg-solitaire"
+
+  },
+  {
+    "id": 30002,
+    "name": "Blocka",
+    "released": "2025-09-12",
+    "background_image": "../img/portada_blocka.png",
+    "rating": 4.8,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" }
+    ],
+    "genres": [
+      { "id": 4, "name": "Action" },
+      { "id": 5, "name": "RPG" },
+      { "id": 99, "name": "Tendencies" }
+    ],
+    "description": "Ecosistemas dinámicos, criaturas colosales y combate refinado en un mundo salvaje.",
+    "pagina": "blocka"
+
+  },
+  {
+    "id": 30003,
+    "name": "Metal Gear Solid Δ: Snake Eater",
+    "released": "2025-08-28",
+    "background_image":"https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2417610/05c97cbcd0cfc27c8ed6c7fc6d81e0995aa2a7d4/header.jpg?t=1759469466",
+    "rating": 4.7,
+    "platforms": [
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 1, "name": "PC" }
+    ],
+    "genres": [
+      { "id": 4, "name": "Action" },
+      { "id": 10, "name": "Strategy" },
+      { "id": 99, "name": "Tendencies" }
+    ],
+    "description": "Remake con sigilo modernizado, físicas realistas y ambientación selvática.",
+    "pagina": ""
+
+  },
+  {
+    "id": 30004,
+    "name": "Hades II",
+    "released": "2025-05-30",
+    "background_image": "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch-2/70010000105526/75473d99ae0d87abda2bf0979c0886a78a1ec9debd46fa77b6c5f19b9c7ab175",
+    "rating": 4.9,
+    "platforms": [
+      { "id": 1, "name": "PC" }
+    ],
+    "genres": [
+      { "id": 5, "name": "RPG" },
+      { "id": 99, "name": "Tendencies" }
+    ],
+    "description": "Roguelike mitológico con nuevos personajes, alquimia y combate refinado.",
+    "pagina": ""
+
+  },
+  {
+    "id": 30005,
+    "name": "Assassin’s Creed: Shadows",
+    "released": "2025-11-10",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_WjgfFYOttVrQ6FTNAfH5Iivl7-WHPVcwEA&s",
+    "rating": 4.6,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" }
+    ],
+    "genres": [
+      { "id": 4, "name": "Action" },
+      { "id": 99, "name": "Tendencies" }
+    ],
+    "description": "Ambientado en Japón feudal, con samurái y ninja como protagonistas jugables.",
+    "pagina": ""
+
+  },
+  {
+    "id": 30006,
+    "name": "Dragon Quest I & II HD-2D Remake",
+    "released": "2025-10-30",
+    "background_image": "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000081171/5f41256bfab7fb0ae2c42ede8e477e2d51a0e6bd018803d102ec359b89f05af1",
+    "rating": 4.5,
+    "platforms": [
+      { "id": 7, "name": "Nintendo" },
+      { "id": 2, "name": "PlayStation" }
+    ],
+    "genres": [
+      { "id": 5, "name": "RPG" },
+      { "id": 99, "name": "Tendencies" }
+    ],
+    "description": "Remake visual estilo Octopath Traveler con combate clásico y narrativa renovada.",
+    "pagina": ""
+
+  },
+  {
+    "id": 30007,
+    "name": "Pokemon Legends: Z-A",
+    "released": "2025-11-15",
+    "background_image": "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch-2/70010000099365/870d2482d0369ab35e5615e585b8908c0365f1901d0ac39be73c5e922ad4b4ec",
+    "rating": 4.7,
+    "platforms": [
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 5, "name": "RPG" },
+      { "id": 99, "name": "Tendencies" }
+    ],
+    "description": "Nueva entrega con mundo abierto futurista, exploración urbana y mecánicas renovadas.",
+    "pagina": ""
+
+  },
+  {
+    "id": 30008,
+    "name": "Judas",
+    "released": "2025-12-12",
+    "background_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/388860/ss_07aa919aac8eefa93c4e0193b38fc4bf52de0503.1920x1080.jpg?t=1756314956",
+    "rating": 4.6,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" }
+    ],
+    "genres": [
+      { "id": 2, "name": "Shooter" },
+      { "id": 99, "name": "Tendencies" }
+    ],
+    "description": "Nuevo juego del creador de BioShock con ambientación distópica y decisiones morales.",
+    "pagina": ""
+
+  },
+  {
+    "id": 30009,
+    "name": "South of Midnight",
+    "released": "2025-09-22",
+    "background_image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1934570/capsule_616x353.jpg?t=1744907120",
+    "rating": 4.5,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 3, "name": "Xbox" }
+    ],
+    "genres": [
+      { "id": 4, "name": "Action" },
+      { "id": 99, "name": "Tendencies" }
+    ],
+    "description": "Aventura sureña con criaturas mitológicas, combate mágico y exploración narrativa.",
+    "pagina": ""
+  },
+  {
+    "id": 30010,
+    "name": "Ninja Gaiden 4",
+    "released": "2025-10-20",
+    "background_image": "https://indiegamesdevel.com/wp-content/uploads/2025/01/image-post-24-480x270.jpg",
+    "rating": 4.6,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 3, "name": "Xbox" }
+    ],
+    "genres": [
+      { "id": 4, "name": "Action" },
+      { "id": 14, "name": "Fighting" },
+      { "id": 99, "name": "Tendencies" }
+    ],
+    "description": "Regreso de Ryu Hayabusa con combate frenético y narrativa dual.",
+    "pagina": ""
+
+  }
+]

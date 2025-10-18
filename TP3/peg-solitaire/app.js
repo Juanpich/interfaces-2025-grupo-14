@@ -11,6 +11,7 @@ let rectW, rectH;
 
 let ImagenHTML5 = null;
 let canvasBW = null;
+let imgAleatoria = null
 
 btn_comenzar.addEventListener("click", () => {
   numCols = parseInt(select_cols.value);
@@ -38,7 +39,6 @@ switch (numCols) {
   // Calcular dimensiones
   rectW = canvas.width / numCols; 
   rectH = canvas.height / numRows;
-  console.log(`rectW ${{rectW}}, rectH ${{rectH}}`);
 
   for (let row = 0; row < numRows; row++) {
     for (let col = 0; col < numCols; col++) {
@@ -60,7 +60,7 @@ switch (numCols) {
     "img-mult-3.jpg",
     "img-mult-4.jpg",
   ];
-  const imgAleatoria = imagenesDisponibles[Math.floor(Math.random() * imagenesDisponibles.length)];
+  imgAleatoria = imagenesDisponibles[Math.floor(Math.random() * imagenesDisponibles.length)];
 
   ImagenHTML5 = new Image();
   ImagenHTML5.src = imgAleatoria;
@@ -72,7 +72,7 @@ switch (numCols) {
     const ctxBW = canvasBW.getContext('2d');
     ctxBW.drawImage(ImagenHTML5, 0, 0);
 
-    const filtros = [setPixelBW, setPixelRed, setPixelB30];
+    const filtros = [setPixelBW, setPixelRed, setPixelB30,setPixelNegative];
     const filtroGlobal = filtros[Math.floor(Math.random() * filtros.length)];
 
     const imgData = ctxBW.getImageData(0, 0, canvasBW.width, canvasBW.height);
@@ -108,7 +108,7 @@ function dibujarImagen(r) {
   ctx.drawImage(canvasBW, sourceX, sourceY, sourceW, sourceH, -r.w / 2, -r.h / 2, r.w, r.h);
 
   ctx.strokeStyle = "red";
-  ctx.lineWidth = 3;
+  ctx.lineWidth = 2;
   ctx.strokeRect(-r.w / 2, -r.h / 2, r.w, r.h);
 
   ctx.restore();
@@ -116,7 +116,7 @@ function dibujarImagen(r) {
 
 function rotarAleatoriamenteCuadrantes() {
   rects.forEach(r => {
-    const angulosPosibles = [0, 90, 180, 270];
+    const angulosPosibles = [ 90, 180, 270];
     r.angulo = angulosPosibles[Math.floor(Math.random() * angulosPosibles.length)];
   });
 }
@@ -139,7 +139,12 @@ canvas.addEventListener("mousedown", e => {
   dibujarTodo();
 
   if (rects.every(r => r.angulo === 0)) {
-    console.log("¡Todas las imágenes tienen el mismo ángulo!");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ImagenHTML5 = new Image();
+    ImagenHTML5.src = imgAleatoria;
+    ImagenHTML5.onload = () => {
+      ctx.drawImage(ImagenHTML5, 0, 0, canvas.width, canvas.height);
+    };
   }
 });
 
@@ -189,4 +194,11 @@ function setPixelB30(imageData, x, y) {
   imageData.data[index] = Math.min(255, imageData.data[index] * 1.5);
   imageData.data[index + 1] = Math.min(255, imageData.data[index + 1] * 1.5);
   imageData.data[index + 2] = Math.min(255, imageData.data[index + 2] * 1.5);
+}
+
+function setPixelNegative(imageData, x, y) {
+  const index = (x + y * imageData.width) * 4;
+  imageData.data[index] = 255 - imageData.data[index];
+  imageData.data[index + 1] = 255 - imageData.data[index + 1];
+  imageData.data[index + 2] = 255 - imageData.data[index + 2];
 }

@@ -1,0 +1,916 @@
+[
+  {
+    "id": 1030,
+    "name": "Limbo",
+    "released": "2010-07-21",
+    "background_image": "https://media.rawg.io/media/games/942/9424d6bb763dc38d9378b488603c87fa.jpg",
+    "rating": 4.14,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 4, "name": "iOS" },
+      { "id": 8, "name": "Android" },
+      { "id": 5, "name": "Apple Macintosh" },
+      { "id": 6, "name": "Linux" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 7, "name": "Puzzle" },
+      { "id": 83, "name": "Platformer" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/942/9424d6bb763dc38d9378b488603c87fa.jpg",
+    "description": "Limbo es un juego de plataformas con elementos de rompecabezas y estética sombría, en el que controlás un niño atrapado en un mundo peligroso."
+  },
+  {
+    "id": 9767,
+    "name": "Hollow Knight",
+    "released": "2017-02-23",
+    "background_image": "https://media.rawg.io/media/games/4cf/4cfc6b7f1850590a4634b08bfab308ab.jpg",
+    "rating": 4.41,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 5, "name": "Apple Macintosh" },
+      { "id": 6, "name": "Linux" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 83, "name": "Platformer" },
+      { "id": 51, "name": "Indie" },
+      { "id": 4, "name": "Action" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/4cf/4cfc6b7f1850590a4634b08bfab308ab.jpg",
+    "description": "Hollow Knight es un desafiante juego tipo metroidvania con exploración profunda, combates refinados y un mundo bellamente dibujado."
+  },
+  {
+    "id": 10213,
+    "name": "Dota 2",
+    "released": "2013-07-09",
+    "background_image": "https://media.rawg.io/media/games/6fc/6fcf4cd3b17c288821388e6085bb0fc9.jpg",
+    "rating": 3.07,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 5, "name": "Apple Macintosh" },
+      { "id": 6, "name": "Linux" }
+    ],
+    "genres": [
+      { "id": 59, "name": "Massively Multiplayer" },
+      { "id": 4, "name": "Action" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/6fc/6fcf4cd3b17c288821388e6085bb0fc9.jpg",
+    "description": "Dota 2 es un MOBA de alto nivel competitivo con partidas en equipo, mecánicas de objetos, roles definidos y gran profundidad estratégica."
+  },
+  {
+    "id": 290856,
+    "name": "Apex Legends",
+    "released": "2019-02-04",
+    "background_image": "https://media.rawg.io/media/games/737/737ea5662211d2e0bbd6f5989189e4f1.jpg",
+    "rating": 3.64,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 5, "name": "Apple Macintosh" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 59, "name": "Massively Multiplayer" },
+      { "id": 2, "name": "Shooter" },
+      { "id": 4, "name": "Action" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/737/737ea5662211d2e0bbd6f5989189e4f1.jpg",
+    "description": "Apex Legends es un shooter battle royale con equipos de leyendas que combinan habilidades, acción rápida y estrategia."
+  },
+  {
+    "id": 766,
+    "name": "Warframe",
+    "released": "2013-03-25",
+    "background_image": "https://media.rawg.io/media/games/f87/f87457e8347484033cb34cde6101d08d.jpg",
+    "rating": 3.42,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 4, "name": "iOS" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 59, "name": "Massively Multiplayer" },
+      { "id": 4, "name": "Action" },
+      { "id": 5, "name": "RPG" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/f87/f87457e8347484033cb34cde6101d08d.jpg",
+    "description": "Warframe es un juego cooperativo de acción y disparos con enfoque en movilidad, habilidades y contenido en línea persistente."
+  },
+  {
+    "id": 3272,
+    "name": "Rocket League",
+    "released": "2015-07-07",
+    "background_image": "https://media.rawg.io/media/games/8cc/8cce7c0e99dcc43d66c8efd42f9d03e3.jpg",
+    "rating": 3.93,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 5, "name": "Apple Macintosh" },
+      { "id": 6, "name": "Linux" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 15, "name": "Sports" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/8cc/8cce7c0e99dcc43d66c8efd42f9d03e3.jpg",
+    "description": "Rocket League combina fútbol con autos en partidos rápidos donde la precisión, habilidad y velocidad lo son todo."
+  },
+  {
+    "id": 2454,
+    "name": "DOOM (2016)",
+    "released": "2016-05-12",
+    "background_image": "https://media.rawg.io/media/games/587/587588c64afbff80e6f444eb2e46f9da.jpg",
+    "rating": 4.38,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 4, "name": "Action" },
+      { "id": 2, "name": "Shooter" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/587/587588c64afbff80e6f444eb2e46f9da.jpg",
+    "description": "DOOM (2016) es un reinicio frenético de la clásica saga de disparos en primera persona con énfasis en acción rápida y combates intensos."
+  },
+  {
+    "id": 2452,
+    "name": "FIFA 22",
+    "released": "2021-10-01",
+    "background_image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1506830/capsule_616x353.jpg?t=1712678728",
+    "rating": 3.8,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" }
+    ],
+    "genres": [
+      { "id": 12, "name": "Sports" }
+    ],
+    "background_image_low_res": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1506830/capsule_616x353.jpg?t=1712678728",
+    "description": "FIFA 22 es un simulador de fútbol moderno que incorpora movimientos más realistas, físicas mejoradas y modos de juego competitivos."
+  },
+  {
+    "id": 22509,
+    "name": "DiRT Rally",
+    "released": "2015-12-07",
+    "background_image": "https://store-images.s-microsoft.com/image/apps.4541.63841878127398707.5ddbe181-5ee5-4879-b744-47d8bd7f7893.357b1b13-6098-4a59-9c64-2f878f939374?q=90&w=480&h=270",
+    "rating": 4.1,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 6, "name": "Linux" },
+      { "id": 5, "name": "Apple Macintosh" }
+    ],
+    "genres": [
+      { "id": 6, "name": "Racing" },
+      { "id": 8, "name": "Simulation" }
+    ],
+    "background_image_low_res": "https://media rawg.io/media/crop/600/400/games/1a4/1a47c2929e02f04e6cbff91eb4948f2c.jpg",
+    "description": "DiRT Rally es un simulador de rally con énfasis en manejo realista, cambios climáticos y terreno exigente."
+  },
+  {
+    "id": 3682,
+    "name": "Flight Simulator 2020",
+    "released": "2020-08-18",
+    "background_image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1250410/header.jpg?t=1748576233",
+    "rating": 4.3,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 5, "name": "Apple Macintosh" }
+    ],
+    "genres": [
+      { "id": 8, "name": "Simulation" }
+    ],
+    "background_image_low_res": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1250410/header.jpg?t=1748576233",
+    "description": "Flight Simulator 2020 ofrece una experiencia de vuelo ultrarrealista con mapas del mundo real, condiciones climáticas detalladas y mil aeronaves."
+  }, 
+  {
+  "id": 8004,
+  "name": "Riders Republic",
+  "released": "2021-10-28",
+  "background_image": "https://store-images.s-microsoft.com/image/apps.14387.14187388825692711.ad9b5612-f684-41a7-86b1-6e485a58e79a.043984b3-32e6-46f2-9148-9c5a80870b50?q=90&w=480&h=270",
+  "rating": 4.3,
+  "platforms": [
+    { "id": 1, "name": "PC" },
+    { "id": 2, "name": "PlayStation" },
+    { "id": 3, "name": "Xbox" }
+  ],
+  "genres": [
+    { "id": 12, "name": "Sports" }
+  ],
+  "description": "Multideporte extremo en mundo abierto: bicicletas, snowboard, wingsuits y carreras masivas online."
+}, 
+{
+  "id": 7003,
+  "name": "Mario Strikers: Battle League",
+  "released": "2022-06-10",
+  "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv3wohtpcFjyxoBdhVCbOMznff_enwQN2Yqw&s",
+  "rating": 4.2,
+  "platforms": [
+    { "id": 7, "name": "Nintendo" }
+  ],
+  "genres": [
+    { "id": 12, "name": "Sports" }
+  ],
+  "description": "Fútbol arcade con personajes de Mario, habilidades especiales, objetos y caos en partidos 5v5."
+}, {
+  "id": 6002,
+  "name": "NBA 2K Playgrounds 2",
+  "released": "2018-10-16",
+  "background_image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/726590/capsule_616x353.jpg?t=1609970621",
+  "rating": 4.0,
+  "platforms": [
+    { "id": 1, "name": "PC" },
+    { "id": 2, "name": "PlayStation" },
+    { "id": 3, "name": "Xbox" },
+    { "id": 7, "name": "Nintendo" }
+  ],
+  "genres": [
+    { "id": 12, "name": "Sports" }
+  ],
+  "description": "Baloncesto arcade con mates exagerados, power-ups y partidas rápidas en 2v2 con estrellas de la NBA."
+},
+{
+  "id": 5001,
+  "name": "Disc Jam",
+  "released": "2017-03-07",
+  "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzl17SGzeNps1GysJqBI8Ctf8CLY0GXdxbBw&s",
+  "rating": 3.9,
+  "platforms": [
+    { "id": 1, "name": "PC" },
+    { "id": 2, "name": "PlayStation" }
+  ],
+  "genres": [
+    { "id": 12, "name": "Sports" }
+  ],
+  "description": "Un juego frenético de frisbee competitivo en 1v1 o 2v2, con rebotes, poderes y reflejos rápidos."
+},
+  {
+    "id": 1010,
+    "name": "Forza Horizon 5",
+    "released": "2021-11-09",
+    "background_image": "https://store-images.s-microsoft.com/image/apps.33953.14506879174941978.138d3eab-0b06-443b-a252-c99592521394.fbecd5ff-76a3-4dc9-9005-3799f09950a0?q=90&w=480&h=270",
+    "rating": 4.7,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 3, "name": "Xbox" }
+    ],
+    "genres": [
+      { "id": 1, "name": "Racing" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/456/456dea5e1c7e3cd07060c14e96612001.jpg",
+    "description": "Forza Horizon 5 te lleva a recorrer un mundo abierto inspirado en México, lleno de paisajes impresionantes, tormentas tropicales y cientos de autos personalizables para competir en eventos dinámicos."
+  },
+  {
+    "id": 2021,
+    "name": "Gran Turismo 7",
+    "released": "2022-03-04",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_TmPPp7RlIoumWQF62RZXXEYRLKYikK43bQ&s",
+    "rating": 4.4,
+    "platforms": [
+      { "id": 2, "name": "PlayStation" }
+    ],
+    "genres": [
+      { "id": 1, "name": "Racing" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/0c1/0c1d2b0b6f3a90d7168f0f3f9d4aaf57.jpg",
+    "description": "Gran Turismo 7 ofrece la experiencia automovilística más realista de PlayStation, con gráficos ultradetallados, simulación de física avanzada y cientos de autos de ensueño para coleccionar y correr."
+  },
+  {
+    "id": 3032,
+    "name": "Need for Speed Heat",
+    "released": "2019-11-08",
+    "background_image": "https://store-images.s-microsoft.com/image/apps.8294.69435230515002378.477c7a96-5d17-45ec-95c2-a2739146b68d.fd377b26-2212-4834-b9f4-b14e17f411ec?q=90&w=480&h=270",
+    "rating": 4.1,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" }
+    ],
+    "genres": [
+      { "id": 1, "name": "Racing" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/d05/d05b0a6b8c3c2046d44427c9ff6b1b97.jpg",
+    "description": "Need for Speed Heat combina carreras callejeras diurnas y nocturnas en Palm City, donde podrás personalizar tu coche y desafiar a la policía en persecuciones de alto riesgo."
+  },
+  {
+    "id": 4043,
+    "name": "F1 24",
+    "released": "2024-05-31",
+    "background_image": "https://store-images.s-microsoft.com/image/apps.65396.14309904834888333.ae73f2e0-1ce2-4244-89ea-266904a2c24f.d2b31e52-54ad-4aa8-bb13-6284bee62ca6?q=90&w=480&h=270",
+    "rating": 4.2,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" }
+    ],
+    "genres": [
+      { "id": 1, "name": "Racing" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/ea1/ea1a7d4e28db70c54d24b07e3f0d81c7.jpg",
+    "description": "F1 24 te coloca en la piel de un piloto profesional con un nuevo sistema de manejo realista, modo carrera inmersivo y todos los circuitos oficiales de la temporada 2024 de Fórmula 1."
+  },
+  {
+    "id": 5055,
+    "name": "Mario Kart 8 Deluxe",
+    "released": "2017-04-28",
+    "background_image": "https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_1.5/c_scale,w_500/ncom/software/switch/70070000016659/78683d87f12356c571e4541b2ef649e3bd608285139704087c552171f715e399",
+    "rating": 4.6,
+    "platforms": [
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 1, "name": "Racing" }
+    ],
+    "background_image_low_res": "https://media.rawg.io/media/crop/600/400/games/7f2/7f2b2543f9dc7923c82d2b1d1d7e7d45.jpg",
+    "description": "Mario Kart 8 Deluxe es la edición definitiva del clásico de carreras de Nintendo, con todos los personajes, pistas y modos multijugador locales y online para competir con estilo y diversión."
+  }
+,{
+    "id": 9001,
+    "name": "Cuphead",
+    "released": "2017-09-29",
+    "background_image": "https://assets.nintendo.com/image/upload/ar_16:9,c_lpad,w_1240/b_white/f_auto/q_auto/ncom/software/switch/70010000016330/d94d2186ef03c930392253c83c84af0c73b7e57cd902a526b09b4155a25930fe",
+    "rating": 4.5,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 11, "name": "Arcade" }
+    ],
+    "description": "Cuphead es un juego de disparos estilo run-and-gun con estética de dibujos animados de los años 30 y jefes desafiantes."
+  },
+  {
+    "id": 9002,
+    "name": "Geometry Dash",
+    "released": "2013-08-13",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgz5UgjIicWCkh0Uhg0xFttIcNEYi9nUwCGg&s",
+    "rating": 4.2,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 4, "name": "iOS" },
+      { "id": 8, "name": "Android" }
+    ],
+    "genres": [
+      { "id": 11, "name": "Arcade" }
+    ],
+    "description": "Juego de plataformas rítmico donde esquivás obstáculos al ritmo de la música electrónica."
+  },
+  {
+    "id": 9003,
+    "name": "Super Meat Boy",
+    "released": "2010-10-20",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe3wL4ewCyTDEOjf6E9eTQeO3IP6Tp7_fPdA&s",
+    "rating": 4.3,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 11, "name": "Arcade" }
+    ],
+    "description": "Plataformas de precisión con niveles cortos y extremadamente desafiantes, protagonizado por un trozo de carne."
+  },
+  {
+    "id": 9004,
+    "name": "Enter the Gungeon",
+    "released": "2016-04-05",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0Muvy3kHnGCkfBN2zu53CtvM0WKoJHozSoA&s",
+    "rating": 4.4,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 11, "name": "Arcade" }
+    ],
+    "description": "Dungeon crawler con armas absurdas, acción frenética y estética pixel art."
+  },
+  {
+    "id": 9005,
+    "name": "Broforce",
+    "released": "2015-10-15",
+    "background_image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/274190/ss_9e761b35f973ca49605bace34600209750204dea.1920x1080.jpg?t=1756112147",
+    "rating": 4.1,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 11, "name": "Arcade" }
+    ],
+    "description": "Juego de acción explosiva con héroes paródicos de películas ochenteras, destrucción masiva y cooperativo."
+  },
+  {
+    "id": 9006,
+    "name": "Katana ZERO",
+    "released": "2019-04-18",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5yrIuDSmQFpWVl7xUI5wWoI71lqc8Jc8RWw&s",
+    "rating": 4.4,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 11, "name": "Arcade" }
+    ],
+    "description": "Acción lateral con katana, manipulación del tiempo y narrativa oscura estilo neo-noir."
+  },
+  {
+    "id": 9007,
+    "name": "Downwell",
+    "released": "2015-10-15",
+    "background_image": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000014738/a13806fcecca1cf9f6b9fc893b369b7545b2d42b3749c6769b7cfb16e89b0e9e",
+    "rating": 4.0,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 4, "name": "iOS" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 11, "name": "Arcade" }
+    ],
+    "description": "Descendé por un pozo infinito con botas que disparan, recogiendo gemas y esquivando enemigos."
+  },
+  {
+    "id": 9008,
+    "name": "Hotline Miami",
+    "released": "2012-10-23",
+    "background_image": "https://store-images.s-microsoft.com/image/apps.57057.14017691440321233.123890d4-3554-4b97-8f1d-a6ddb299b439.20dcab0f-a881-4bc5-b9ec-f1cce9e39ffe?q=90&w=480&h=270",
+    "rating": 4.5,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 5, "name": "Apple Macintosh" }
+    ],
+    "genres": [
+      { "id": 11, "name": "Arcade" }
+    ],
+    "description": "Juego de acción ultraviolenta con vista cenital, estética retro y música synthwave hipnótica."
+  },
+  {
+    "id": 9101,
+    "name": "Stardew Valley",
+    "released": "2016-02-26",
+    "background_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/413150/capsule_616x353.jpg?t=1754692865",
+    "rating": 4.7,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 4, "name": "iOS" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 13, "name": "Casual" }
+    ],
+    "description": "Simulador de vida rural donde cultivás, pescás, socializás y explorás cuevas en tu tiempo libre."
+  },
+  {
+    "id": 9102,
+    "name": "Unpacking",
+    "released": "2021-11-02",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLd5J2jg58lJUZFhjoH710ujUX4SltdojRkQ&s",
+    "rating": 4.4,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 13, "name": "Casual" }
+    ],
+    "description": "Juego zen de acomodar objetos en habitaciones, mientras descubrís la historia de una vida a través de mudanzas."
+  },
+  {
+    "id": 9103,
+    "name": "Overcooked! 2",
+    "released": "2018-08-07",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn2ZFF8OxgCo5IXNLh38e94rIzdUi8sUHv-g&s",
+    "rating": 4.3,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 13, "name": "Casual" }
+    ],
+    "description": "Cocina cooperativa caótica donde la coordinación y el humor son clave para servir platos a tiempo."
+  },
+  {
+    "id": 9104,
+    "name": "Fall Guys",
+    "released": "2020-08-04",
+    "background_image": "https://i.ytimg.com/vi/f4citMS3o-A/maxresdefault.jpg",
+    "rating": 4.1,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 13, "name": "Casual" }
+    ],
+    "description": "Battle royale de minijuegos con físicas graciosas, donde competís por ser el último en pie."
+  },
+  {
+    "id": 9105,
+    "name": "Animal Crossing: New Horizons",
+    "released": "2020-03-20",
+    "background_image": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000027619/9989957eae3a6b545194c42fec2071675c34aadacd65e6b33fdfe7b3b6a86c3a",
+    "rating": 4.8,
+    "platforms": [
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 13, "name": "Casual" }
+    ],
+    "description": "Simulador de vida en una isla donde decorás, pescás, cultivás y charlás con vecinos adorables."
+  },
+  {
+    "id": 9106,
+    "name": "Kind Words (lo fi chill beats to write to)",
+    "released": "2019-09-12",
+    "background_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1070710/capsule_616x353.jpg?t=1733943033",
+    "rating": 4.6,
+    "platforms": [
+      { "id": 1, "name": "PC" }
+    ],
+    "genres": [
+      { "id": 13, "name": "Casual" }
+    ],
+    "description": "Escribí mensajes positivos a otros jugadores en un entorno relajante con música lo-fi y buena vibra."
+  },
+  {
+    "id": 9107,
+    "name": "Good Pizza, Great Pizza",
+    "released": "2018-04-06",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSE-0dzp3p53tbouIOBdqrZvTGAbBpO48NdjA&s",
+    "rating": 4.0,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 4, "name": "iOS" },
+      { "id": 8, "name": "Android" }
+    ],
+    "genres": [
+      { "id": 13, "name": "Casual" }
+    ],
+    "description": "Administrá tu pizzería, prepará pedidos y mejorá tu local mientras atendés clientes con gustos únicos."
+  },
+  {
+    "id": 9108,
+    "name": "Tetris Effect",
+    "released": "2018-11-09",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8o6uebe2G-dzPVDBzXS_glo0zk76Z5tOxsw&s",
+    "rating": 4.5,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" }
+    ],
+    "genres": [
+      { "id": 13, "name": "Casual" }
+    ],
+    "description": "El clásico Tetris con efectos visuales y sonoros envolventes que sincronizan con tu ritmo de juego."
+  },
+  {
+    "id": 9201,
+    "name": "Civilization VI",
+    "released": "2016-10-21",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRD4POKm1DtNaRLo433Byit1Xe37YsnbIpAeA&s",
+    "rating": 4.6,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 10, "name": "Strategy" }
+    ],
+    "description": "Construí un imperio desde cero, explorá, investigá tecnologías y negociá con otras civilizaciones para dominar el mundo."
+  },
+  {
+    "id": 9202,
+    "name": "XCOM 2",
+    "released": "2016-02-05",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2LpA9S1YmHqeDpUVVZESJ0Vzs7b9KC_C-Hg&s",
+    "rating": 4.5,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" }
+    ],
+    "genres": [
+      { "id": 10, "name": "Strategy" }
+    ],
+    "description": "Comandá una resistencia contra una invasión alienígena en combates tácticos por turnos con gestión de escuadra."
+  },
+  {
+    "id": 9203,
+    "name": "Into the Breach",
+    "released": "2018-02-27",
+    "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXXgYl2LA4eYofWbzY8l503Te1IuTImXv9zg&s",
+    "rating": 4.4,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 10, "name": "Strategy" }
+    ],
+    "description": "Defendé ciudades del ataque de monstruos usando mechas en un tablero táctico con movimientos calculados al milímetro."
+  },
+  {
+    "id": 9204,
+    "name": "Total War: Three Kingdoms",
+    "released": "2019-05-23",
+    "background_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/779340/capsule_616x353.jpg?t=1740720569",
+    "rating": 4.3,
+    "platforms": [
+      { "id": 1, "name": "PC" }
+    ],
+    "genres": [
+      { "id": 10, "name": "Strategy" }
+    ],
+    "description": "Estrategia en tiempo real y por turnos ambientada en la China antigua, con diplomacia, espionaje y batallas masivas."
+  },
+  {
+    "id": 9205,
+    "name": "Crusader Kings III",
+    "released": "2020-09-01",
+    "background_image": "https://image.api.playstation.com/vulcan/ap/rnd/202108/1908/mpajVjNHPQbyZosl14N2HRAg.jpg",
+    "rating": 4.7,
+    "platforms": [
+      { "id": 1, "name": "PC" }
+    ],
+    "genres": [
+      { "id": 10, "name": "Strategy" }
+    ],
+    "description": "Simulador de dinastías medievales donde gestionás linajes, alianzas, traiciones y herencias para expandir tu poder."
+  },
+  {
+    "id": 9206,
+    "name": "Northgard",
+    "released": "2018-03-07",
+    "background_image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/466560/header.jpg?t=1755168227",
+    "rating": 4.2,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 10, "name": "Strategy" }
+    ],
+    "description": "Controlá clanes vikingos en tierras desconocidas, explorá, combatí y sobreviví al invierno mientras expandís tu territorio."
+  },
+  {
+    "id": 9301,
+    "name": "Street Fighter V",
+    "released": "2016-02-16",
+    "background_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/310950/header.jpg?t=1759109525",
+    "rating": 4.2,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" }
+    ],
+    "genres": [
+      { "id": 14, "name": "Fighting" }
+    ],
+    "description": "Clásico de peleas con combos técnicos, personajes icónicos y torneos competitivos globales."
+  },
+  {
+    "id": 9302,
+    "name": "Tekken 7",
+    "released": "2017-06-02",
+    "background_image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/389730/header.jpg?t=1737674502",
+    "rating": 4.4,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" }
+    ],
+    "genres": [
+      { "id": 14, "name": "Fighting" }
+    ],
+    "description": "Peleas en 3D con física precisa, historia dramática y una enorme variedad de estilos de combate."
+  },
+  {
+    "id": 9303,
+    "name": "Mortal Kombat 11",
+    "released": "2019-04-23",
+    "background_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/976310/header.jpg?t=1747925751",
+    "rating": 4.5,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 14, "name": "Fighting" }
+    ],
+    "description": "Combates brutales con fatalities, historia cinematográfica y personalización de luchadores."
+  },
+  {
+    "id": 9304,
+    "name": "Dragon Ball FighterZ",
+    "released": "2018-01-26",
+    "background_image": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/992176/capsule_616x353.jpg?t=1716397662",
+    "rating": 4.6,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 14, "name": "Fighting" }
+    ],
+    "description": "Peleas 3v3 con animación estilo anime, velocidad frenética y poderes espectaculares del universo Dragon Ball."
+  },
+  {
+    "id": 9305,
+    "name": "Super Smash Bros. Ultimate",
+    "released": "2018-12-07",
+    "background_image": "https://assets.nintendo.com/image/upload/q_auto/f_auto/ncom/software/switch/70010000012332/ac4d1fc9824876ce756406f0525d50c57ded4b2a666f6dfe40a6ac5c3563fad9",
+    "rating": 4.8,
+    "platforms": [
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 14, "name": "Fighting" }
+    ],
+    "description": "Batallas caóticas con personajes de múltiples franquicias, escenarios dinámicos y modos para todos los estilos."
+  }, 
+  {
+    "id": 9401,
+    "name": "The Witness",
+    "released": "2016-01-26",
+    "background_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/210970/header.jpg?t=1720810823",
+    "rating": 4.4,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 5, "name": "Apple Macintosh" }
+    ],
+    "genres": [
+      { "id": 7, "name": "Puzzle" }
+    ],
+    "description": "Explorá una isla llena de paneles con acertijos visuales que desafían tu lógica y percepción."
+  },
+  {
+    "id": 9402,
+    "name": "Portal 2",
+    "released": "2011-04-19",
+    "background_image": "https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000050313/75484f73fedd25cb830c5d93fbb3fca643a5ec0b09df2815291ead880bc7d6b1",
+    "rating": 4.8,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 5, "name": "Apple Macintosh" }
+    ],
+    "genres": [
+      { "id": 7, "name": "Puzzle" }
+    ],
+    "description": "Usá portales para resolver desafíos espaciales en una instalación científica con humor y narrativa brillante."
+  },
+  {
+    "id": 9403,
+    "name": "Baba Is You",
+    "released": "2019-03-13",
+    "background_image": "https://upload.wikimedia.org/wikipedia/en/2/28/Baba_is_you_cover_art.jpg",
+    "rating": 4.5,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 7, "name": "Puzzle" }
+    ],
+    "description": "Modificá las reglas del juego moviendo palabras para cambiar la lógica y resolver cada nivel."
+  },
+  {
+    "id": 9404,
+    "name": "Monument Valley",
+    "released": "2014-04-03",
+    "background_image": "https://cdn1.epicgames.com/spt-assets/e56a7411805046d3b5b7253a6e4e0faa/monument-valley-1gys5.jpg",
+    "rating": 4.6,
+    "platforms": [
+      { "id": 4, "name": "iOS" },
+      { "id": 8, "name": "Android" }
+    ],
+    "genres": [
+      { "id": 7, "name": "Puzzle" }
+    ],
+    "description": "Manipulá arquitecturas imposibles para guiar a una princesa a través de escenarios visualmente hipnóticos."
+  },
+  {
+    "id": 9405,
+    "name": "Limbo",
+    "released": "2010-07-21",
+    "background_image": "https://niveloculto.com/wp-content/uploads/2010/07/limbo1.jpg",
+    "rating": 4.3,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 4, "name": "iOS" },
+      { "id": 8, "name": "Android" },
+      { "id": 5, "name": "Apple Macintosh" },
+      { "id": 6, "name": "Linux" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 7, "name": "Puzzle" },
+      { "id": 83, "name": "Platformer" }
+    ],
+    "description": "Juego de plataformas con acertijos ambientales y estética sombría, protagonizado por un niño en un mundo hostil."
+  },
+  {
+    "id": 9406,
+    "name": "Human: Fall Flat",
+    "released": "2016-07-22",
+    "background_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2777220/b806dc2a18debf4ff02f7f752af6c439b53ed394/capsule_616x353.jpg?t=1749639777",
+    "rating": 4.0,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 7, "name": "Puzzle" }
+    ],
+    "description": "Resolvé acertijos físicos con personajes blanditos en escenarios surrealistas, solo o en cooperativo."
+  },
+   {
+    "id": 9306,
+    "name": "Guilty Gear -Strive-",
+    "released": "2021-06-11",
+    "background_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/376300/capsule_616x353.jpg?t=1671009243",
+    "rating": 4.6,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" }
+    ],
+    "genres": [
+      { "id": 14, "name": "Fighting" }
+    ],
+    "description": "Peleas 2D con animación estilo anime, combos espectaculares y una banda sonora explosiva."
+  },
+  {
+    "id": 9307,
+    "name": "Skullgirls",
+    "released": "2012-04-10",
+    "background_image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/245170/header.jpg?t=1737508709",
+    "rating": 4.3,
+    "platforms": [
+      { "id": 1, "name": "PC" },
+      { "id": 2, "name": "PlayStation" },
+      { "id": 3, "name": "Xbox" },
+      { "id": 7, "name": "Nintendo" }
+    ],
+    "genres": [
+      { "id": 14, "name": "Fighting" }
+    ],
+    "description": "Juego de lucha con estética de dibujos animados, animaciones fluidas y sistema de combate técnico."
+  },
+  {
+  "id": 6012,
+  "name": "The Sims 4",
+  "released": "2014-09-02",
+  "background_image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnAi3cOcmNISq7AchJWquGWS3tKtnNdaREHw&s",
+  "rating": 4.0,
+  "platforms": [
+    { "id": 1, "name": "PC" },
+    { "id": 2, "name": "PlayStation" },
+    { "id": 3, "name": "Xbox" }
+  ],
+  "genres": [
+    { "id": 14, "name": "Simulation" }
+  ],
+  "background_image_low_res": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnAi3cOcmNISq7AchJWquGWS3tKtnNdaREHw&s",
+  "description": "The Sims 4 es un simulador de vida donde puedes crear personajes únicos, construir casas y controlar cada aspecto de la vida diaria de tus Sims, desde sus relaciones hasta sus carreras profesionales y aspiraciones personales."
+}
+]
