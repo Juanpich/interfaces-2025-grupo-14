@@ -1,7 +1,7 @@
 console.log("App JS cargado");
 const canvas = document.getElementById("myCanvas-2");//canva principal
 const ctx = canvas.getContext("2d");
-const btn_comenzar = document.getElementById("btn_comenzar");//btn de comezar
+const btn_comenzar = document.getElementById("btn_comenzar");//btn de comenzar
 const select_cols = document.getElementById("select_levels");// selector de cuadrantes
 
 let numCols = 2;
@@ -12,28 +12,72 @@ let rectW, rectH;
 let ImagenHTML5 = null;
 let canvasBW = null;
 
+let opciones_level = document.querySelectorAll(".op-cuadrantes");
+
+opciones_level.forEach(opcion => {
+  opcion.addEventListener("click", () => {
+    // Remover la clase de todos los elementos
+    opciones_level.forEach(o => o.classList.remove("level-active"));
+
+    // Agregar la clase al elemento clickeado
+    opcion.classList.add("level-active");
+  });
+});
+
+let iconos_level = document.querySelectorAll(".op-icono");
+let flotante_instrucciones = document.querySelector(".instructions");
+let flotante_ayuda = document.querySelector(".help");
+
+iconos_level.forEach(icon => {
+  icon.addEventListener("click", () => {
+    iconos_level.forEach(o => o.classList.remove("op-active"));
+    icon.classList.add("op-active");
+
+    if (icon.getAttribute("data-value") === "ayudin") {
+      flotante_ayuda.classList.add("visibility-flotante");
+      flotante_instrucciones.classList.remove("visibility-flotante"); // opcional, para ocultar la otra
+    } else if (icon.getAttribute("data-value") === "instrucciones") {
+      flotante_instrucciones.classList.add("visibility-flotante");
+      flotante_ayuda.classList.remove("visibility-flotante"); // opcional
+    }
+  });
+});
+
+// Seleccionamos todos los íconos de cierre
+let cruz_icon_skip = document.querySelectorAll(".cruz-icon-skip");
+
+cruz_icon_skip.forEach(icon => {
+  icon.addEventListener("click", () => {
+    const value = icon.getAttribute("data-value");
+    if (value === "instrucciones") {
+      flotante_instrucciones.classList.remove("visibility-flotante"); // ocultar
+    } else if (value === "ayuda") {
+      flotante_ayuda.classList.remove("visibility-flotante"); // ocultar
+    }
+  });
+});
+
 btn_comenzar.addEventListener("click", () => {
-  numCols = parseInt(select_cols.value);
+  let opcion = document.querySelector(".level-active");
+  numCols = parseInt(opcion.getAttribute("data-value"));
   numRows = 2;
   comenzar();
 });
 
+
 function comenzar() {
   rects = [];
   // Ajustar el ancho del canvas según el número de columnas
-switch (numCols) {
-  case 4:
+  if(numCols === 4){
     canvas.width = 1200;
-    break;
-  case 3:
+    console.log("aca 4")
+
+  } else if(numCols === 3){
     canvas.width = 900;
-    break;
-  case 2:
+
+  }else{
     canvas.width = 600;
-    break;
-  default:
-    canvas.width = 600; // Valor por defecto si se elige otro número
-}
+  }
 
   // Calcular dimensiones
   rectW = canvas.width / numCols; 

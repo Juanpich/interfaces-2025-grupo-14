@@ -1,8 +1,15 @@
 @import url('global.css');
 
-body{
-    background-color: #1b1b1b;
+/* Variables */
+:root{
+    /* Colors */
+    --background-floating: #383636; 
 }
+
+body{
+    background-color: var(--background-color);
+}
+/* Barra lateral de opciones en el juego */
 .sidebar{
     display: grid;
     grid-template-rows: 44px 44px 44px 24px 24px;
@@ -11,7 +18,7 @@ body{
     justify-content: center;
     height: 660px;
     width: 120px;
-    background-color: #1b1b1b;
+    background-color: var(--background-color);
     position: absolute; /* Changed to absolute for fixed positioning */
     top: 0;
     right: 0;
@@ -19,10 +26,11 @@ body{
     padding-top: 20px;
 }
 
+/* Botones x4, x6, x8 */
 .sidebar p{
     margin: 0%;
     padding: 0%;
-    background-color: #00F5E9;
+    background-color: var(--primary-color);
     border-radius: 100%;
     padding: 12px;
     font-family: 'Exo 2', sans-serif;
@@ -30,6 +38,13 @@ body{
 
 }
 
+/* Boton presionado */
+.level-active {
+    /* border: solid 1px #FFE500; */
+    box-shadow:0px 0px 5px 3px var(--acento-color);
+}
+
+/* Icono instrucciones y ayuda */
 .sidebar svg{
     margin: 0%;
     padding: 0%;
@@ -37,28 +52,59 @@ body{
     margin-left: 7px;
 }
 
-.level-active {
-    /* border: solid 1px #FFE500; */
-    box-shadow:0px 0px 5px 3px #FFE500 ;
-}
-
+/* Icono presionado */
 .sidebar svg.op-active{
-    fill: #FFE500;
+    fill: var(--acento-color);
 }
 
-.instructions{
+/* Propiedades compartidas en instructiones y ayuda */
+.instructions , .help{
     display: grid;
-    gap: 15px;
-    grid-template-rows: 32px 30px 95px 30px 75px 30px 120px 50px 32px;
-    background-color: #383636;
-    width: 800px;
-    height: 650px;
+    gap: 17px;
+    background-color: var(--background-floating);
+    box-shadow: 0px 0px 45px 2px #FFFFFF;
     border-radius: 12px;
-    box-shadow: 0px 0px 5px 3px #FFFFFF;
     padding-top: 15px;
+    display: none;
 }
 
-.instructions .instructions-title{
+/* Activar flotantes */
+.visibility-flotante{
+    display: grid;
+}
+
+/* "Ayuda" para blocka */
+.help{
+    grid-template-rows: 10px 34px 30px 45px 30px 25px 62px auto;
+    width: 800px;
+    height: 410px;
+    /* COMENTAR !!!!!!!!!!!!!!!!!!!!!! */
+    margin: 40px;
+}
+
+.help .instructions-title.ayudin{
+    margin-top: 10px;
+}
+
+.container-cruz{
+    text-align: end;
+}
+
+.container-cruz svg{
+    margin-right: 10px;
+}
+
+/* Intrucciones de la blocka */
+.instructions{
+    grid-template-rows: 32px 30px 95px 30px 75px 30px 120px 50px 32px;
+    width: 800px;
+    height: 655px;
+    /* COMENTAR !!!!!!!!!!!!!!!!!!!!!! */
+    margin: 40px;
+}
+
+/* Cuerpo de info de ambos flotantes */
+.instructions-title{
     color: #FFFFFF;
     font-family: 'Jockey One', sans-serif;
     font-size: 30px;
@@ -69,7 +115,7 @@ body{
     padding: 0px;
 }
 
-.instructions .instructions-subtitle{
+.instructions-subtitle{
     color: #FFFFFF;
     font-family: 'Exo 2', sans-serif;
     font-size: 26px;
@@ -79,7 +125,7 @@ body{
     padding: 0px;
 }
 
-.instructions .instructions-text{
+.instructions-text{
     color: #FFFFFF;
     font-family: 'Exo 2', sans-serif;
     font-size: 20px;
@@ -91,9 +137,51 @@ body{
     height: auto;
 }
 
+/* !!!!!!!!!!! CAMBIAR NOMBRE A BTN_START */
+/* Btn "comenzar" el juego y "siguiente" nivel */
+.btn-primary-big, .next-level{
+    color: #000000;
+    height: 59px;
+    background-color:var(--primary-color);
+    font-family: 'Khula', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 12px 24px 12px 24px;
+    border-radius: 10px;
+    box-shadow: 0 0 4px 0 var(--primary-color-700);
+}
 
+.btn-primary-big{
+    width: 146px;
+}
+
+.btn-container-help{
+    text-align: center;
+    padding: 0px;
+    margin-top: 10px;
+}
+
+.btn-accept{
+    color: #FFFFFF;
+    border: solid 1px #FFFFFF;
+    border-radius: 4px;
+    padding: 6px 18px 6px 18px;
+    font-family: 'Khula', sans-serif;
+    font-size: 16px;
+    height: 38px;
+    width: 90px;
+    margin: 0px;
+
+}
+.next-level svg{
+    padding: 0px;
+    margin: 0px;
+}
+
+B
 
 /*Como jugar*/
 .btn-controls svg {
     fill: #FFFFFF;
 }
+
