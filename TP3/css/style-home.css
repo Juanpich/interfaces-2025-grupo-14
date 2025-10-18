@@ -1,0 +1,764 @@
+@import url('https://fonts.googleapis.com/css2?family=Khula:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;700&display=swap');
+@import url('./global.css');
+@import url('./fat-footer-style.css');
+@import url('./style-header.css');
+
+/* Carga del home */
+
+.loading-comment-animation svg {
+    width: 200px;
+    height: 200px;
+    animation: cargando 5s linear infinite;
+}
+.loading-comment-animation svg circle {
+    fill: none;
+    stroke-width: 5;
+    stroke: rgb(255, 255, 255);
+    animation: CargaHome 5s ease-in-out infinite;
+}
+.loading-comment-animation{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-comment-animation .text-loading{
+    font-family: 'Jockey One', sans-serif;
+    color: #FFFFFF;
+    font-size: 32px;
+    text-align: center;
+    margin-top: 20px;
+}
+.loading-comment-animation{
+    width: 100%;
+    height: 100%;
+    background-color:rgba(27, 27, 27, 1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    animation: salidaCarga 10s forwards infinite;
+}
+.deselected{
+    display: none;
+}
+@keyframes salidaCarga {
+    0% {
+        background-color: rgba(27, 27, 27, 1);
+        opacity: 1;
+    }
+    9%{
+        background-color: rgba(27, 27, 27, 1);
+        opacity: 1;
+    }
+    100% {
+        background-color: rgba(27, 27, 27, 0.5);
+        opacity: 0;
+    }
+}
+
+@keyframes cargando {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes CargaHome {
+    0% {
+        stroke-dasharray: 1, 200;
+        stroke-dashoffset: 0;
+    }
+
+    25% {
+        stroke-dasharray: 50, 200;
+        stroke-dashoffset: -10;
+    }
+    50%{
+        stroke-dasharray: 100, 200;
+        stroke-dashoffset: -70;
+    }
+
+    80% {
+        stroke-dasharray: 120, 200;
+        stroke-dashoffset: -90;
+    }
+
+    100% {
+        stroke-dasharray: 150, 200;
+        stroke-dashoffset: -124;
+    }
+}
+body{
+    background-color: #1b1b1b;
+    padding-top: 60px;
+    width: 100%;
+}
+
+/* Container-hero */
+.hero{
+    width: 100%;
+    height: 750px;
+}
+
+/* Video del hero */
+.hero video{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 750px;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.2;
+    color: #1b1b1b;
+}
+
+/* Container del contenido(info) del hero */
+.content-hero{
+    position: absolute;
+    top: 184px;
+    left: 0px;
+    width: 100%;
+    height: 580px;
+    display: grid;
+    grid-template-rows: 45px auto auto auto auto auto;
+    gap: 20px;
+    height: auto;
+    z-index: 1;
+}
+
+/* Subtitulo - hero */
+.subtitle{
+    font-family: 'Jockey One', sans-serif;
+    color: #FFE500;
+    font-size: 32px;
+    width: auto;
+    height: 25px;
+    padding: 0px;
+    margin-top: 0px;
+    text-align: center;
+}
+
+/* Titulo - hero */
+.content-hero h2{
+font-family: 'Jockey One', sans-serif;
+    color: #FFFFFF;
+    font-size: 48px;
+    width: auto;
+    height: 52px;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+
+/*Valoraciones estrellas en la info del hero (container)*/
+.content-hero .stars-valoration{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0px;
+    margin: 0px;
+    height: 19px;
+}
+
+/*Valoraciones en la info del hero (texto)*/
+.stars-valoration p{
+    font-family: 'Exo 2', sans-serif;
+    font-size: 24px;
+    color: #FFFFFF;
+    padding: 0px;
+    margin: 0px;
+}
+
+/*Container de Insignias - info hero*/
+.insignias{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    gap: 10px;
+    height: 27px;
+}
+
+.insignia{
+    display: inline-block;
+    border: 1px solid #FFFFFF;
+    border-radius: 12px;
+    width: auto;
+    height: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.insignia p{
+    width: auto;
+    font-size: 14px;
+    font-family: 'Exo 2', sans-serif;
+    color: #FFFFFF;
+    padding: 9px 18px 9px 18px;
+}
+
+/* Container del descuento - info hero */
+.descuento{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Texto del descuento - info hero */
+.descuento p{
+    font-family: 'Exo 2', sans-serif;
+    font-size: 18px;
+    color: #FFFFFF;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Svg del descuento - info hero */
+.descuento svg{
+    margin-top: 10px;
+}
+
+/*Boton "Comprar ahora" de la card del carrusel principal*/
+.button-card-major {
+    width: 195px;
+    height: 59px;
+    box-shadow: 0 0 12px #237E78;
+    background-color: #00F5E9;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 12px 24px 12px 24px;
+    font-family: 'Khula', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    line-height: normal;
+    text-align: center;
+}
+
+.button-card-major:hover{
+    background-color: var(--primary-color-700);
+    border: 1px solid var(--primary-color-700);
+    box-shadow: 0 0 4px 0 var(--primary-color-700);
+}
+
+/*Div que contiene el boton - info hero*/
+.container-boton{
+    text-align: center;
+    margin-top: 40px;
+    height: 59px;
+}
+
+/*Contenedor del carrusel de cards de juegos - lo que se va a ver*/
+.carrusel-cards-games-view{
+    width: auto;
+    height: auto;
+    display: flex;
+    gap: 32px;
+    margin: 0px 0px 20px 5px;
+    z-index: 0;
+    position: relative;
+}
+
+.carruseles, .carrusel-tendencia{
+    width: 100%;
+    height: auto;
+}
+
+/* Container de: carrusel + el nombre de la categoria y su icono */
+.carrusel{
+    margin-top: 10px;
+}
+
+/* Titulo de la categoria */
+.carrusel .category-name{
+    font-family: 'Exo 2', sans-serif;
+    color: #FFFFFF;
+    font-size: 28px;
+    margin: 0px;
+    margin: 0px 0px 5px 5px;
+    padding: 0px;
+}
+
+/*Flechas*/
+.carrusel-cards-games-view svg{
+    z-index: 1;
+}
+
+/*Contenedor del carrusel de cards de juegos - lo que se va a mover*/
+.carrusel-cards-games-view .container-function-carrusel{
+    display: flex;
+    gap: 32px;
+    width: auto;
+    overflow: hidden;
+    height: auto;
+}
+
+/*card de juegos*/
+.carrusel-cards-games-view .container-function-carrusel .card-game-free{
+    margin: 8px 0px 8px 0px;
+    background-color: #1b1b1b;
+    border-radius: 12px;
+    height: 310px;
+    width: 270px;
+    box-shadow: 0 0 12px #FFFFFF;   
+    transition: transform 0.4s cubic-bezier(0, 0, 0.96, 0.03);
+}
+.carrusel-cards-games-view .container-function-carrusel .card-game-free:hover{
+    box-shadow: 0 0 20px var(--acento-color);
+    transform: scale(0.9);
+    transition: transform 0.99s ease-in-out;
+    background-color: #000000b9;
+}
+/*Imagen de la card de juegos*/
+.img-carg-game-free{
+    width: 250px;
+    height: 150px;
+    border-radius: 8px;
+    margin: 8px;
+    transition: transform 0.4s cubic-bezier(0, 0, 0.96, 0.03);
+
+}
+.carrusel-cards-games-view .container-function-carrusel .card-game-free:hover .img-carg-game-free{
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+
+}
+
+/*Titulo de la card de juegos*/
+.title-card-game-free{
+    font-family: 'Jockey One', sans-serif;
+    color: #FFFFFF;
+    font-size: 20px;
+    margin-top: 0px;
+    margin-left: 8px;
+}
+
+/*Contenedor de la accion mas icono de la card games*/
+.container-action-game-free{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 13px;
+    height: auto;
+}
+
+/*Texto de la accion de la card games*/
+.card-game-free p{
+    color: #FFF;
+    font-family: "Jockey One";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-right: 4px;
+}
+
+/*Icono de estrellas de la card games*/
+.stars-valoration{
+    margin-left: 8px;
+}
+
+/* Logica de pintar 1 o 1/2 estrella segun el core */
+.stars-valoration .star-full {
+    fill: var(--acento-color);
+    stroke: var(--acento-color);
+}
+.star-half {
+  stroke: var(--acento-color);
+}
+
+.stars-valoration .star-empty {
+    stroke: var(--gradient-color);
+}
+
+.stars-valoration .star {
+    width: 15px;
+    height: 15px;
+    margin: 2px;
+}
+
+/*Flechas de carrusel de cargs-games*/
+.left-arrow, .right-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    cursor: pointer;
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
+
+.left-arrow.disabled, .right-arrow.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    /* Hero responsive */
+    .hero {
+        height: 750px;
+    }
+
+    .hero video {
+        height: 750px;
+    }
+
+    .content-hero {
+        top: 200px;
+        justify-items: center;
+        grid-template-rows: 35px 65px 45px 50px auto 120px;
+        gap: 10px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+    }
+
+    .content-hero h2 {
+        font-size: 20px;
+        width: 70%;
+        text-align:center;
+    }
+
+    .content-hero .stars-valoration {
+        display: grid;
+        grid-template-rows: auto auto;
+        justify-items: center;
+    }
+
+    .stars-valoration p {
+        font-size: 16px;
+    }
+
+    .stars-valoration svg{
+        width: 60px;
+        height: 10px;
+    }
+
+    .insignias{
+        gap: 5px;
+    }
+
+    .insignia{
+        height: 23px;
+    }
+
+    .insignia p {
+        font-size: 10px;
+        padding: 6px 12px;
+    }
+
+    .container-boton {
+        margin-top: 35px;
+    }
+
+    .descuento p{
+        font-size: 16px;
+        width: 60%;
+        text-align: center;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .descuento svg{
+        margin-top: 0px;
+    }
+
+    .container-boton{
+        margin-top: 80px;
+    }
+
+    .button-card-major {
+        font-size: 16px;
+        padding: 9px 16px 9px 16px;
+    }
+
+    /* Cards de juegos responsive */
+    .carrusel-cards-games-view .container-function-carrusel .card-game-free {
+        width: 200px;
+        height: 240px;
+    }
+    
+    .img-carg-game-free{
+        width: 180px;
+        height: 80px;
+        margin: 10px;
+        display: block;
+    }
+
+    .title-card-game-free{
+        font-size: 16px;
+        margin-top: 0px;
+    }
+
+    .card-game-free p{
+        font-size: 14px;
+    }
+
+    /* Carrusel de cards responsive */
+    .carrusel-cards-games-view{
+        width: 100%;
+    }
+
+    .carrusel-cards-games-view .container-function-carrusel{
+        overflow: scroll;
+        gap: 28px;
+    }
+
+    .carrusel .category-name{
+        font-size: 16px;
+    }
+
+    .carrusel-cards-games-view .container-function-carrusel .card-game-free{
+        margin-left: 5px;
+    }
+
+    .flechas-mobile{
+        visibility: hidden;
+    }
+    /* Puntitos de carousel de juegos en mobile */
+    .indicadores-carrusel-cards-games{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    
+    /* Estilo del punto actvado */
+    .indicadores-carrusel-cards-games .punto1, .punto2, .punto3 {
+        background-color: #555555;
+        padding: 4px;
+        margin: 5px;
+        border-radius: 100%;
+
+    }
+
+    /* Estilo del punto desactvado */
+    .indicadores-carrusel-cards-games .punto1.activo, .punto2.activo, .punto3.activo {
+        background-color: #FFFFFF;
+    }
+}
+/* Contenedor que contiene las flechas del carrusel animado*/
+.container-arrows{
+    display: flex;
+    justify-content: center;
+}
+
+/* Titulo del carrusel de cards animadas */
+.title-carusel{
+    font-family: 'Jockey One', sans-serif;
+    color: #FFFFFF;
+    font-size: 42px;
+    text-align: center;
+    margin: 0px;
+}
+/*Contenedor del carrusel de cards animadas*/
+.carousel-cards-major-view{
+    /* background-color: grey; */
+    width: 100%;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/*Precio de las crads animadas*/
+.carousel-cards-major-view .card .price{
+    position: absolute; 
+    top:0;
+    right: 0;
+    margin: 0px 0 0px 0px; 
+}
+
+/*Cards animadas - estilo por defecto*/
+.carousel-cards-major-view .card{
+    background-color: #1b1b1b;
+    border-radius: 12px;
+    height: 525px;
+    width: 375px;
+    box-shadow: 0 0 12px #FFFFFF;
+    display: grid;
+    grid-template-rows: 287px auto 179px;
+    justify-items: center;
+    align-items: center;
+    background-color: #1b1b1b;
+    border-radius: 12px;
+    height: 525px;
+    width: 375px;
+    box-shadow: 0 0 12px #FFFFFF;
+    margin: 27px;
+    position: absolute;
+    transition: transform 1s, filter 5s;
+    filter: blur(2px);
+    transform: scale(0.8);
+    opacity: 0.6;
+}
+
+/*Contenedor del boton*/
+.carousel-cards-major-view .card .columna-3{
+    text-align: center;
+    margin-bottom: 54px;
+    width: 100%;
+    height: auto;
+}
+
+/*Boton "Comprar ahora" de la card del carrusel principal*/
+.carousel-cards-major-view .card .columna-3 .button-card-major {
+    width: 195px;
+    box-shadow: 0 0 12px #237E78;
+    height: 59px;
+    background-color: #00F5E9;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 12px 24px 12px 24px;
+    font-family: 'Khula', sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    line-height: normal;
+    text-align: center;
+}
+
+/*Imagen de la card del carrusel principal*/
+.carousel-cards-major-view .card .major-card-image {
+    width: 250px;
+    height: 250px;
+}
+
+/*Titulo de la card del carrusel principal*/
+.carousel-cards-major-view .card .title-major-card{
+    font-family: 'Jockey One', sans-serif;
+    color: #FFFFFF;
+    font-size: 32px;
+    text-align: center;
+}
+
+/* Estilo de la card activa */
+.carousel-cards-major-view .card.card.active {
+    box-shadow: 0px 0px 12px #FFE500;
+    transform: scale(1) translateX(0);
+    filter: blur(0);
+    opacity: 1;
+    z-index: 2;
+    animation: activateCardBounce 0.5s ease-in; /* Animación con rebote al activarse */
+}
+
+/* Animacion de cuando aparece la card activa */
+@keyframes activateCardBounce {
+    0% {
+        transform: scale(0.6) translateY(-15px); /* Comienza más pequeña y elevada */
+        opacity: 0;
+        
+    }
+    40%{
+        transform: scale(0.8) translateY(-10px); /* Rebote hacia abajo */
+        opacity: 0.5;
+    }
+    60% {
+        transform: scale(1.3) translateY(-5px); /* Rebote hacia abajo */
+        opacity: 0.9;
+
+    }
+    80%{
+        transform: scale(0.9) translateY(-2px); /* Rebote hacia abajo */
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1) translateY(0); /* Termina en su posición normal */
+        opacity: 1;
+    }
+}
+
+/* Manejo del movimiento de las cards, unas estan mas cerca que las otras */
+.card.side-left {
+    filter:blur(10px);
+    transform: translateX(-640px) scale(0.7); /* Tarjeta más alejada a la izquierda */
+}
+
+.card.side-right {
+    transform: translateX(640px) scale(0.7); /* Tarjeta más alejada a la derecha */
+    filter:blur(10px);
+}
+
+.card.side-left-cerca {
+  transform: translateX(-349px) scale(0.8); /* Tarjeta más cercana a la izquierda */
+}
+
+.card.side-right-cerca {
+  transform: translateX(349px) scale(0.8); /* Tarjeta más cercana a la derecha */
+}
+
+/* Estilos responsivos para dispositivos móviles */
+@media (max-width: 768px) {
+    .title-carusel{
+        font-size: 32px; /* Reduce el tamaño del título */
+        margin: 10px 0; /* Ajusta el margen */
+    }
+    .carousel-cards-major-view {
+        height: 450px; /* Ajusta la altura del carrusel */
+    }
+
+    .carousel-cards-major-view .card {
+        height: 350px; /* Reduce la altura de las tarjetas */
+        width: 250px; /* Reduce el ancho de las tarjetas */
+        margin: 10px; /* Ajusta el margen */
+        border-radius: 8px; /* Ajusta el radio de las esquinas */
+        box-shadow: 0 0 8px #FFFFFF; /* Reduce la sombra */
+        display: grid;
+        grid-template-rows: auto auto auto;
+
+    }
+
+    .carousel-cards-major-view .card .major-card-image {
+        width: 180px; /* Ajusta el tamaño de la imagen */
+        height: 180px;
+    }
+
+    .carousel-cards-major-view .card .title-major-card {
+        font-size: 20px; /* Reduce el tamaño del texto */
+    }
+
+    .carousel-cards-major-view .card .columna-3 .button-card-major {
+        width: 130px; /* Ajusta el tamaño del botón */
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .card.side-left {
+        transform: translateX(-250px) scale(0.8); /* Ajusta la posición de las tarjetas */
+    }
+
+    .card.side-right {
+        transform: translateX(250px) scale(0.8);
+    }
+
+    .card.side-left-cerca {
+        transform: translateX(-125px) scale(0.9);
+    }
+
+    .card.side-right-cerca {
+        transform: translateX(125px) scale(0.9);
+    }
+}
+
