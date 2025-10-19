@@ -1,35 +1,56 @@
 console.log("App JS cargado");
-const canvas = document.getElementById("myCanvas-2");//canva principal
-const ctx = canvas.getContext("2d");
-const btn_comenzar = document.getElementById("btn_comenzar");//btn de comenzar 
-let section_finished_level = document.querySelector(".finished-level");//seccion de nivel terminado
-let iconos_level = document.querySelectorAll(".op-icono");//icocno de ayuda y de como jugar
-let flotante_ayuda = document.querySelector(".help");//seccion de ayuda
-let flotante_instrucciones = document.querySelector(".instructions");//seccion de instrucciones
-let opciones_level = document.querySelectorAll(".op-cuadrantes");//opciones de niveles
-let btn_acceot_ayudin = document.querySelector(".btn-accept");//boton de aceptar la ayuda
 
+const canvas = document.getElementById("myCanvas-2");
+const ctx = canvas.getContext("2d");
+const btn_comenzar = document.getElementById("btn_comenzar");
+let section_finished_level = document.querySelector(".finished-level");
+let iconos_level = document.querySelectorAll(".op-icono");
+let flotante_ayuda = document.querySelector(".help");
+let flotante_instrucciones = document.querySelector(".instructions");
+let opciones_level = document.querySelectorAll(".op-cuadrantes");
+let btn_acceot_ayudin = document.querySelector(".btn-accept");
+const select_cols = document.getElementById("select_levels");
+const timeHTML = document.getElementById("time");
+const recordHTML = document.getElementById("record");
+const messageHTML = document.getElementById("message");
+const modeSelect = document.getElementById("mode");
+
+let gameMode = "countup";
+let countdownStart = 10;
 let numCols = 2;
 let numRows = 2;
 let rects = [];
 let rectW, rectH;
 
+let time = 0;
+let interval = null;
+let record = null;
+let state = "start";
+let level = 1;
+
 let ImagenHTML5 = null;
 let canvasBW = null;
-let imgAleatoria = null
+let imgAleatoria = null;
 
-//manejo de seleccion de nivel
+const imagenesDisponibles = [
+    "img-mult-1.jpg",
+    "img-mult-2.jpg",
+    "img-mult-3.jpg",
+    "img-mult-4.jpg"
+  ];
+// ============================
+// Selección de nivel
+// ============================
 opciones_level.forEach(opcion => {
   opcion.addEventListener("click", () => {
-    // Remover la clase de todos los elementos
     opciones_level.forEach(o => o.classList.remove("level-active"));
-
-    // Agregar la clase al elemento clickeado
     opcion.classList.add("level-active");
   });
 });
 
-
+// ============================
+// Íconos de ayuda/instrucciones
+// ============================
 iconos_level.forEach(icon => {
   icon.addEventListener("click", () => {
     iconos_level.forEach(o => o.classList.remove("op-active"));
@@ -37,57 +58,190 @@ iconos_level.forEach(icon => {
 
     if (icon.getAttribute("data-value") === "ayudin") {
       flotante_ayuda.classList.remove("deselected");
-      flotante_instrucciones.classList.add("deselected"); // opcional, para ocultar la otra
+      flotante_instrucciones.classList.add("deselected");
     } else if (icon.getAttribute("data-value") === "instrucciones") {
       flotante_instrucciones.classList.remove("deselected");
-      flotante_ayuda.classList.add("deselected"); // opcional
+      flotante_ayuda.classList.add("deselected");
     }
   });
 });
 
-// Seleccionamos todos los íconos de cierre
-let cruz_icon_skip = document.querySelectorAll(".cruz-icon-skip");
-
-cruz_icon_skip.forEach(icon => {
+// ============================
+// Cerrar ventanas flotantes
+// ============================
+document.querySelectorAll(".cruz-icon-skip").forEach(icon => {
   icon.addEventListener("click", () => {
     const value = icon.getAttribute("data-value");
     if (value === "instrucciones") {
-      flotante_instrucciones.classList.add("deselected"); // ocultar
-
+      flotante_instrucciones.classList.add("deselected");
     } else if (value === "ayuda") {
-      flotante_ayuda.classList.add("deselected"); // ocultar
+      flotante_ayuda.classList.add("deselected");
     }
     iconos_level.forEach(o => o.classList.remove("op-active"));
   });
 });
-
-/*Boton de comenzar el juego */
+// ============================
+// Botón de comenzar
+// ============================
 btn_comenzar.addEventListener("click", () => {
   btn_comenzar.classList.add("deselected");
-  comenzar();
+  // numCols = parseInt(select_cols.value);
+  numRows = 2;
+  gameMode = modeSelect.value;
+  selectionRoulette();
 });
 
+// ===========================
+// Función de selección tipo “ruleta”
+// ===========================
+function selectionRoulette() {
+  const modeSelectGame = document.getElementById("gameMode");
+  modeSelectGame.style.display = "none";
 
-function comenzar() {
-   let opcion = document.querySelector(".level-active");
-  numCols = parseInt(opcion.getAttribute("data-value"));
+  const canvasRoulette = document.getElementById("canvas-ruleta");
+  const ctxRoulette = canvasRoulette.getContext("2d");
+  canvasRoulette.style.display = "block";
+
+  const thumbnails = imagenesDisponibles.map(src => {
+    const img = new Image();
+    img.src = src;
+    return img;
+  });
+
+  const tamaño = 200;
+  const padding = 40;
+  let indice = 0;
+  let seleccionado = -1;
+  let animacionActiva = true;
+
+  let cargadas = 0;
+  thumbnails.forEach(img => {
+    img.onload = () => {
+      cargadas++;
+      if (cargadas === thumbnails.length) {
+        dibujarMiniaturas();
+        iniciarAnimacion();
+      }
+    };
+  });
+
+  function dibujarMiniaturas() {
+    ctxRoulette.clearRect(0, 0, canvasRoulette.width, canvasRoulette.height);
+    const cols = 3;
+    thumbnails.forEach((img, i) => {
+      const x = padding + (i % cols) * (tamaño + padding);
+      const y = padding + Math.floor(i / cols) * (tamaño + padding);
+      ctxRoulette.drawImage(img, x, y, tamaño, tamaño);
+
+      // Resalta el seleccionado actual
+      if (i === indice && animacionActiva) {
+        ctxRoulette.strokeStyle = "cyan";
+        ctxRoulette.lineWidth = 5;
+        ctxRoulette.strokeRect(x - 5, y - 5, tamaño + 10, tamaño + 10);
+      }
+    });
+  }
+
+  function iniciarAnimacion() {
+    let velocidad = 150;
+    const intervalo = setInterval(() => {
+      dibujarMiniaturas();
+      indice = (indice + 1) % thumbnails.length;
+    }, velocidad);
+
+    // Desacelera progresivamente y se detiene en una imagen al azar
+    setTimeout(() => {
+      clearInterval(intervalo);
+      animacionActiva = false;
+      seleccionado = Math.floor(Math.random() * thumbnails.length);
+      indice = seleccionado;
+      dibujarMiniaturas();
+      animarSeleccion(seleccionado);
+    }, 3000);
+  }
+
+  function animarSeleccion(idx) {
+    const img = thumbnails[idx];
+    ctxRoulette.clearRect(0, 0, canvasRoulette.width, canvasRoulette.height);
+    const tamañoFinal = tamaño * 1.6;
+    const x = canvasRoulette.width / 2 - tamañoFinal / 2;
+    const y = canvasRoulette.height / 2 - tamañoFinal / 2;
+
+    // Pequeña animación de "zoom" visual
+    canvasRoulette.classList.add("zoom");
+
+    setTimeout(() => {
+      ctxRoulette.clearRect(0, 0, canvasRoulette.width, canvasRoulette.height);
+      ctxRoulette.drawImage(img, x, y, tamañoFinal, tamañoFinal);
+
+      setTimeout(() => {
+        canvasRoulette.classList.remove("zoom");
+        canvasRoulette.style.display = "none";
+        imgAleatoria = imagenesDisponibles[idx];
+        startGame(imgAleatoria);
+      }, 800);
+    }, 300);
+  }
+}
+
+// ============================
+// Función principal del juego
+// ============================
+function startGame(imgAleatoria) {
+  // aparece lo niveles y los tiempos
+  document.getElementById("game-ui").style.display="flex";
+  canvas.style.display = "block";
+  let opcion = document.querySelector(".level-active");
+  numCols = parseInt(opcion.getAttribute("data-value")) || numCols;
   numRows = 2;
   section_finished_level.classList.add("deselected");
   rects = [];
-  // Ajustar el ancho del canvas según el número de columnas
-  if(numCols === 4){
-    canvas.width = 1200;
-    console.log("aca 4")
 
-  } else if(numCols === 3){
-    canvas.width = 900;
-
-  }else{
-    canvas.width = 600;
+  // Ajustar tamaño del canvas
+  switch (numCols) {
+    case 4:
+      canvas.width = 1200;
+      break;
+    case 3:
+      canvas.width = 900;
+      break;
+    default:
+      canvas.width = 600;
   }
 
-  // Calcular dimensiones
-  rectW = canvas.width / numCols; 
+  clearInterval(interval);
+  state = "playing";
+
+  // Reiniciar valores visuales
+  messageHTML.textContent = "";
+  recordHTML.textContent = record !== null ? record : "-";
+
+  // ============================
+  // MODO DE TIEMPO
+  // ============================
+  if (gameMode === "countup") {
+    time = 0;
+    interval = setInterval(() => {
+      time++;
+      timeHTML.textContent = time;
+    }, 1000);
+  } else if (gameMode === "countdown") {
+    time = countdownStart;
+    timeHTML.textContent = time;
+    interval = setInterval(() => {
+      time--;
+      timeHTML.textContent = time;
+      if (time <= 0) {
+        clearInterval(interval);
+        finishGame();
+      }
+    }, 1000);
+  }
+
+  // ============================
+  // Calcular cuadrantes
+  // ============================
+  rectW = canvas.width / numCols;
   rectH = canvas.height / numRows;
 
   for (let row = 0; row < numRows; row++) {
@@ -104,13 +258,10 @@ function comenzar() {
     }
   }
 
-  const imagenesDisponibles = [
-    "img-mult-1.jpg",
-    "img-mult-2.jpg",
-    "img-mult-3.jpg",
-    "img-mult-4.jpg",
-  ];
-  imgAleatoria = imagenesDisponibles[Math.floor(Math.random() * imagenesDisponibles.length)];
+  // ============================
+  // Imagen aleatoria + filtro
+  // ============================
+  //imgAleatoria = imagenesDisponibles[Math.floor(Math.random() * imagenesDisponibles.length)];
 
   ImagenHTML5 = new Image();
   ImagenHTML5.src = imgAleatoria;
@@ -122,7 +273,7 @@ function comenzar() {
     const ctxBW = canvasBW.getContext('2d');
     ctxBW.drawImage(ImagenHTML5, 0, 0);
 
-    const filtros = [setPixelBW, setPixelRed, setPixelB30,setPixelNegative];
+    const filtros = [setPixelBW, setPixelRed, setPixelB30, setPixelNegative];
     const filtroGlobal = filtros[Math.floor(Math.random() * filtros.length)];
 
     const imgData = ctxBW.getImageData(0, 0, canvasBW.width, canvasBW.height);
@@ -138,6 +289,9 @@ function comenzar() {
   };
 }
 
+// ============================
+// Dibujo y rotación
+// ============================
 function dibujarTodo() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   rects.forEach(r => dibujarImagen(r));
@@ -166,15 +320,16 @@ function dibujarImagen(r) {
 
 function rotarAleatoriamenteCuadrantes() {
   rects.forEach(r => {
-    const angulosPosibles = [ 90, 180, 270];
+    const angulosPosibles = [90, 180, 270];
     r.angulo = angulosPosibles[Math.floor(Math.random() * angulosPosibles.length)];
   });
 }
 
-// Bloquear menú contextual
+// ============================
+// Eventos del canvas
+// ============================
 canvas.addEventListener("contextmenu", e => e.preventDefault());
 
-// Click para rotar
 canvas.addEventListener("mousedown", e => {
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
@@ -192,48 +347,105 @@ canvas.addEventListener("mousedown", e => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ImagenHTML5 = new Image();
     ImagenHTML5.src = imgAleatoria;
-    ImagenHTML5.onload = () => {
-      ctx.drawImage(ImagenHTML5, 0, 0, canvas.width, canvas.height);
-    };
-    section_finished_level.classList.remove("deselected");
+    ImagenHTML5.onload = () => ctx.drawImage(ImagenHTML5, 0, 0, canvas.width, canvas.height);
+    
     rects = [];
+    finishGame();
   }
 });
 
+// ============================
+// Fin del juego
+// ============================
+function finishGame() {
+  clearInterval(interval);
+  state = "finished";
 
+  let texto = "";
+  let esVictoria = true;
 
+  if (gameMode === "countup") {
+    texto = `🎯 ¡Completaste el Nivel ${level}! Tiempo final: ${time}s.`;
+    if (record === null || time < record) {
+      record = time;
+      texto += ` 🎉 ¡Nuevo récord!`;
+    } else {
+      texto += ` Tu mejor tiempo sigue siendo ${record}s.`;
+    }
+  } else if (gameMode === "countdown") {
+    if (time <= 0) {
+      esVictoria = false;
+      texto = `⏳ ¡Se acabó el tiempo en el Nivel ${level}!`;
+    } else {
+      texto = `🎯 ¡Completaste el Nivel ${level}! Tiempo final: ${time}s.`;
+      if (record === null || time > record) {
+        record = time;
+        texto += ` 🎉 ¡Nuevo récord!`;
+      } else {
+        texto += ` Tu mejor tiempo sigue siendo ${record}s.`;
+      }
+    }
+  }
 
+  recordHTML.textContent = record !== null ? record : "-";
+  showPopup(texto, esVictoria);
+}
 
-/*Siguiente nivel*/
-let btn_next_level = document.querySelector("#btn_next_level");
-btn_next_level.addEventListener("click", () => {
-  //sumar el nivel y ajustar numCols
-  comenzar();
-});
+// ============================
+// Popup final
+// ============================
+function showPopup(message, esVictoria = true) {
+  const popup = document.getElementById("popup");
+  const popupTitle = document.getElementById("popup-title");
+  const popupMessage = document.getElementById("popup-message");
+  const btnNext = document.getElementById("popup-restart");
+  const btnHome = document.getElementById("popup-home");
 
+  // Cambiar texto y color dependiendo del resultado
+  if (esVictoria) {
+    popup.classList.remove("lose");
+    popupTitle.textContent = "🎉 ¡Nivel Completado!";
+    btnNext.textContent = "Siguiente Nivel";
+  } else {
+    popup.classList.add("lose");
+    popupTitle.textContent = "💀 ¡Intento Fallido!";
+    btnNext.textContent = "Reintentar";
+  }
 
+  popupMessage.textContent = message;
+  popup.classList.remove("hidden");
 
+  btnNext.onclick = () => {
+    popup.classList.add("hidden");
+    canvas.style.display = "none";
+    document.getElementById("game-ui").style.display = "none";
 
+    if (esVictoria) {
+      level++;
+      updateLevel();
+      selectionRoulette();
+    } else {
+      // Reintenta el mismo nivel
+      startGame(imgAleatoria);
+    }
+  };
 
+  btnHome.onclick = () => {
+    popup.classList.add("hidden");
+    location.reload();
+  };
+}
+function updateLevel() {
+  const levelHTML = document.getElementById("level");
+  levelHTML.textContent = level;
 
+  const nivelFill = document.getElementById("nivel-fill");
+  nivelFill.style.width = (level * 1) + "%";
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* Filtros */
+// ============================
+// Filtros de imagen
+// ============================
 function setPixelBW(imageData, x, y) {
   const index = (x + y * imageData.width) * 4;
   const r = imageData.data[index];
