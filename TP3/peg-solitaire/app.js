@@ -14,6 +14,7 @@ const timeHTML = document.getElementById("time");
 const recordHTML = document.getElementById("record");
 const messageHTML = document.getElementById("message");
 const modeSelect = document.getElementById("mode");
+let icon_ayudin = document.querySelector(".icon-ayudin");
 
 let gameMode = "countup";
 let countdownStart = 10;
@@ -90,6 +91,40 @@ btn_comenzar.addEventListener("click", () => {
   gameMode = modeSelect.value;
   selectionRoulette();
 });
+
+// ============================
+// Botón de aceptar
+// ============================
+let btn_accept = document.getElementById("btn-accept");
+btn_accept.addEventListener("click", () => {
+  // Funcion que fija un cuadrante
+  flotante_ayuda.classList.add("deselected");
+  icon_ayudin.classList.remove("op-active");
+  fijarCuadranteAlAzar();
+});
+
+// ============================
+// Fijar un cuadrante en "Ayuda"
+// ============================
+function fijarCuadranteAlAzar(){
+// Filtrar los cuadrantes que aún no están fijados
+  const noFijados = rects.filter(q => !q.fijado);
+  console.log(noFijados);
+  // // Si no queda ninguno, salir
+  if (noFijados.length === 0)return;
+
+  // // Elegir uno al azar
+  const cuadrante = noFijados[Math.floor(Math.random() * noFijados.length)];
+  console.log(cuadrante);
+  // // Fijarlo
+  fijarCuadrante(cuadrante);
+}
+
+function fijarCuadrante(r) {
+  r.angulo = 0;       // posición correcta
+  r.fijado = true;    // marcar como fijo
+  dibujarTodo();      // redibujar todo
+}
 
 // ===========================
 // Función de selección tipo “ruleta”
@@ -253,7 +288,8 @@ function startGame(imgAleatoria) {
         h: rectH,
         angulo: 0,
         sx: col,
-        sy: row
+        sy: row,
+        fijado: false
       });
     }
   }
@@ -298,12 +334,16 @@ function dibujarTodo() {
 }
 
 function dibujarImagen(r) {
+  // Calcula qué parte de la imagen original corresponde al cuadrante
   const sourceW = ImagenHTML5.width / numCols;
   const sourceH = ImagenHTML5.height / numRows;
   const sourceX = r.sx * sourceW;
   const sourceY = r.sy * sourceH;
 
+  // Guarda el estado actual del contexto:
   ctx.save();
+
+  // Esto permite dibujar la subimagen rotada correctamente sobre su centro.
   const cx = r.x + r.w / 2;
   const cy = r.y + r.h / 2;
   ctx.translate(cx, cy);
@@ -311,17 +351,30 @@ function dibujarImagen(r) {
 
   ctx.drawImage(canvasBW, sourceX, sourceY, sourceW, sourceH, -r.w / 2, -r.h / 2, r.w, r.h);
 
-  ctx.strokeStyle = "red";
-  ctx.lineWidth = 2;
-  ctx.strokeRect(-r.w / 2, -r.h / 2, r.w, r.h);
-
+// Si el cuadrante está fijado → borde azul grueso que cubre los 4 lados
+  if (r.fijado) {
+    ctx.lineWidth = 8; // más grueso
+    ctx.strokeStyle = "#0099FF"; // azul brillante
+    ctx.strokeRect(-r.w / 2, -r.h / 2, r.w, r.h);
+  }else{
+  // borde rojo fino si no está fijado
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "red";
+    ctx.strokeRect(-r.w / 2, -r.h / 2, r.w, r.h);
+  }
   ctx.restore();
 }
 
+// ============================
+// Ubicar aleatoriamente los cuadrantes
+// ============================
 function rotarAleatoriamenteCuadrantes() {
   rects.forEach(r => {
-    const angulosPosibles = [90, 180, 270];
-    r.angulo = angulosPosibles[Math.floor(Math.random() * angulosPosibles.length)];
+    //Rotar aleatoriamente los cuadrantes si el usuario no pidio ayuda
+    if (!r.fijado) {
+      const angulosPosibles = [90, 180, 270];
+      r.angulo = angulosPosibles[Math.floor(Math.random() * angulosPosibles.length)];
+    }
   });
 }
 
@@ -335,24 +388,34 @@ canvas.addEventListener("mousedown", e => {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
 
-  const target = rects.find(r => x >= r.x && x <= r.x + r.w && y >= r.y && y <= r.y + r.h);
+  // Buscar el cuadrante clickeado
+  const target = rects.find(r => 
+    x >= r.x && x <= r.x + r.w &&
+    y >= r.y && y <= r.y + r.h
+  );
+
   if (!target) return;
 
-  if (e.button === 0) target.angulo = (target.angulo - 90 + 360) % 360;
-  else if (e.button === 2) target.angulo = (target.angulo + 90) % 360;
+  // 🔹 Solo rotar si el cuadrante NO está fijado
+  if (!target.fijado) {
+    if (e.button === 0) target.angulo = (target.angulo - 90 + 360) % 360;
+    else if (e.button === 2) target.angulo = (target.angulo + 90) % 360;
 
-  dibujarTodo();
+    dibujarTodo();
 
-  if (rects.every(r => r.angulo === 0)) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ImagenHTML5 = new Image();
-    ImagenHTML5.src = imgAleatoria;
-    ImagenHTML5.onload = () => ctx.drawImage(ImagenHTML5, 0, 0, canvas.width, canvas.height);
-    
-    rects = [];
-    finishGame();
+    // Comprobar si todos los cuadrantes están correctamente orientados
+    if (rects.every(r => r.angulo === 0)) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ImagenHTML5 = new Image();
+      ImagenHTML5.src = imgAleatoria;
+      ImagenHTML5.onload = () => ctx.drawImage(ImagenHTML5, 0, 0, canvas.width, canvas.height);
+
+      rects = [];
+      finishGame();
+    }
   }
 });
+
 
 // ============================
 // Fin del juego

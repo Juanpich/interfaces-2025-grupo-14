@@ -76,12 +76,11 @@ body{
 .instructions , .help{
     display: grid;
     position:absolute;
-    top:10px;
-    gap: 17px;
+    gap: 20px;
     background-color: var(--background-floating);
     box-shadow: 0px 0px 45px 2px #FFFFFF;
     border-radius: 12px;
-    padding-top: 15px;
+    padding-top: 25px;
     z-index: 9999;
 }
 
@@ -92,7 +91,7 @@ body{
 
 /* "Ayuda" para blocka */
 .help{
-    grid-template-rows: 10px 34px 30px 45px 30px 25px 62px auto;
+    grid-template-rows: 44px 78px 60px 70px;
     width: 800px;
     height: 410px;
     /* COMENTAR !!!!!!!!!!!!!!!!!!!!!! */
@@ -100,21 +99,31 @@ body{
 }
 
 .help .instructions-title.ayudin{
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
 .container-cruz{
-    text-align: end;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  position: relative; 
+}
+.cruz-icon-skip {
+  position: absolute;
+  right: 10px;
+  top: 20%; /* Pegada a la derecha */
+  transform: translateY(-50%); /* Centrada verticalmente */
+  cursor: pointer; /* opcional, si es clickeable */
 }
 
 .container-cruz svg{
-    margin-right: 10px;
+    margin-left: 290px;
     cursor: pointer;
 }
 
 /* Intrucciones de la blocka */
 .instructions{
-    grid-template-rows: 32px 30px 95px 30px 75px 30px 120px 50px 32px;
+    grid-template-rows: 32px 130px 110px 160px 55px 30px 120px 50px 32px;
     width: 800px;
     height: 655px;
     /* COMENTAR !!!!!!!!!!!!!!!!!!!!!! */
@@ -132,7 +141,6 @@ body{
     margin: 0px;
     padding: 0px;
 }
-
 .instructions-subtitle{
     color: #FFFFFF;
     font-family: 'Exo 2', sans-serif;
