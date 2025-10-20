@@ -1,3 +1,4 @@
+/*
 document.addEventListener('DOMContentLoaded', () => {
     const sendBtn = document.getElementById('sendBtn');
     const feedback = document.querySelector('.send-feedback');
@@ -18,3 +19,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 });
+*/
