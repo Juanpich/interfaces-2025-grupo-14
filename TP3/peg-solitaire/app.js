@@ -1,5 +1,4 @@
 console.log("App JS cargado");
-
 const canvas = document.getElementById("myCanvas-2");
 const ctx = canvas.getContext("2d");
 const btn_comenzar = document.getElementById("btn_comenzar");
@@ -67,8 +66,8 @@ iconos_level.forEach(icon => {
   });
 });
 
-// ============================
-// Cerrar ventanas flotantes
+// =============Cerrar ventanas flotantes===============
+// 
 // ============================
 document.querySelectorAll(".cruz-icon-skip").forEach(icon => {
   icon.addEventListener("click", () => {
@@ -81,8 +80,8 @@ document.querySelectorAll(".cruz-icon-skip").forEach(icon => {
     iconos_level.forEach(o => o.classList.remove("op-active"));
   });
 });
-// ============================
-// Botón de comenzar
+// =============Botón de comenzar===============
+// 
 // ============================
 btn_comenzar.addEventListener("click", () => {
   btn_comenzar.classList.add("deselected");
@@ -162,7 +161,7 @@ function selectionRoulette() {
 
   function dibujarMiniaturas() {
     ctxRoulette.clearRect(0, 0, canvasRoulette.width, canvasRoulette.height);
-    const cols = 3;
+    const cols = 4;
     thumbnails.forEach((img, i) => {
       const x = padding + (i % cols) * (tamaño + padding);
       const y = padding + Math.floor(i / cols) * (tamaño + padding);
@@ -178,7 +177,7 @@ function selectionRoulette() {
   }
 
   function iniciarAnimacion() {
-    let velocidad = 150;
+    let velocidad = 100;
     const intervalo = setInterval(() => {
       dibujarMiniaturas();
       indice = (indice + 1) % thumbnails.length;
@@ -219,8 +218,8 @@ function selectionRoulette() {
   }
 }
 
-// ============================
-// Función principal del juego
+// =============Función principal del juego===============
+// 
 // ============================
 function startGame(imgAleatoria) {
   // aparece lo niveles y los tiempos
@@ -324,9 +323,8 @@ function startGame(imgAleatoria) {
     dibujarTodo();
   };
 }
-
-// ============================
-// Dibujo y rotación
+// =============Dibujo y rotación===============
+// 
 // ============================
 function dibujarTodo() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -378,11 +376,10 @@ function rotarAleatoriamenteCuadrantes() {
   });
 }
 
-// ============================
+// ==============Eventos del canvas==============
 // Eventos del canvas
 // ============================
 canvas.addEventListener("contextmenu", e => e.preventDefault());
-
 canvas.addEventListener("mousedown", e => {
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
@@ -403,22 +400,21 @@ canvas.addEventListener("mousedown", e => {
 
     dibujarTodo();
 
-    // Comprobar si todos los cuadrantes están correctamente orientados
-    if (rects.every(r => r.angulo === 0)) {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ImagenHTML5 = new Image();
-      ImagenHTML5.src = imgAleatoria;
-      ImagenHTML5.onload = () => ctx.drawImage(ImagenHTML5, 0, 0, canvas.width, canvas.height);
-
-      rects = [];
-      finishGame();
-    }
+  if (rects.every(r => r.angulo === 0)) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ImagenHTML5 = new Image();
+    ImagenHTML5.src = imgAleatoria;
+    ImagenHTML5.onload = () => ctx.drawImage(ImagenHTML5, 0, 0, canvas.width, canvas.height);
+    
+    rects = [];
+    setTimeout(finishGame, 900);  
   }
-});
+}
+}
+);
 
-
-// ============================
-// Fin del juego
+// =============Fin del juego===============
+//
 // ============================
 function finishGame() {
   clearInterval(interval);
@@ -454,8 +450,8 @@ function finishGame() {
   showPopup(texto, esVictoria);
 }
 
-// ============================
-// Popup final
+// =============Popup final===============
+// 
 // ============================
 function showPopup(message, esVictoria = true) {
   const popup = document.getElementById("popup");
@@ -498,6 +494,10 @@ function showPopup(message, esVictoria = true) {
     location.reload();
   };
 }
+
+// ========== Actualizar los nivele ==================
+// 
+// ============================
 function updateLevel() {
   const levelHTML = document.getElementById("level");
   levelHTML.textContent = level;
@@ -506,8 +506,8 @@ function updateLevel() {
   nivelFill.style.width = (level * 1) + "%";
 }
 
-// ============================
-// Filtros de imagen
+// =============Filtros de imagen===============
+//
 // ============================
 function setPixelBW(imageData, x, y) {
   const index = (x + y * imageData.width) * 4;
