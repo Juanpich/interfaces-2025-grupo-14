@@ -25,7 +25,7 @@ body{
 /* Barra lateral de opciones en el juego */
 .sidebar{
     display: grid;
-    grid-template-rows: 44px 44px 44px 24px 24px;
+    grid-template-rows: 44px 44px 44px 24px 24px 24px;
     gap: 30px;
     align-items: center;
     justify-content: center;
@@ -66,7 +66,9 @@ body{
     margin-left: 7px;
     cursor: pointer;
 }
-
+#buttonHouse{
+  margin-left: 13px;
+}
 /* Icono presionado */
 .sidebar svg.op-active{
     fill: var(--acento-color);

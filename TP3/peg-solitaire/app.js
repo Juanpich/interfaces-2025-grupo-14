@@ -14,6 +14,7 @@ function initBlocka() {
   const messageHTML = document.getElementById("message");
   const modeSelect = document.getElementById("mode");
   let icon_ayudin = document.querySelector(".icon-ayudin");
+  let iconhouse = document.getElementById("buttonHouse");
 
   let gameMode = "countup";
   let countdownStart = 10;
@@ -510,6 +511,17 @@ function initBlocka() {
       }
     };
   }
+
+  iconhouse.onclick = () => {
+    popup.classList.add("hidden");
+
+    // Llama a la función del archivo principal (main.js)
+    if (window.parent && typeof window.parent.recargarBlocka === "function") {
+        window.parent.recargarBlocka();
+    } else {
+        console.warn("No se encontró la función recargarBlocka en el contexto padre.");
+    }
+};
 
   // ========== Actualizar los nivele ==================
   // 
