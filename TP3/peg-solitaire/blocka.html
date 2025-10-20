@@ -17,7 +17,8 @@
     <!-- Como ganar -->
     <div class="como-ganar">
         <p class="instructions-subtitle">🎮 ¿Cómo ganar?</p>
-        <p class="instructions-text">Debes reconstruir la imagen original rotando correctamente cada subimagen. Cada nivel
+        <p class="instructions-text">Debes reconstruir la imagen original rotando correctamente cada subimagen. Cada
+            nivel
             presenta una imagen desordenada y con filtros visuales aplicados. Vos podés elegir por cuántos cuadrantes
             subdividir la imagén ¡Tu misión es restaurarla por completo!</p>
     </div>
@@ -32,7 +33,7 @@
     </div>
     <!-- Info del tiempo -->
     <div class="info-del-tiempo">
-            <p class="instructions-subtitle">⏱ El tiempo te desafía:</p>
+        <p class="instructions-subtitle">⏱ El tiempo te desafía:</p>
         <div>
             <p class="instructions-text">- Al presionar “Comenzar”, se inicia el temporizador del nivel, el tiempo se
                 detiene automáticamente al completar la imagen. Se guardará tu mejor recórd 😎. </p>
@@ -65,11 +66,11 @@
             ayudará a reconstruir la imagen original.</p>
     </div>
     <!-- Info penalizacion por la ayuda -->
-     <div class="Info-penalizacion">
+    <div class="Info-penalizacion">
         <p class="instructions-subtitle">⏱ Penalización:</p>
         <p class="instructions-text">A tu tiempo se le sumarán 5 segundos por recibir una ayudita.</p>
     </div>
-        <p class="instructions-title ayudin">Llamame cada vez que necesites una pista 😉</p>
+    <p class="instructions-title ayudin">Llamame cada vez que necesites una pista 😉</p>
     <div class="btn-container-help">
         <a id="btn-accept" class="btn-accept">Aceptar</a>
     </div>
@@ -79,23 +80,24 @@
 
 <!-- Barre de progreso de niveles y su nivel actual  CANVAS JUEGO  y info juego-->
 <div id="game-ui">
-  <!-- Barra de nivel -->
-  <div id="nivel-bar">
-      <p>🎯 Nivel: <span id="level">1</span></p>
-      <div id="nivel-progress">
-          <div id="nivel-fill"></div>
-      </div>
-  </div>
+    <!-- Barra de nivel -->
+    <div id="nivel-bar">
+        <p>🎯 Nivel: <span id="level">1</span></p>
+        <div id="nivel-progress">
+            <div id="nivel-fill"></div>
+        </div>
+        <p>🎮 Modo: <span id="modo-actual">Ascendente</span></p>
+    </div>
 
-  <!-- Canvas del juego -->
-  <canvas id="myCanvas-2" width="600" height="600"></canvas>
+    <!-- Canvas del juego -->
+    <canvas id="myCanvas-2" width="600" height="600"></canvas>
 
-  <!-- Información lateral -->
-  <div id="info">
-      <p>⏱️ Tiempo: <span id="time">0</span> s</p>
-      <p>🏆 Récord: <span id="record">-</span> s</p>
-      <p id="message"></p>
-  </div>
+    <!-- Información lateral -->
+    <div id="info">
+        <p>⏱️ Tiempo: <span id="time">0</span> s</p>
+        <p>🏆 Récord: <span id="record">-</span> s</p>
+        <p id="message"></p>
+    </div>
 </div>
 
 <div class="sidebar">
@@ -103,7 +105,7 @@
     <p class="op-cuadrantes" data-value="3">x6</p>
     <p class="op-cuadrantes" data-value="4">x8</p>
 
-    
+
     <svg class="op-icono" data-value="instrucciones" width="30" height="20" viewBox="0 0 56 34" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path
@@ -120,10 +122,13 @@
         <path
             d="M24.0747 37.9467C24.6649 37.9467 25.1627 37.744 25.568 37.3387C25.9733 36.9333 26.176 36.4356 26.176 35.8453C26.176 35.2551 25.9716 34.7573 25.5627 34.352C25.1573 33.9467 24.6596 33.744 24.0693 33.744C23.4791 33.744 22.9813 33.9476 22.576 34.3547C22.1707 34.7618 21.9689 35.2596 21.9707 35.848C21.9707 36.4382 22.1733 36.936 22.5787 37.3413C22.9876 37.7467 23.4862 37.9493 24.0747 37.9493M22.696 29.1173H25.272C25.3396 27.9582 25.5573 27.016 25.9253 26.2907C26.2933 25.5671 27.0498 24.6427 28.1947 23.5173C29.3858 22.328 30.2711 21.2622 30.8507 20.32C31.4302 19.3778 31.7209 18.288 31.7227 17.0507C31.7227 14.9493 30.9849 13.2747 29.5093 12.0267C28.032 10.7787 26.2844 10.1547 24.2667 10.1547C22.3484 10.1547 20.72 10.6756 19.3813 11.7173C18.0427 12.7609 17.0622 13.9591 16.44 15.312L18.8933 16.328C19.32 15.3573 19.9307 14.4996 20.7253 13.7547C21.52 13.008 22.6667 12.6347 24.1653 12.6347C25.8933 12.6347 27.1556 13.1093 27.952 14.0587C28.7502 15.008 29.1493 16.0516 29.1493 17.1893C29.1493 18.1138 28.8996 18.9387 28.4 19.664C27.9022 20.3911 27.2533 21.1218 26.4533 21.856C24.9067 23.2818 23.8933 24.4907 23.4133 25.4827C22.9333 26.4747 22.6942 27.6862 22.696 29.1173ZM24.008 48C20.6907 48 17.5707 47.3707 14.648 46.112C11.7271 44.8516 9.18578 43.1413 7.024 40.9813C4.86222 38.8213 3.15111 36.2827 1.89067 33.3653C0.630222 30.448 0 27.3289 0 24.008C0 20.6871 0.630222 17.5671 1.89067 14.648C3.14933 11.7271 4.85689 9.18578 7.01333 7.024C9.16978 4.86222 11.7093 3.15111 14.632 1.89067C17.5547 0.630222 20.6747 0 23.992 0C27.3093 0 30.4293 0.630222 33.352 1.89067C36.2729 3.14933 38.8142 4.85778 40.976 7.016C43.1378 9.17422 44.8489 11.7138 46.1093 14.6347C47.3698 17.5556 48 20.6747 48 23.992C48 27.3093 47.3707 30.4293 46.112 33.352C44.8533 36.2747 43.1431 38.816 40.9813 40.976C38.8196 43.136 36.2809 44.8471 33.3653 46.1093C30.4498 47.3716 27.3307 48.0018 24.008 48ZM24 45.3333C29.9556 45.3333 35 43.2667 39.1333 39.1333C43.2667 35 45.3333 29.9556 45.3333 24C45.3333 18.0444 43.2667 13 39.1333 8.86667C35 4.73333 29.9556 2.66667 24 2.66667C18.0444 2.66667 13 4.73333 8.86667 8.86667C4.73333 13 2.66667 18.0444 2.66667 24C2.66667 29.9556 4.73333 35 8.86667 39.1333C13 43.2667 18.0444 45.3333 24 45.3333Z" />
     </svg>
-    <svg class="icon-house" id="buttonHouse" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48" fill="none" >
-        <path d="M2.14286 28.0998H10.0543V16.9192H19.9457V28.0998H27.8571V10.9982L15 2.37522L2.14286 10.9982V28.0998ZM0 30V10.0481L15 0L30 10.0481V30H17.8029V18.8194H12.1971V30H0Z" fill="white"/>
+    <svg class="icon-house" id="buttonHouse" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+        viewBox="0 0 48 48" fill="none">
+        <path
+            d="M2.14286 28.0998H10.0543V16.9192H19.9457V28.0998H27.8571V10.9982L15 2.37522L2.14286 10.9982V28.0998ZM0 30V10.0481L15 0L30 10.0481V30H17.8029V18.8194H12.1971V30H0Z"
+            fill="white" />
     </svg>
-    
+
 </div>
 
 
@@ -132,17 +137,21 @@
 </section>
 
 
-<div class="menu-inicial">
-    <!-- modo de juego -->
-  <div id="gameMode" class="game-mode">
-    <label for="mode">🎮 Modo de Juego:</label>
-    <select id="mode">
-      <option value="countup">Contador Ascendente</option>
-      <option value="countdown">Cuenta Regresiva</option>
-    </select>
-  </div>
-  <!-- boton de comenzar al incio -->
-  <a id="btn_comenzar" class="btn-primary-big">Comenzar</a>
+<div id="gameMode" class="inicio">
+    <div class="menu-inicial">
+        <!-- modo de juego -->
+        <div class="game-mode">
+            <p>Modo de Juego:</p>
+            <div class="mode-buttons">
+                <button class="mode-btn active" data-mode="countup">⏫ Ascendente</button>
+                <button class="mode-btn" data-mode="countdown">⏬ Regresiva</button>
+                <button class="mode-btn" data-mode="bothModes">🎲 Aleatorio</button>
+            </div>
+        </div>
+        <!-- boton de comenzar al incio -->
+        <a id="btn_comenzar" class="btn-primary-big">Comenzar</a>
+        
+    </div>
 </div>
 
 

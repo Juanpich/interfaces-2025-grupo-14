@@ -12,11 +12,13 @@ function initBlocka() {
   const timeHTML = document.getElementById("time");
   const recordHTML = document.getElementById("record");
   const messageHTML = document.getElementById("message");
-  const modeSelect = document.getElementById("mode");
+  const modeButtons = document.querySelectorAll(".mode-btn");
   let icon_ayudin = document.querySelector(".icon-ayudin");
   let iconhouse = document.getElementById("buttonHouse");
+  const modoActualHTML = document.getElementById("modo-actual");
 
   let gameMode = "countup";
+  let randomMode = false;
   let countdownStart = 10;
   let numCols = 2;
   let numRows = 2;
@@ -92,10 +94,22 @@ function initBlocka() {
     btn_comenzar.classList.add("deselected");
     // numCols = parseInt(select_cols.value);
     numRows = 2;
-    gameMode = modeSelect.value;
     selectionRoulette();
   });
-
+  // ============================
+  //
+  // ============================
+  modeButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // Quitar selección previa
+      modeButtons.forEach(b => b.classList.remove("active"));
+      // Activar el nuevo botón
+      btn.classList.add("active");
+      // Asignar modo desde el data-attribute
+      gameMode = btn.dataset.mode;
+      console.log("Modo seleccionado:", gameMode);
+    });
+  });
   // ============================
   // Botón de aceptar
   // ============================
@@ -264,6 +278,19 @@ function initBlocka() {
     // ============================
     // MODO DE TIEMPO
     // ============================
+    if (gameMode === "bothModes" || randomMode) {
+      // Elegir aleatoriamente entre countup o countdown
+      gameMode = Math.random() < 0.5 ? "countup" : "countdown";
+      randomMode = true;
+    }
+    if (gameMode === "countup") {
+      modoActualHTML.textContent = "⏫ Ascendente";
+      modoActualHTML.style.color = "lime";
+    } else if (gameMode === "countdown") {
+      modoActualHTML.textContent = "⏬ Regresivo";
+      modoActualHTML.style.color = "orange";
+    }
+
     if (gameMode === "countup") {
       time = 0;
       interval = setInterval(() => {
@@ -517,11 +544,11 @@ function initBlocka() {
 
     // Llama a la función del archivo principal (main.js)
     if (window.parent && typeof window.parent.recargarBlocka === "function") {
-        window.parent.recargarBlocka();
+      window.parent.recargarBlocka();
     } else {
-        console.warn("No se encontró la función recargarBlocka en el contexto padre.");
+      console.warn("No se encontró la función recargarBlocka en el contexto padre.");
     }
-};
+  };
 
   // ========== Actualizar los nivele ==================
   // 
@@ -532,6 +559,7 @@ function initBlocka() {
 
     const nivelFill = document.getElementById("nivel-fill");
     nivelFill.style.width = (level * 1) + "%";
+
   }
 
   // =============Filtros de imagen===============
