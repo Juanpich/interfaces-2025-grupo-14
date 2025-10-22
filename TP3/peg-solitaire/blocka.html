@@ -80,24 +80,29 @@
 
 <!-- Barre de progreso de niveles y su nivel actual  CANVAS JUEGO  y info juego-->
 <div id="game-ui">
-    <!-- Barra de nivel -->
-    <div id="nivel-bar">
-        <p>🎯 Nivel: <span id="level">1</span></p>
-        <div id="nivel-progress">
-            <div id="nivel-fill"></div>
+    <div class="left-panel">
+        <!-- Barra de nivel -->
+        <div id="nivel-bar">
+            <p>🎯 Nivel: <span id="level">1</span></p>
+            <div id="nivel-progress">
+                <div id="nivel-fill"></div>
+            </div>
+            <p>🎮 Modo: <span id="modo-actual">Ascendente</span></p>
         </div>
-        <p>🎮 Modo: <span id="modo-actual">Ascendente</span></p>
+        <!-- Información lateral -->
+        <div id="info">
+            <p>⏱️ Tiempo: <span id="time">0</span> s</p>
+            <p>🏆 Récord: <span id="record">-</span> s</p>
+            <p id="message"></p>
+            <button id="btn_pause">⏸️ Pausar</button>
+        </div>
     </div>
+    
 
     <!-- Canvas del juego -->
     <canvas id="myCanvas-2" width="600" height="600"></canvas>
 
-    <!-- Información lateral -->
-    <div id="info">
-        <p>⏱️ Tiempo: <span id="time">0</span> s</p>
-        <p>🏆 Récord: <span id="record">-</span> s</p>
-        <p id="message"></p>
-    </div>
+
 </div>
 
 <div class="sidebar">
@@ -165,5 +170,6 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="app.js"></script>
 </body>

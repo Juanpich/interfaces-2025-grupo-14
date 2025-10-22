@@ -16,6 +16,7 @@ function initBlocka() {
   let icon_ayudin = document.querySelector(".icon-ayudin");
   let iconhouse = document.getElementById("buttonHouse");
   const modoActualHTML = document.getElementById("modo-actual");
+  const btn_pause = document.getElementById("btn_pause");
 
   let gameMode = "countup";
   let randomMode = false;
@@ -29,6 +30,7 @@ function initBlocka() {
   let interval = null;
   let record = null;
   let state = "start";
+  let paused  = false;
   let level = 1;
 
   let ImagenHTML5 = null;
@@ -62,6 +64,7 @@ function initBlocka() {
     icon.addEventListener("click", () => {
       iconos_level.forEach(o => o.classList.remove("op-active"));
       icon.classList.add("op-active");
+      if (!paused && state === "playing") togglePause();
 
       if (icon.getAttribute("data-value") === "ayudin") {
         flotante_ayuda.classList.remove("deselected");
@@ -85,6 +88,7 @@ function initBlocka() {
         flotante_ayuda.classList.add("deselected");
       }
       iconos_level.forEach(o => o.classList.remove("op-active"));
+      if (paused && state === "paused") togglePause();
     });
   });
   // =============Botón de comenzar===============
@@ -120,6 +124,7 @@ function initBlocka() {
     icon_ayudin.classList.remove("op-active");
     fijarCuadranteAlAzar();
   });
+  btn_pause.addEventListener("click", togglePause);
 
   // ============================
   // Fijar un cuadrante en "Ayuda"
@@ -361,6 +366,41 @@ function initBlocka() {
       dibujarTodo();
     };
   }
+  function togglePause() {
+  // Solo permitir pausar si está jugando o reanudar si estaba pausado
+  if (state !== "playing" && state !== "paused") return;
+
+  paused = !paused; // alterna el estado
+
+  if (paused) {
+    //Pausar el juego
+    clearInterval(interval); // Detiene el contador de tiempo
+    state = "paused";
+    messageHTML.textContent = "⏸️ Juego en pausa";
+  } else {
+    //Reanudar el juego
+    state = "playing";
+    messageHTML.textContent = "";
+
+    // Reactivar el contador según el modo actual
+    if (gameMode === "countup") {
+      interval = setInterval(() => {
+        time++;
+        timeHTML.textContent = time;
+      }, 1000);
+    } else if (gameMode === "countdown") {
+      interval = setInterval(() => {
+        time--;
+        timeHTML.textContent = time;
+        if (time <= 0) {
+          clearInterval(interval);
+          finishGame();
+        }
+      }, 1000);
+    }
+  }
+}
+
   // =============Dibujo y rotación===============
   // 
   // ============================
@@ -419,6 +459,7 @@ function initBlocka() {
   // ============================
   canvas.addEventListener("contextmenu", e => e.preventDefault());
   canvas.addEventListener("mousedown", e => {
+    if(paused){return} // Evita que el jugador interactúe mientras está pausado
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -500,12 +541,13 @@ function initBlocka() {
 
     // Cambiar texto y color dependiendo del resultado
     if (esVictoria) {
+      lanzarConfeti();
       popup.classList.remove("lose");
-      popupTitle.textContent = "🎉 ¡Nivel Completado!";
+      popupTitle.textContent = "¡Nivel Completado!";
       btnNext.textContent = "Siguiente Nivel";
     } else {
       popup.classList.add("lose");
-      popupTitle.textContent = "💀 ¡Intento Fallido!";
+      popupTitle.textContent = "¡Intento Fallido!";
       btnNext.textContent = "Reintentar";
     }
 
@@ -537,6 +579,24 @@ function initBlocka() {
         console.warn("No se encontró la función recargarBlocka en el contexto padre.");
       }
     };
+  }
+  function lanzarConfeti() {
+    const duration = 800;
+    const animationEnd = Date.now() + duration;
+
+    (function frame() {
+      // Confeti que sale del centro con ángulos opuestos
+      confetti({
+        particleCount: 10,
+        startVelocity: 40,
+        spread: 70,
+        origin: { x: 0.5, y: 0.5 } // 💥 centro de la pantalla
+      });
+
+      if (Date.now() < animationEnd) {
+        requestAnimationFrame(frame);
+      }
+    })();
   }
 
   iconhouse.onclick = () => {

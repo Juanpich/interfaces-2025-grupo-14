@@ -23,20 +23,29 @@ function cargarBlocka() {
 
       // Esperar a que el HTML esté insertado
       setTimeout(() => {
-        const script = document.createElement("script");
-        script.src = "./app.js";
-        script.defer = true;
 
-        // 🔹 Cuando el script termine de cargar, ejecutamos initBlocka()
-        script.onload = () => {
-          if (typeof initBlocka === "function") {
-            initBlocka();
-          } else {
-            console.error("initBlocka() no encontrada en app.js");
-          }
+        // ✅ Primero cargamos la librería canvas-confetti
+        const confettiScript = document.createElement("script");
+        confettiScript.src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js";
+        confettiScript.onload = () => {
+
+          // ✅ Cuando ya está lista, cargamos app.js
+          const script = document.createElement("script");
+          script.src = "./app.js";
+          script.defer = true;
+
+          script.onload = () => {
+            if (typeof initBlocka === "function") {
+              initBlocka();
+            } else {
+              console.error("initBlocka() no encontrada en app.js");
+            }
+          };
+
+          document.body.appendChild(script);
         };
 
-        document.body.appendChild(script);
+        document.body.appendChild(confettiScript);
       }, 50);
     })
     .catch(err => console.error("Error al cargar blocka:", err));
@@ -54,17 +63,10 @@ window.recargarBlocka = recargarBlocka;
 // ============================
 // EVENTO: Iniciar el juego
 // ============================
-btn_iniciar_juego.addEventListener("click", () => {
-  btn_iniciar_juego.classList.add("deselected");
-  cargarBlocka();
-});
-
-// ============================
-// EVENTO: Fin de animación (opcional)
-// ============================
 btn_iniciar_juego.addEventListener("animationend", (e) => {
   if (e.animationName === "spin-button-play") {
     btn_iniciar_juego.classList.add("deselected");
+    cargarBlocka();
   }
 });
 
