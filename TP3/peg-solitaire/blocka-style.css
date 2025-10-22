@@ -14,7 +14,7 @@ body{
 }
 
 .section-game .blocka {
-    width: 1340px;
+    /* width: 1340px; */
     height: 660px;
     display: flex;
     background-color: #3232325d;
@@ -453,7 +453,7 @@ B
 .left-panel {
   position: absolute;
   left:16%;
-  top: 12%;
+  top: 10%;
   display: flex;
   gap: 10px; /* espacio entre nivel-bar e info */
   align-items: start;
