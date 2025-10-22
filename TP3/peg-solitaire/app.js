@@ -280,13 +280,13 @@ function initBlocka() {
     // Ajustar tamaño del canvas
     switch (numCols) {
       case 4:
-        canvas.width = 1200;
-        break;
-      case 3:
         canvas.width = 900;
         break;
+      case 3:
+        canvas.width = 675;
+        break;
       default:
-        canvas.width = 600;
+        canvas.width = 450;
     }
 
     clearInterval(interval);
