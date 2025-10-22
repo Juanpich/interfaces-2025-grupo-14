@@ -47,28 +47,33 @@ function initBlocka() {
     "img-mult-7.jpg",
     "img-mult-8.jpg",
   ];
-  // ============================
-  // Selección de nivel
-  // ============================
+  // ================================================
+  // Selección de nivel | el usuario elige x4, x6, x8
+  // ================================================
   opciones_level.forEach(opcion => {
     opcion.addEventListener("click", () => {
-      opciones_level.forEach(o => o.classList.remove("level-active"));
-      opcion.classList.add("level-active");
+      if(state != "playing"){
+        opciones_level.forEach(o => o.classList.remove("level-active"));
+        opcion.classList.add("level-active");
+      }
     });
   });
 
-  // ============================
-  // Íconos de ayuda/instrucciones
-  // ============================
+  // ===========================================================================
+  // Íconos de ayuda/instrucciones | el usuario elige leer instrucciones o ayuda
+  // ===========================================================================
   iconos_level.forEach(icon => {
     icon.addEventListener("click", () => {
       iconos_level.forEach(o => o.classList.remove("op-active"));
       icon.classList.add("op-active");
+
+      //Pausar el tiempo para que el usuario lea las instrucciones/ayuda.
       if (!paused && state === "playing") togglePause();
 
       if (icon.getAttribute("data-value") === "ayudin") {
         flotante_ayuda.classList.remove("deselected");
         flotante_instrucciones.classList.add("deselected");
+
       } else if (icon.getAttribute("data-value") === "instrucciones") {
         flotante_instrucciones.classList.remove("deselected");
         flotante_ayuda.classList.add("deselected");
@@ -76,33 +81,38 @@ function initBlocka() {
     });
   });
 
-  // =============Cerrar ventanas flotantes===============
-  // 
-  // ============================
+  // =============================================
+  // Cerrar ventanas flotantes ayuda/instrucciones
+  // =============================================
   document.querySelectorAll(".cruz-icon-skip").forEach(icon => {
     icon.addEventListener("click", () => {
       const value = icon.getAttribute("data-value");
+
       if (value === "instrucciones") {
         flotante_instrucciones.classList.add("deselected");
+
       } else if (value === "ayuda") {
         flotante_ayuda.classList.add("deselected");
       }
       iconos_level.forEach(o => o.classList.remove("op-active"));
+
+      //Despausar el tiempo.
       if (paused && state === "paused") togglePause();
     });
   });
-  // =============Botón de comenzar===============
-  // 
-  // ============================
+  // ===============================================
+  // Botón de comenzar | el usuario inicia le juego
+  // ===============================================
   btn_comenzar.addEventListener("click", () => {
     btn_comenzar.classList.add("deselected");
     // numCols = parseInt(select_cols.value);
     numRows = 2;
     selectionRoulette();
   });
-  // ============================
-  //
-  // ============================
+
+  // ===========================================
+  // El usuario elige jugar asc, desc, aleatorio
+  // ===========================================
   modeButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       // Quitar selección previa
@@ -114,16 +124,22 @@ function initBlocka() {
       console.log("Modo seleccionado:", gameMode);
     });
   });
-  // ============================
-  // Botón de aceptar
-  // ============================
+  // =====================================================
+  // Botón de aceptar | el usuario decide recibir la ayuda
+  // =====================================================
   let btn_accept = document.getElementById("btn-accept");
   btn_accept.addEventListener("click", () => {
     // Funcion que fija un cuadrante
     flotante_ayuda.classList.add("deselected");
     icon_ayudin.classList.remove("op-active");
+
+    console.log(paused);
+    console.log(state);
+      //Despausar el tiempo.
+      if (paused && state === "paused") togglePause();
     fijarCuadranteAlAzar();
   });
+
   btn_pause.addEventListener("click", togglePause);
 
   // ============================
@@ -132,13 +148,13 @@ function initBlocka() {
   function fijarCuadranteAlAzar() {
     // Filtrar los cuadrantes que aún no están fijados
     const noFijados = rects.filter(q => !q.fijado);
-    console.log(noFijados);
     // // Si no queda ninguno, salir
-    if (noFijados.length === 0) return;
+    if (noFijados.length === 1){
+      finishGame();
+    };
 
     // // Elegir uno al azar
     const cuadrante = noFijados[Math.floor(Math.random() * noFijados.length)];
-    console.log(cuadrante);
     // // Fijarlo
     fijarCuadrante(cuadrante);
   }
@@ -155,9 +171,9 @@ function initBlocka() {
     dibujarTodo();     // redibujar todo
   }
 
-  // ===========================
-  // Función de selección tipo “ruleta”
-  // ===========================
+  // ===============================================================
+  // Función de selección tipo “ruleta” | se elige uina img al azar
+  // ===============================================================
   function selectionRoulette() {
     const modeSelectGame = document.getElementById("gameMode");
     modeSelectGame.style.display = "none";
@@ -248,8 +264,8 @@ function initBlocka() {
     }
   }
 
-  // =============Función principal del juego===============
-  // 
+  // ============================
+  // Función principal del juego
   // ============================
   function startGame(imgAleatoria) {
     // aparece lo niveles y los tiempos
@@ -370,6 +386,9 @@ function initBlocka() {
   // Solo permitir pausar si está jugando o reanudar si estaba pausado
   if (state !== "playing" && state !== "paused") return;
 
+  console.log("en la funcion")
+  console.log("state", state);
+
   paused = !paused; // alterna el estado
 
   if (paused) {
@@ -401,8 +420,8 @@ function initBlocka() {
   }
 }
 
-  // =============Dibujo y rotación===============
-  // 
+  // ============================
+  // Dibujo y rotación
   // ============================
   function dibujarTodo() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -441,9 +460,9 @@ function initBlocka() {
     ctx.restore();
   }
 
-  // ============================
+  // ======================================
   // Ubicar aleatoriamente los cuadrantes
-  // ============================
+  // ======================================
   function rotarAleatoriamenteCuadrantes() {
     rects.forEach(r => {
       //Rotar aleatoriamente los cuadrantes si el usuario no pidio ayuda
@@ -454,7 +473,7 @@ function initBlocka() {
     });
   }
 
-  // ==============Eventos del canvas==============
+  // ============================
   // Eventos del canvas
   // ============================
   canvas.addEventListener("contextmenu", e => e.preventDefault());
@@ -492,8 +511,8 @@ function initBlocka() {
   }
   );
 
-  // =============Fin del juego===============
-  //
+  // ============================
+  // Fin del juego
   // ============================
   function finishGame() {
     clearInterval(interval);
@@ -524,13 +543,12 @@ function initBlocka() {
         }
       }
     }
-
     recordHTML.textContent = record !== null ? record : "-";
     showPopup(texto, esVictoria);
   }
 
-  // =============Popup final===============
-  // 
+  // ============================
+  // Popup final
   // ============================
   function showPopup(message, esVictoria = true) {
     const popup = document.getElementById("popup");
@@ -610,8 +628,8 @@ function initBlocka() {
     }
   };
 
-  // ========== Actualizar los nivele ==================
-  // 
+  // ============================
+  // Actualizar los niveles
   // ============================
   function updateLevel() {
     const levelHTML = document.getElementById("level");
@@ -622,8 +640,8 @@ function initBlocka() {
 
   }
 
-  // =============Filtros de imagen===============
-  //
+  // ============================
+  // Filtros de imagen
   // ============================
   function setPixelBW(imageData, x, y) {
     const index = (x + y * imageData.width) * 4;
