@@ -19,6 +19,7 @@ function initBlocka() {
   const btn_pause = document.getElementById("btn_pause");
   const icon_pausa = document.querySelector(".icon-pausa");
   const icon_play = document.querySelector(".icon-play");
+  const penaltyMessage = document.getElementById("penalty-message");
 
   let gameMode = "countup";
   let randomMode = false;
@@ -33,6 +34,7 @@ function initBlocka() {
   let record = null;
   let state = "start";
   let paused  = false;
+  let pausedByHelp = false;
   let level = 1;
 
   let ImagenHTML5 = null;
@@ -70,7 +72,11 @@ function initBlocka() {
       icon.classList.add("op-active");
 
       //Pausar el tiempo para que el usuario lea las instrucciones/ayuda.
-      if (!paused && state === "playing") togglePause();
+      if (!paused && state === "playing") {
+        togglePause();
+        pausedByHelp = true; // marcamos que la pausa es por ayuda
+      }
+      mostrarPenalizacion();
 
       if (icon.getAttribute("data-value") === "ayudin") {
         flotante_ayuda.classList.remove("deselected");
@@ -99,7 +105,10 @@ function initBlocka() {
       iconos_level.forEach(o => o.classList.remove("op-active"));
 
       //Despausar el tiempo.
-      if (paused && state === "paused") togglePause();
+      if (pausedByHelp && paused && state === "paused") {
+      togglePause();
+      pausedByHelp = false;
+    }
     });
   });
   // ===============================================
@@ -123,20 +132,26 @@ function initBlocka() {
       btn.classList.add("active");
       // Asignar modo desde el data-attribute
       gameMode = btn.dataset.mode;
-      console.log("Modo seleccionado:", gameMode);
     });
   });
   // =====================================================
   // Botón de aceptar | el usuario decide recibir la ayuda
   // =====================================================
   let btn_accept = document.getElementById("btn-accept");
-  btn_accept.addEventListener("click", () => {
-    // Funcion que fija un cuadrante
-    flotante_ayuda.classList.add("deselected");
-    icon_ayudin.classList.remove("op-active");
-    
-    fijarCuadranteAlAzar();
-  });
+btn_accept.addEventListener("click", () => {
+  // Cerrar ayuda
+  flotante_ayuda.classList.add("deselected");
+  icon_ayudin.classList.remove("op-active");
+
+  // Fijar un cuadrante al azar
+  fijarCuadranteAlAzar();
+
+  // Despausar si estaba pausado por la ayuda
+  if (pausedByHelp) {
+    togglePause();        // vuelve a jugar
+    pausedByHelp = false; // reseteamos la bandera
+  }
+});
 
   btn_pause.addEventListener("click", togglePause);
 
@@ -161,13 +176,27 @@ function initBlocka() {
     r.angulo = 0;      // posición correcta
     r.fijado = true;   // marcar como fijo
     // se le hagrea 5 segundo al tiempo actual por resivier la ayuda
+    const bonusHTML = document.getElementById("bonus-message");
     if (gameMode === "countup") {
       time += 5;
+      bonusHTML.textContent = "+5 s por ayuda";       
     } else if (gameMode === "countdown") {
       time = time - 3;
+      bonusHTML.textContent = "-3 s por ayuda";
     }
+    setTimeout(() => {
+        bonusHTML.textContent = "";
+    }, 2000);
+
     dibujarTodo();     // redibujar todo
   }
+  function mostrarPenalizacion() {
+    if (gameMode === "countup") {
+        penaltyMessage.textContent = "⏱ Se sumarán 5 segundos a tu tiempo por usar la ayuda.";
+    } else if (gameMode === "countdown") {
+        penaltyMessage.textContent = "⏱ Se restarán 3 segundos a tu tiempo por usar la ayuda.";
+    }
+}
 
   // ===============================================================
   // Función de selección tipo “ruleta” | se elige uina img al azar
@@ -310,24 +339,16 @@ function initBlocka() {
       modoActualHTML.style.color = "orange";
     }
 
+    // Inicializar tiempo
     if (gameMode === "countup") {
       time = 0;
-      interval = setInterval(() => {
-        time++;
-        timeHTML.textContent = time;
-      }, 1000);
     } else if (gameMode === "countdown") {
       time = countdownStart;
-      timeHTML.textContent = time;
-      interval = setInterval(() => {
-        time--;
-        timeHTML.textContent = time;
-        if (time <= 0) {
-          clearInterval(interval);
-          finishGame();
-        }
-      }, 1000);
     }
+    timeHTML.textContent = time;
+
+    //Iniciar el contador con la función unificada
+    startTimer();
 
     // ============================
     // Calcular cuadrantes
@@ -380,43 +401,49 @@ function initBlocka() {
       dibujarTodo();
     };
   }
-  function togglePause() {
-  // Solo permitir pausar si está jugando o reanudar si estaba pausado
+function togglePause() {
   if (state !== "playing" && state !== "paused") return;
 
-  paused = !paused; // alterna el estado
+  paused = !paused;
 
   if (paused) {
-    //Pausar el juego
-    clearInterval(interval); // Detiene el contador de tiempo
+    clearInterval(interval);
     state = "paused";
     icon_play.classList.add("deselected");
     icon_pausa.classList.remove("deselected");
   } else {
-    //Reanudar el juego
     state = "playing";
-
     icon_pausa.classList.add("deselected");
     icon_play.classList.remove("deselected");
 
-    // Reactivar el contador según el modo actual
-    if (gameMode === "countup") {
-      interval = setInterval(() => {
-        time++;
-        timeHTML.textContent = time;
-      }, 1000);
-    } else if (gameMode === "countdown") {
-      interval = setInterval(() => {
-        time--;
-        timeHTML.textContent = time;
-        if (time <= 0) {
-          clearInterval(interval);
-          finishGame();
-        }
-      }, 1000);
-    }
+    startTimer(); //asegura que el timer se reinicie
   }
 }
+
+function startTimer() {
+  // Asegurarse de limpiar cualquier intervalo previo
+  clearInterval(interval);
+
+  if (gameMode === "countup") {
+    // Ascendente
+    interval = setInterval(() => {
+      time++;
+      timeHTML.textContent = time;
+    }, 1000);
+  } else if (gameMode === "countdown") {
+    // Descendente
+    interval = setInterval(() => {
+      time--;
+      timeHTML.textContent = time;
+      if (time <= 0) {
+        clearInterval(interval);
+        finishGame();
+      }
+    }, 1000);
+  }
+}
+
+
 
   // ============================
   // Dibujo y rotación

@@ -65,10 +65,12 @@
         <p class="instructions-text">Uno de los cuadrantes se quedará fijo en su posición correcta, creemos que esto te
             ayudará a reconstruir la imagen original.</p>
     </div>
-    <!-- Info penalizacion por la ayuda -->
+<!-- Info penalización por la ayuda -->
     <div class="Info-penalizacion">
-        <p class="instructions-subtitle">⏱ Penalización:</p>
-        <p class="instructions-text">A tu tiempo se le sumarán 5 segundos por recibir una ayudita.</p>
+        <p class="instructions-subtitle">⏱ Penalización por ayuda:</p>
+        <p class="instructions-text" id="penalty-message">
+            A tu tiempo se le aplicará una modificación al usar la ayuda.
+        </p>
     </div>
     <p class="instructions-title ayudin">Llamame cada vez que necesites una pista 😉</p>
     <div class="btn-container-help">
@@ -94,6 +96,7 @@
             <p>⏱️ Tiempo: <span id="time">0</span> s</p>
             <p>🏆 Récord: <span id="record">-</span> s</p>
             <p id="message"></p>
+            <p id="bonus-message" style="color: yellow; font-weight: bold;"></p>
         </div>
         <div>
             <button id="btn_pause">
