@@ -17,6 +17,8 @@ function initBlocka() {
   let iconhouse = document.getElementById("buttonHouse");
   const modoActualHTML = document.getElementById("modo-actual");
   const btn_pause = document.getElementById("btn_pause");
+  const icon_pausa = document.querySelector(".icon-pausa");
+  const icon_play = document.querySelector(".icon-play");
 
   let gameMode = "countup";
   let randomMode = false;
@@ -395,11 +397,14 @@ function initBlocka() {
     //Pausar el juego
     clearInterval(interval); // Detiene el contador de tiempo
     state = "paused";
-    messageHTML.textContent = "⏸️ Juego en pausa";
+    icon_play.classList.add("deselected");
+    icon_pausa.classList.remove("deselected");
   } else {
     //Reanudar el juego
     state = "playing";
-    messageHTML.textContent = "";
+
+    icon_pausa.classList.add("deselected");
+    icon_play.classList.remove("deselected");
 
     // Reactivar el contador según el modo actual
     if (gameMode === "countup") {
