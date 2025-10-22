@@ -20,7 +20,7 @@ body{
     background-color: #3232325d;
     justify-content: center;
     align-items: center;
-    
+    padding: 20px;
 }
 /* Barra lateral de opciones en el juego */
 .sidebar{
@@ -452,12 +452,12 @@ B
 }
 .left-panel {
   position: absolute;
-  left:14%;
-  top: 30%;
+  left:16%;
+  top: 12%;
   display: flex;
-  flex-direction: column;
   gap: 10px; /* espacio entre nivel-bar e info */
-  align-items: center;
+  align-items: start;
+  margin: 10px;
 }
 
 #nivel-bar,
@@ -536,6 +536,7 @@ B
   text-align: left;
   color: #fff;
   font-family: "Poppins", sans-serif;
+  margin: 0px;
 }
 
 #info p {
