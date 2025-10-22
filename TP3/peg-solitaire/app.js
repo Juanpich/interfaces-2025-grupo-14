@@ -134,11 +134,7 @@ function initBlocka() {
     // Funcion que fija un cuadrante
     flotante_ayuda.classList.add("deselected");
     icon_ayudin.classList.remove("op-active");
-
-    console.log(paused);
-    console.log(state);
-      //Despausar el tiempo.
-      if (paused && state === "paused") togglePause();
+    
     fijarCuadranteAlAzar();
   });
 
@@ -388,9 +384,6 @@ function initBlocka() {
   // Solo permitir pausar si está jugando o reanudar si estaba pausado
   if (state !== "playing" && state !== "paused") return;
 
-  console.log("en la funcion")
-  console.log("state", state);
-
   paused = !paused; // alterna el estado
 
   if (paused) {
@@ -463,6 +456,7 @@ function initBlocka() {
       ctx.strokeRect(-r.w / 2, -r.h / 2, r.w, r.h);
     }
     ctx.restore();
+    
   }
 
   // ======================================
