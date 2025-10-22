@@ -7,7 +7,6 @@ function initBlocka() {
   let flotante_ayuda = document.querySelector(".help");
   let flotante_instrucciones = document.querySelector(".instructions");
   let opciones_level = document.querySelectorAll(".op-cuadrantes");
-  let btn_acceot_ayudin = document.querySelector(".btn-accept");
   const select_cols = document.getElementById("select_levels");
   const timeHTML = document.getElementById("time");
   const recordHTML = document.getElementById("record");
@@ -72,17 +71,25 @@ function initBlocka() {
       icon.classList.add("op-active");
 
       //Pausar el tiempo para que el usuario lea las instrucciones/ayuda.
-      if (!paused && state === "playing") {
-        togglePause();
-        pausedByHelp = true; // marcamos que la pausa es por ayuda
-      }
-      mostrarPenalizacion();
-
       if (icon.getAttribute("data-value") === "ayudin") {
-        flotante_ayuda.classList.remove("deselected");
-        flotante_instrucciones.classList.add("deselected");
+        if(state != "playing"){
+          //si no estas jugando mostrar la info.
+          flotante_ayuda.classList.remove("deselected");
+          flotante_instrucciones.classList.add("deselected");
 
+        }else{
+          // si estas jugando, fijar un cuadrante al azar.
+          fijarCuadranteAlAzar();
+
+          // Despausar si estaba pausado por la ayuda
+          if (pausedByHelp) {
+            togglePause();        // vuelve a jugar
+            pausedByHelp = false; // reseteamos la bandera
+          }
+          mostrarPenalizacion();
+        }
       } else if (icon.getAttribute("data-value") === "instrucciones") {
+        //Mostrar instrucciones.
         flotante_instrucciones.classList.remove("deselected");
         flotante_ayuda.classList.add("deselected");
       }
@@ -103,12 +110,6 @@ function initBlocka() {
         flotante_ayuda.classList.add("deselected");
       }
       iconos_level.forEach(o => o.classList.remove("op-active"));
-
-      //Despausar el tiempo.
-      if (pausedByHelp && paused && state === "paused") {
-      togglePause();
-      pausedByHelp = false;
-    }
     });
   });
   // ===============================================
@@ -116,7 +117,6 @@ function initBlocka() {
   // ===============================================
   btn_comenzar.addEventListener("click", () => {
     btn_comenzar.classList.add("deselected");
-    // numCols = parseInt(select_cols.value);
     numRows = 2;
     selectionRoulette();
   });
@@ -137,19 +137,12 @@ function initBlocka() {
   // =====================================================
   // Botón de aceptar | el usuario decide recibir la ayuda
   // =====================================================
-  let btn_accept = document.getElementById("btn-accept");
+let btn_accept = document.getElementById("btn-accept");
 btn_accept.addEventListener("click", () => {
-  // Cerrar ayuda
-  flotante_ayuda.classList.add("deselected");
-  icon_ayudin.classList.remove("op-active");
-
-  // Fijar un cuadrante al azar
-  fijarCuadranteAlAzar();
-
-  // Despausar si estaba pausado por la ayuda
-  if (pausedByHelp) {
-    togglePause();        // vuelve a jugar
-    pausedByHelp = false; // reseteamos la bandera
+  if(state != "playing"){
+    // Cerrar ayuda
+    flotante_ayuda.classList.add("deselected");
+    icon_ayudin.classList.remove("op-active");
   }
 });
 
