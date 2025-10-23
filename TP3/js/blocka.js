@@ -19,6 +19,7 @@ function initBlocka() {
   const icon_pausa = document.querySelector(".icon-pausa");
   const icon_play = document.querySelector(".icon-play");
   const penaltyMessage = document.getElementById("penalty-message");
+  const blocka_article = document.querySelector(".blocka");
 
   let gameMode = "countup";
   let randomMode = false;
@@ -197,6 +198,12 @@ function initBlocka() {
   // ===============================================================
   function selectionRoulette() {
     const modeSelectGame = document.getElementById("gameMode");
+    blocka_article.style.background = `
+      linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url("../img/fondo.jpg") center / cover no-repeat
+    `;
+
+
     modeSelectGame.style.display = "none";
 
     const canvasRoulette = document.getElementById("canvas-ruleta");

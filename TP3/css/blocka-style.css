@@ -19,14 +19,13 @@ body{
     display: flex;
     background-color: #3232325d;
     justify-content: center;
-    align-items: center;
-    padding: 20px;
+    align-items: end;
+    background:  linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/portada_blocka.png);
+    background-size: cover;      /* ✅ hace que la imagen cubra todo el contenedor */
+    background-position: center; /* ✅ centra la imagen */
+    background-repeat: no-repeat;              
 }
 
-.blocka .img-blocka {
-  opacity: 0.2;
-  filter: blur(2px);
-}
 
 /* Barra lateral de opciones en el juego */
 .sidebar{
@@ -113,8 +112,7 @@ body{
     grid-template-rows: 44px 78px 60px 70px;
     width: 800px;
     height: 410px;
-    /* COMENTAR !!!!!!!!!!!!!!!!!!!!!! */
-    margin: 40px;
+    margin-bottom: 90px;
 }
 
 .help .instructions-title.ayudin{
@@ -145,8 +143,7 @@ body{
     grid-template-rows: 32px 130px 110px 160px 55px 30px 120px 50px 32px;
     width: 800px;
     height: 655px;
-    /* COMENTAR !!!!!!!!!!!!!!!!!!!!!! */
-    margin: 40px;
+    transform: scale(0.9);
 }
 
 /* Cuerpo de info de ambos flotantes */
@@ -187,6 +184,10 @@ body{
   display: flex;
   justify-content: center;
   align-content: center;
+  background:  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/fondo.jpg);
+  background-size: cover;      /* ✅ hace que la imagen cubra todo el contenedor */
+  background-position: center; /* ✅ centra la imagen */
+  background-repeat: no-repeat;              
 }
 .menu-inicial {
   display: flex;
@@ -570,7 +571,7 @@ B
 
 #canvas-ruleta {
   display: none;
-  margin: 0 auto;
+  margin-bottom: 65px;
   background: radial-gradient(circle at center, #111, #000);
   border-radius: 20px;
   box-shadow: 0 0 25px rgba(0,255,255,0.3), inset 0 0 15px rgba(0,255,255,0.2);
