@@ -155,7 +155,7 @@ function initBlocka() {
   // ============================
   function fijarCuadranteAlAzar() {
     // Filtrar los cuadrantes que aún no están fijados
-    const noFijados = rects.filter(q => !q.fijado);
+  const noFijados = rects.filter(q => q.angulo !== 0);
     // // Si no queda ninguno, salir
     if (noFijados.length === 1) {
       finishGame();
