@@ -453,7 +453,7 @@ B
 .left-panel {
   position: absolute;
   left:16%;
-  top: 10%;
+  top: 12%;
   display: flex;
   gap: 10px; /* espacio entre nivel-bar e info */
   align-items: start;
