@@ -5,6 +5,6 @@
   .then(html => {
     document.querySelector('#fat-footer').innerHTML = html;
     const script = document.createElement('script');
-    script.src = '../js/script.js';
+    script.src = '../js/fat-footer.js';
     document.body.appendChild(script);
   });

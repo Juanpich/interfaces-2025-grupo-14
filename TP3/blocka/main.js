@@ -12,11 +12,11 @@ function cargarBlocka() {
   article_blocka.innerHTML = "";
 
   // Elimina el script anterior si existe
-  const oldScript = document.querySelector('script[src="./app.js"]');
+  const oldScript = document.querySelector('script[src="../js/blocka.js"]');
   if (oldScript) oldScript.remove();
 
   // Carga el HTML del juego
-  fetch("./blocka.html")
+  fetch("../html/blocka.html")
     .then(res => res.text())
     .then(html => {
       article_blocka.innerHTML = html;
@@ -31,7 +31,7 @@ function cargarBlocka() {
 
           // ✅ Cuando ya está lista, cargamos app.js
           const script = document.createElement("script");
-          script.src = "./app.js";
+          script.src = "../js/blocka.js";
           script.defer = true;
 
           script.onload = () => {
@@ -88,3 +88,19 @@ fetch("../html/fat-footer.html")
     }, 50); // 50ms son suficientes para que el HTML se agregue
   })
   .catch(err => console.error("Error al cargar fat-footer:", err));
+
+  /*Carga automatica de comentarios */
+async function automaticLoadingComment() {
+  try {
+    const response = await fetch("../json/comments-blocka.json");
+    const data = await response.json();
+    data.forEach(comment => {
+      postComment(comment["nombre"], comment["fecha_publicacion"], comment["comentario"], comment["puntuacion"])
+    });
+  } catch (error) {
+    let list_comments = document.querySelector(".list-comments")
+    list_comments.innerHTML = "<li>Hubo un error al cargar los comentarios</li>"
+  }
+}
+/*Llamado de funciones automaticas */
+automaticLoadingComment()

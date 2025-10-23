@@ -99,7 +99,7 @@ function activarRedirigirPeg(){
     window.location.href = '../pegSolitaire/index.html';
   })
   document.querySelector("#blocka").addEventListener("click", ()=>{
-    window.location.href = '../peg-solitaire/index.html';
+    window.location.href = '../blocka/index.html';
   })
 }
 

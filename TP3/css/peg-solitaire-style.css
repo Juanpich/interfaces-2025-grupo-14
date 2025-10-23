@@ -27,7 +27,6 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-    box-shadow: 0px 4px 8px 0px var(--acento-color);
 }
 
 .btn-play {

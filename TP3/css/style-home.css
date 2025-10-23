@@ -48,7 +48,7 @@
         background-color: rgba(27, 27, 27, 1);
         opacity: 1;
     }
-    98%{
+    95%{
         background-color: rgba(27, 27, 27, 1);
         opacity: 1;
     }
@@ -360,6 +360,11 @@ font-family: 'Jockey One', sans-serif;
     font-weight: 400;
     line-height: normal;
     margin-right: 4px;
+    cursor: pointer;
+}
+
+.card-game-free svg{
+    cursor: pointer;
 }
 
 /*Icono de estrellas de la card games*/

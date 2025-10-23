@@ -41,14 +41,14 @@ function initBlocka() {
   let imgAleatoria = null;
 
   const imagenesDisponibles = [
-    "img-mult-1.jpg",
-    "img-mult-2.jpg",
-    "img-mult-3.jpg",
-    "img-mult-4.jpg",
-    "img-mult-5.jpg",
-    "img-mult-6.jpg",
-    "img-mult-7.jpg",
-    "img-mult-8.jpg",
+    "./img/img-mult-1.jpg",
+    "./img/img-mult-2.jpg",
+    "./img/img-mult-3.jpg",
+    "./img/img-mult-4.jpg",
+    "./img/img-mult-5.jpg",
+    "./img/img-mult-6.jpg",
+    "./img/img-mult-7.jpg",
+    "./img/img-mult-8.jpg",
   ];
   // ================================================
   // Selección de nivel | el usuario elige x4, x6, x8
@@ -231,8 +231,29 @@ function initBlocka() {
       thumbnails.forEach((img, i) => {
         const x = padding + (i % cols) * (tamaño + padding);
         const y = padding + Math.floor(i / cols) * (tamaño + padding);
-        ctxRoulette.drawImage(img, x, y, tamaño, tamaño);
+        const iw = img.width;
+        const ih = img.height;
 
+        // Escala proporcional para cubrir el cuadrado
+        const scale = Math.max(tamaño / iw, tamaño / ih);
+
+        const newW = iw * scale;
+        const newH = ih * scale;
+
+        // Centramos la parte visible dentro del cuadrado
+        const offsetX = x + (tamaño - newW) / 2;
+        const offsetY = y + (tamaño - newH) / 2;
+
+        // --- CLIP para que no se vea lo que sobra ---
+        ctxRoulette.save();
+        ctxRoulette.beginPath();
+        ctxRoulette.rect(x, y, tamaño, tamaño);
+        ctxRoulette.clip();
+
+        ctxRoulette.drawImage(img, offsetX, offsetY, newW, newH);
+
+        ctxRoulette.restore();
+        // --- FIN CLIP ---
         // Resalta el seleccionado actual
         if (i === indice && animacionActiva) {
           ctxRoulette.strokeStyle = "cyan";
@@ -380,7 +401,7 @@ function initBlocka() {
       const startX = Math.max(0, (ImagenHTML5.width - canvas.width) / 2);
       const startY = Math.max(0, (ImagenHTML5.height - canvas.height) / 2);
 
-      // 🔹 Dibuja solo el recorte central
+      // Dibuja solo el recorte central
       ctxBW.drawImage(
         ImagenHTML5,
         startX, startY,             // desde qué parte de la imagen tomar
@@ -536,7 +557,7 @@ function initBlocka() {
           const startX = Math.max(0, (ImagenHTML5.width - canvas.width) / 2);
           const startY = Math.max(0, (ImagenHTML5.height - canvas.height) / 2);
 
-          // 🔹 Dibuja solo el recorte central
+          //Dibuja solo el recorte central
           ctx.drawImage(
             ImagenHTML5,
             startX, startY,             // desde qué parte de la imagen tomar
