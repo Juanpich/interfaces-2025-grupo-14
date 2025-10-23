@@ -1,0 +1,747 @@
+function initBlocka() {
+  const canvas = document.getElementById("myCanvas-2");
+  const ctx = canvas.getContext("2d");
+  const btn_comenzar = document.getElementById("btn_comenzar");
+  let section_finished_level = document.querySelector(".finished-level");
+  let iconos_level = document.querySelectorAll(".op-icono");
+  let flotante_ayuda = document.querySelector(".help");
+  let flotante_instrucciones = document.querySelector(".instructions");
+  let opciones_level = document.querySelectorAll(".op-cuadrantes");
+  const select_cols = document.getElementById("select_levels");
+  const timeHTML = document.getElementById("time");
+  const recordHTML = document.getElementById("record");
+  const messageHTML = document.getElementById("message");
+  const modeButtons = document.querySelectorAll(".mode-btn");
+  let icon_ayudin = document.querySelector(".icon-ayudin");
+  let iconhouse = document.getElementById("buttonHouse");
+  const modoActualHTML = document.getElementById("modo-actual");
+  const btn_pause = document.getElementById("btn_pause");
+  const icon_pausa = document.querySelector(".icon-pausa");
+  const icon_play = document.querySelector(".icon-play");
+  const penaltyMessage = document.getElementById("penalty-message");
+  const blocka_article = document.querySelector(".blocka");
+
+  let gameMode = "countup";
+  let randomMode = false;
+  let countdownStart = 10;
+  let numCols = 2;
+  let numRows = 2;
+  let rects = [];
+  let rectW, rectH;
+
+  let time = 0;
+  let interval = null;
+  let record = null;
+  let state = "start";
+  let paused = false;
+  let pausedByHelp = false;
+  let level = 1;
+
+  let ImagenHTML5 = null;
+  let canvasBW = null;
+  let imgAleatoria = null;
+
+  const imagenesDisponibles = [
+    "./img/img-mult-1.jpg",
+    "./img/img-mult-2.jpg",
+    "./img/img-mult-3.jpg",
+    "./img/img-mult-4.jpg",
+    "./img/img-mult-5.jpg",
+    "./img/img-mult-6.jpg",
+    "./img/img-mult-7.jpg",
+    "./img/img-mult-8.jpg",
+  ];
+  // ================================================
+  // Selección de nivel | el usuario elige x4, x6, x8
+  // ================================================
+  opciones_level.forEach(opcion => {
+    opcion.addEventListener("click", () => {
+      if (state != "playing") {
+        opciones_level.forEach(o => o.classList.remove("level-active"));
+        opcion.classList.add("level-active");
+      }
+    });
+  });
+
+  // ===========================================================================
+  // Íconos de ayuda/instrucciones | el usuario elige leer instrucciones o ayuda
+  // ===========================================================================
+  iconos_level.forEach(icon => {
+    icon.addEventListener("click", () => {
+      iconos_level.forEach(o => o.classList.remove("op-active"));
+      icon.classList.add("op-active");
+
+      //Pausar el tiempo para que el usuario lea las instrucciones/ayuda.
+      if (icon.getAttribute("data-value") === "ayudin") {
+        if (state != "playing") {
+          //si no estas jugando mostrar la info.
+          flotante_ayuda.classList.remove("deselected");
+          flotante_instrucciones.classList.add("deselected");
+
+        } else {
+          // si estas jugando, fijar un cuadrante al azar.
+          fijarCuadranteAlAzar();
+
+          // Despausar si estaba pausado por la ayuda
+          if (pausedByHelp) {
+            togglePause();        // vuelve a jugar
+            pausedByHelp = false; // reseteamos la bandera
+          }
+          mostrarPenalizacion();
+          icon.classList.remove("op-active");
+        }
+      } else if (icon.getAttribute("data-value") === "instrucciones") {
+        //Mostrar instrucciones.
+        flotante_instrucciones.classList.remove("deselected");
+        flotante_ayuda.classList.add("deselected");
+      }
+    });
+  });
+
+  // =============================================
+  // Cerrar ventanas flotantes ayuda/instrucciones
+  // =============================================
+  document.querySelectorAll(".cruz-icon-skip").forEach(icon => {
+    icon.addEventListener("click", () => {
+      const value = icon.getAttribute("data-value");
+
+      if (value === "instrucciones") {
+        flotante_instrucciones.classList.add("deselected");
+
+      } else if (value === "ayuda") {
+        flotante_ayuda.classList.add("deselected");
+      }
+      iconos_level.forEach(o => o.classList.remove("op-active"));
+    });
+  });
+  // ===============================================
+  // Botón de comenzar | el usuario inicia le juego
+  // ===============================================
+  btn_comenzar.addEventListener("click", () => {
+    btn_comenzar.classList.add("deselected");
+    numRows = 2;
+    selectionRoulette();
+  });
+
+  // ===========================================
+  // El usuario elige jugar asc, desc, aleatorio
+  // ===========================================
+  modeButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      // Quitar selección previa
+      modeButtons.forEach(b => b.classList.remove("active"));
+      // Activar el nuevo botón
+      btn.classList.add("active");
+      // Asignar modo desde el data-attribute
+      gameMode = btn.dataset.mode;
+    });
+  });
+  // =====================================================
+  // Botón de aceptar | el usuario decide recibir la ayuda
+  // =====================================================
+  let btn_accept = document.getElementById("btn-accept");
+  btn_accept.addEventListener("click", () => {
+    if (state != "playing") {
+      // Cerrar ayuda
+      flotante_ayuda.classList.add("deselected");
+      icon_ayudin.classList.remove("op-active");
+    }
+  });
+
+  btn_pause.addEventListener("click", togglePause);
+
+  // ============================
+  // Fijar un cuadrante en "Ayuda"
+  // ============================
+  function fijarCuadranteAlAzar() {
+    // Filtrar los cuadrantes que aún no están fijados
+  const noFijados = rects.filter(q => q.angulo !== 0);
+    // // Si no queda ninguno, salir
+    if (noFijados.length === 1) {
+      finishGame();
+    };
+
+    // // Elegir uno al azar
+    const cuadrante = noFijados[Math.floor(Math.random() * noFijados.length)];
+    // // Fijarlo
+    fijarCuadrante(cuadrante);
+  }
+
+  function fijarCuadrante(r) {
+    r.angulo = 0;      // posición correcta
+    r.fijado = true;   // marcar como fijo
+    // se le hagrea 5 segundo al tiempo actual por resivier la ayuda
+    const bonusHTML = document.getElementById("bonus-message");
+    if (gameMode === "countup") {
+      time += 5;
+      bonusHTML.textContent = "+5 s por ayuda";
+    } else if (gameMode === "countdown") {
+      time = time - 3;
+      bonusHTML.textContent = "-3 s por ayuda";
+    }
+    setTimeout(() => {
+      bonusHTML.textContent = "";
+    }, 2000);
+
+    dibujarTodo();     // redibujar todo
+  }
+  function mostrarPenalizacion() {
+    if (gameMode === "countup") {
+      penaltyMessage.textContent = "⏱ Se sumarán 5 segundos a tu tiempo por usar la ayuda.";
+    } else if (gameMode === "countdown") {
+      penaltyMessage.textContent = "⏱ Se restarán 3 segundos a tu tiempo por usar la ayuda.";
+    }
+  }
+
+  // ===============================================================
+  // Función de selección tipo “ruleta” | se elige uina img al azar
+  // ===============================================================
+  function selectionRoulette() {
+    const modeSelectGame = document.getElementById("gameMode");
+    blocka_article.style.background = `
+      linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url("../img/fondo.jpg") center / cover no-repeat
+    `;
+
+
+    modeSelectGame.style.display = "none";
+
+    const canvasRoulette = document.getElementById("canvas-ruleta");
+    const ctxRoulette = canvasRoulette.getContext("2d");
+    canvasRoulette.style.display = "block";
+
+    const thumbnails = imagenesDisponibles.map(src => {
+      const img = new Image();
+      img.src = src;
+      return img;
+    });
+
+    const tamaño = 200;
+    const padding = 40;
+    let indice = 0;
+    let seleccionado = -1;
+    let animacionActiva = true;
+
+    let cargadas = 0;
+    thumbnails.forEach(img => {
+      img.onload = () => {
+        cargadas++;
+        if (cargadas === thumbnails.length) {
+          dibujarMiniaturas();
+          iniciarAnimacion();
+        }
+      };
+    });
+
+    function dibujarMiniaturas() {
+      ctxRoulette.clearRect(0, 0, canvasRoulette.width, canvasRoulette.height);
+      const cols = 4;
+      thumbnails.forEach((img, i) => {
+        const x = padding + (i % cols) * (tamaño + padding);
+        const y = padding + Math.floor(i / cols) * (tamaño + padding);
+        const iw = img.width;
+        const ih = img.height;
+
+        // Escala proporcional para cubrir el cuadrado
+        const scale = Math.max(tamaño / iw, tamaño / ih);
+
+        const newW = iw * scale;
+        const newH = ih * scale;
+
+        // Centramos la parte visible dentro del cuadrado
+        const offsetX = x + (tamaño - newW) / 2;
+        const offsetY = y + (tamaño - newH) / 2;
+
+        // --- CLIP para que no se vea lo que sobra ---
+        ctxRoulette.save();
+        ctxRoulette.beginPath();
+        ctxRoulette.rect(x, y, tamaño, tamaño);
+        ctxRoulette.clip();
+
+        ctxRoulette.drawImage(img, offsetX, offsetY, newW, newH);
+
+        ctxRoulette.restore();
+        // --- FIN CLIP ---
+        // Resalta el seleccionado actual
+        if (i === indice && animacionActiva) {
+          ctxRoulette.strokeStyle = "cyan";
+          ctxRoulette.lineWidth = 5;
+          ctxRoulette.strokeRect(x - 5, y - 5, tamaño + 10, tamaño + 10);
+        }
+      });
+    }
+
+    function iniciarAnimacion() {
+      let velocidad = 100;
+      const intervalo = setInterval(() => {
+        dibujarMiniaturas();
+        indice = (indice + 1) % thumbnails.length;
+      }, velocidad);
+
+      // Desacelera progresivamente y se detiene en una imagen al azar
+      setTimeout(() => {
+        clearInterval(intervalo);
+        animacionActiva = false;
+        seleccionado = Math.floor(Math.random() * thumbnails.length);
+        indice = seleccionado;
+        dibujarMiniaturas();
+        animarSeleccion(seleccionado);
+      }, 3000);
+    }
+
+    function animarSeleccion(idx) {
+      const img = thumbnails[idx];
+      ctxRoulette.clearRect(0, 0, canvasRoulette.width, canvasRoulette.height);
+      const tamañoFinal = tamaño * 1.6;
+      const x = canvasRoulette.width / 2 - tamañoFinal / 2;
+      const y = canvasRoulette.height / 2 - tamañoFinal / 2;
+
+      // Pequeña animación de "zoom" visual
+      canvasRoulette.classList.add("zoom");
+
+      setTimeout(() => {
+        ctxRoulette.clearRect(0, 0, canvasRoulette.width, canvasRoulette.height);
+        ctxRoulette.drawImage(img, x, y, tamañoFinal, tamañoFinal);
+
+        setTimeout(() => {
+          canvasRoulette.classList.remove("zoom");
+          canvasRoulette.style.display = "none";
+          imgAleatoria = imagenesDisponibles[idx];
+          startGame(imgAleatoria);
+        }, 800);
+      }, 300);
+    }
+  }
+
+  // ============================
+  // Función principal del juego
+  // ============================
+  function startGame(imgAleatoria) {
+    // aparece lo niveles y los tiempos
+    document.getElementById("game-ui").style.display = "flex";
+    canvas.style.display = "block";
+    let opcion = document.querySelector(".level-active");
+    numCols = parseInt(opcion.getAttribute("data-value")) || numCols;
+    numRows = 2;
+    section_finished_level.classList.add("deselected");
+    rects = [];
+
+    // Ajustar tamaño del canvas
+    switch (numCols) {
+      case 4:
+        canvas.width = 900;
+        break;
+      case 3:
+        canvas.width = 675;
+        break;
+      default:
+        canvas.width = 450;
+    }
+
+    clearInterval(interval);
+    state = "playing";
+
+    // Reiniciar valores visuales
+    messageHTML.textContent = "";
+    recordHTML.textContent = record !== null ? record : "-";
+
+    // ============================
+    // MODO DE TIEMPO
+    // ============================
+    if (gameMode === "bothModes" || randomMode) {
+      // Elegir aleatoriamente entre countup o countdown
+      gameMode = Math.random() < 0.5 ? "countup" : "countdown";
+      randomMode = true;
+    }
+    if (gameMode === "countup") {
+      modoActualHTML.textContent = "⏫ Ascendente";
+      modoActualHTML.style.color = "lime";
+    } else if (gameMode === "countdown") {
+      modoActualHTML.textContent = "⏬ Regresivo";
+      modoActualHTML.style.color = "orange";
+    }
+
+    // Inicializar tiempo
+    if (gameMode === "countup") {
+      time = 0;
+    } else if (gameMode === "countdown") {
+      time = countdownStart;
+    }
+    timeHTML.textContent = time;
+
+    //Iniciar el contador con la función unificada
+    startTimer();
+
+    // ============================
+    // Calcular cuadrantes
+    // ============================
+    rectW = canvas.width / numCols;
+    rectH = canvas.height / numRows;
+
+    for (let row = 0; row < numRows; row++) {
+      for (let col = 0; col < numCols; col++) {
+        rects.push({
+          x: col * rectW,
+          y: row * rectH,
+          w: rectW,
+          h: rectH,
+          angulo: 0,
+          sx: col,
+          sy: row,
+          fijado: false
+        });
+      }
+    }
+
+    // ============================
+    // Imagen aleatoria + filtro
+    // ============================
+    //imgAleatoria = imagenesDisponibles[Math.floor(Math.random() * imagenesDisponibles.length)];
+
+    ImagenHTML5 = new Image();
+    ImagenHTML5.src = imgAleatoria;
+
+    ImagenHTML5.onload = () => {
+      canvasBW = document.createElement('canvas');
+      canvasBW.width = ImagenHTML5.width;
+      canvasBW.height = ImagenHTML5.height;
+      const ctxBW = canvasBW.getContext('2d');
+      const startX = Math.max(0, (ImagenHTML5.width - canvas.width) / 2);
+      const startY = Math.max(0, (ImagenHTML5.height - canvas.height) / 2);
+
+      // Dibuja solo el recorte central
+      ctxBW.drawImage(
+        ImagenHTML5,
+        startX, startY,             // desde qué parte de la imagen tomar
+        canvas.width, canvas.height, // tamaño del recorte
+        0, 0,                        // posición en el canvas
+        canvas.width, canvas.height  // tamaño de destino
+      );
+
+      const filtros = [setPixelBW, setPixelRed, setPixelB30, setPixelNegative];
+      const filtroGlobal = filtros[Math.floor(Math.random() * filtros.length)];
+
+      const imgData = ctxBW.getImageData(0, 0, canvasBW.width, canvasBW.height);
+      for (let y = 0; y < imgData.height; y++) {
+        for (let x = 0; x < imgData.width; x++) {
+          filtroGlobal(imgData, x, y);
+        }
+      }
+      ctxBW.putImageData(imgData, 0, 0);
+
+      rotarAleatoriamenteCuadrantes();
+      dibujarTodo();
+    };
+  }
+  function togglePause() {
+    if (state !== "playing" && state !== "paused") return;
+
+    paused = !paused;
+
+    if (paused) {
+      clearInterval(interval);
+      state = "paused";
+      icon_play.classList.add("deselected");
+      icon_pausa.classList.remove("deselected");
+    } else {
+      state = "playing";
+      icon_pausa.classList.add("deselected");
+      icon_play.classList.remove("deselected");
+
+      startTimer(); //asegura que el timer se reinicie
+    }
+  }
+
+  function startTimer() {
+    // Asegurarse de limpiar cualquier intervalo previo
+    clearInterval(interval);
+
+    if (gameMode === "countup") {
+      // Ascendente
+      interval = setInterval(() => {
+        time++;
+        timeHTML.textContent = time;
+      }, 1000);
+    } else if (gameMode === "countdown") {
+      // Descendente
+      interval = setInterval(() => {
+        time--;
+        timeHTML.textContent = time;
+        if (time <= 0) {
+          clearInterval(interval);
+          finishGame();
+        }
+      }, 1000);
+    }
+  }
+
+
+
+  // ============================
+  // Dibujo y rotación
+  // ============================
+  function dibujarTodo() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    rects.forEach(r => dibujarImagen(r));
+  }
+
+  function dibujarImagen(r) {
+    // Calcula qué parte de la imagen original corresponde al cuadrante
+    const sourceW = canvas.width / numCols;
+    const sourceH = canvas.height / numRows;
+    const sourceX = r.sx * sourceW;
+    const sourceY = r.sy * sourceH;
+
+    // Guarda el estado actual del contexto:
+    ctx.save();
+
+    // Esto permite dibujar la subimagen rotada correctamente sobre su centro.
+    const cx = r.x + r.w / 2;
+    const cy = r.y + r.h / 2;
+    ctx.translate(cx, cy);
+    ctx.rotate(r.angulo * Math.PI / 180);
+
+    ctx.drawImage(canvasBW, sourceX, sourceY, sourceW, sourceH, -r.w / 2, -r.h / 2, r.w, r.h);
+
+    // Si el cuadrante está fijado → borde azul grueso que cubre los 4 lados
+    if (r.fijado) {
+      ctx.lineWidth = 8; // más grueso
+      ctx.strokeStyle = "#0099FF"; // azul brillante
+      ctx.strokeRect(-r.w / 2, -r.h / 2, r.w, r.h);
+    } else {
+      // borde rojo fino si no está fijado
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = "red";
+      ctx.strokeRect(-r.w / 2, -r.h / 2, r.w, r.h);
+    }
+    ctx.restore();
+
+  }
+
+  // ======================================
+  // Ubicar aleatoriamente los cuadrantes
+  // ======================================
+  function rotarAleatoriamenteCuadrantes() {
+    rects.forEach(r => {
+      //Rotar aleatoriamente los cuadrantes si el usuario no pidio ayuda
+      if (!r.fijado) {
+        const angulosPosibles = [90, 180, 270];
+        r.angulo = angulosPosibles[Math.floor(Math.random() * angulosPosibles.length)];
+      }
+    });
+  }
+
+  // ============================
+  // Eventos del canvas
+  // ============================
+  canvas.addEventListener("contextmenu", e => e.preventDefault());
+  canvas.addEventListener("mousedown", e => {
+    if (paused) { return } // Evita que el jugador interactúe mientras está pausado
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Buscar el cuadrante clickeado
+    const target = rects.find(r =>
+      x >= r.x && x <= r.x + r.w &&
+      y >= r.y && y <= r.y + r.h
+    );
+
+    if (!target) return;
+
+    // 🔹 Solo rotar si el cuadrante NO está fijado
+    if (!target.fijado) {
+      if (e.button === 0) target.angulo = (target.angulo - 90 + 360) % 360;
+      else if (e.button === 2) target.angulo = (target.angulo + 90) % 360;
+
+      dibujarTodo();
+
+      if (rects.every(r => r.angulo === 0)) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ImagenHTML5 = new Image();
+        ImagenHTML5.src = imgAleatoria;
+
+        ImagenHTML5.onload = () => {
+          const startX = Math.max(0, (ImagenHTML5.width - canvas.width) / 2);
+          const startY = Math.max(0, (ImagenHTML5.height - canvas.height) / 2);
+
+          //Dibuja solo el recorte central
+          ctx.drawImage(
+            ImagenHTML5,
+            startX, startY,             // desde qué parte de la imagen tomar
+            canvas.width, canvas.height, // tamaño del recorte
+            0, 0,                        // posición en el canvas
+            canvas.width, canvas.height  // tamaño de destino
+          );
+        };
+        rects = [];
+        setTimeout(finishGame, 900);
+      }
+    }
+  }
+  );
+
+  // ============================
+  // Fin del juego
+  // ============================
+  function finishGame() {
+    clearInterval(interval);
+    state = "finished";
+
+    let texto = "";
+    let esVictoria = true;
+
+    if (gameMode === "countup") {
+      texto = `🎯 ¡Completaste el Nivel ${level}! Tiempo final: ${time}s.`;
+      if (record === null || time < record) {
+        record = time;
+        texto += ` 🎉 ¡Nuevo récord!`;
+      } else {
+        texto += ` Tu mejor tiempo sigue siendo ${record}s.`;
+      }
+    } else if (gameMode === "countdown") {
+      if (time <= 0) {
+        esVictoria = false;
+        texto = `⏳ ¡Se acabó el tiempo en el Nivel ${level}!`;
+      } else {
+        texto = `🎯 ¡Completaste el Nivel ${level}! Tiempo final: ${time}s.`;
+        if (record === null || time > record) {
+          record = time;
+          texto += ` 🎉 ¡Nuevo récord!`;
+        } else {
+          texto += ` Tu mejor tiempo sigue siendo ${record}s.`;
+        }
+      }
+    }
+    recordHTML.textContent = record !== null ? record : "-";
+    showPopup(texto, esVictoria);
+  }
+
+  // ============================
+  // Popup final
+  // ============================
+  function showPopup(message, esVictoria = true) {
+    const popup = document.getElementById("popup");
+    const popupTitle = document.getElementById("popup-title");
+    const popupMessage = document.getElementById("popup-message");
+    const btnNext = document.getElementById("popup-restart");
+    const btnHome = document.getElementById("popup-home");
+
+    // Cambiar texto y color dependiendo del resultado
+    if (esVictoria) {
+      lanzarConfeti();
+      popup.classList.remove("lose");
+      popupTitle.textContent = "¡Nivel Completado!";
+      btnNext.textContent = "Siguiente Nivel";
+    } else {
+      popup.classList.add("lose");
+      popupTitle.textContent = "¡Intento Fallido!";
+      btnNext.textContent = "Reintentar";
+    }
+
+    popupMessage.textContent = message;
+    popup.classList.remove("hidden");
+
+    btnNext.onclick = () => {
+      popup.classList.add("hidden");
+      canvas.style.display = "none";
+      document.getElementById("game-ui").style.display = "none";
+
+      if (esVictoria) {
+        level++;
+        updateLevel();
+        selectionRoulette();
+      } else {
+        // Reintenta el mismo nivel
+        startGame(imgAleatoria);
+      }
+    };
+
+    btnHome.onclick = () => {
+      popup.classList.add("hidden");
+
+      // Llama a la función del archivo principal (main.js)
+      if (window.parent && typeof window.parent.recargarBlocka === "function") {
+        window.parent.recargarBlocka();
+      } else {
+        console.warn("No se encontró la función recargarBlocka en el contexto padre.");
+      }
+    };
+  }
+  function lanzarConfeti() {
+    const duration = 800;
+    const animationEnd = Date.now() + duration;
+
+    (function frame() {
+      // Confeti que sale del centro con ángulos opuestos
+      confetti({
+        particleCount: 10,
+        startVelocity: 40,
+        spread: 70,
+        origin: { x: 0.5, y: 0.5 } // 💥 centro de la pantalla
+      });
+
+      if (Date.now() < animationEnd) {
+        requestAnimationFrame(frame);
+      }
+    })();
+  }
+
+  iconhouse.onclick = () => {
+    popup.classList.add("hidden");
+
+    // Llama a la función del archivo principal (main.js)
+    if (window.parent && typeof window.parent.recargarBlocka === "function") {
+      window.parent.recargarBlocka();
+    } else {
+      console.warn("No se encontró la función recargarBlocka en el contexto padre.");
+    }
+  };
+
+  // ============================
+  // Actualizar los niveles
+  // ============================
+  function updateLevel() {
+    const levelHTML = document.getElementById("level");
+    levelHTML.textContent = level;
+
+    const nivelFill = document.getElementById("nivel-fill");
+    nivelFill.style.width = (level * 1) + "%";
+
+  }
+
+  // ============================
+  // Filtros de imagen
+  // ============================
+  function setPixelBW(imageData, x, y) {
+    const index = (x + y * imageData.width) * 4;
+    const r = imageData.data[index];
+    const g = imageData.data[index + 1];
+    const b = imageData.data[index + 2];
+    const gray = Math.round(0.299 * r + 0.587 * g + 0.114 * b);
+    imageData.data[index] = gray;
+    imageData.data[index + 1] = gray;
+    imageData.data[index + 2] = gray;
+  }
+
+  function setPixelRed(imageData, x, y) {
+    const index = (x + y * imageData.width) * 4;
+    imageData.data[index + 1] = 0;
+    imageData.data[index + 2] = 0;
+    imageData.data[index + 3] = 255;
+  }
+
+  function setPixelB30(imageData, x, y) {
+    const index = (x + y * imageData.width) * 4;
+    imageData.data[index] = Math.min(255, imageData.data[index] * 1.5);
+    imageData.data[index + 1] = Math.min(255, imageData.data[index + 1] * 1.5);
+    imageData.data[index + 2] = Math.min(255, imageData.data[index + 2] * 1.5);
+  }
+
+  function setPixelNegative(imageData, x, y) {
+    const index = (x + y * imageData.width) * 4;
+    imageData.data[index] = 255 - imageData.data[index];
+    imageData.data[index + 1] = 255 - imageData.data[index + 1];
+    imageData.data[index + 2] = 255 - imageData.data[index + 2];
+  }
+}

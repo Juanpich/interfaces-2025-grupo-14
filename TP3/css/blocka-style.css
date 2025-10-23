@@ -1,0 +1,623 @@
+@import url('../css/global.css');
+
+/* Variables */
+:root{
+    /* Colors */
+    --background-floating: #383636; 
+}
+
+body{
+    background-color: var(--background-color);
+}
+#myCanvas-2{
+    display: none;
+}
+
+.section-game .blocka {
+    /* width: 1340px; */
+    height: 660px;
+    display: flex;
+    background-color: #3232325d;
+    justify-content: center;
+    align-items: end;
+    background:  linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/portada_blocka.png);
+    background-size: cover;      /* ✅ hace que la imagen cubra todo el contenedor */
+    background-position: center; /* ✅ centra la imagen */
+    background-repeat: no-repeat;              
+}
+
+
+/* Barra lateral de opciones en el juego */
+.sidebar{
+    display: grid;
+    grid-template-rows: 44px 44px 44px 24px 24px 24px;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    position: absolute; /* Changed to absolute for fixed positioning */
+    top: 30%;
+    right: 15%;
+    color: black;
+    padding: 20px 0px 20px 0px;
+    z-index: 2;
+    background: #1f1f1f;
+    border: 1px solid #00f5e9;
+    box-shadow: 0 0 10px rgba(0, 245, 233, 0.4);
+    border-radius: 12px;
+}
+
+/* Botones x4, x6, x8 */
+.sidebar p{
+    margin: 0%;
+    padding: 0%;
+    background-color: var(--primary-color);
+    border-radius: 100%;
+    padding: 12px;
+    font-family: 'Exo 2', sans-serif;
+    cursor: pointer;
+
+}
+
+/* Boton presionado */
+.level-active {
+    /* border: solid 1px #FFE500; */
+    box-shadow:0px 0px 5px 3px var(--acento-color);
+}
+
+/* Icono instrucciones y ayuda */
+.sidebar svg{
+    margin: 0%;
+    padding: 0%;
+    fill: #FFFFFF;
+    margin-left: 7px;
+    cursor: pointer;
+}
+
+.sidebar svg:hover{
+    fill: var(--acento-color);
+}
+#buttonHouse{
+  margin-left: 13px;
+}
+
+.icon-house:hover{
+    fill: var(--acento-color);
+}
+
+/* Icono presionado */
+.sidebar svg.op-active{
+    fill: var(--acento-color);
+}
+
+/* Propiedades compartidas en instructiones y ayuda */
+.instructions , .help{
+    display: grid;
+    position:absolute;
+    gap: 20px;
+    background-color: var(--background-floating);
+    box-shadow: 0px 0px 45px 2px #FFFFFF;
+    border-radius: 12px;
+    padding-top: 25px;
+    z-index: 9999;
+}
+
+/* Activar flotantes */
+.visibility-flotante{
+    display: grid;
+}
+
+/* "Ayuda" para blocka */
+.help{
+    grid-template-rows: 44px 78px 60px 70px;
+    width: 800px;
+    height: 410px;
+    margin-bottom: 90px;
+}
+
+.help .instructions-title.ayudin{
+    margin-top: 20px;
+}
+
+.container-cruz{
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  position: relative; 
+}
+.cruz-icon-skip {
+  position: absolute;
+  right: 10px;
+  top: 20%; /* Pegada a la derecha */
+  transform: translateY(-50%); /* Centrada verticalmente */
+  cursor: pointer; /* opcional, si es clickeable */
+}
+
+.container-cruz svg{
+    margin-left: 290px;
+    cursor: pointer;
+}
+
+/* Intrucciones de la blocka */
+.instructions{
+    grid-template-rows: 32px 130px 110px 160px 55px 30px 120px 50px 32px;
+    width: 800px;
+    height: 655px;
+    transform: scale(0.9);
+}
+
+/* Cuerpo de info de ambos flotantes */
+.instructions-title{
+    color: #FFFFFF;
+    font-family: 'Jockey One', sans-serif;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    margin: 0px;
+    padding: 0px;
+}
+.instructions-subtitle{
+    color: #FFFFFF;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 26px;
+    display: flex;
+    align-items: start;
+    margin: 0px 0px 0px 15px;
+    padding: 0px;
+}
+
+.instructions-text{
+    color: #FFFFFF;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 20px;
+    display: flex;
+    align-items: start;
+    margin: 0px 0px 0px 15px;
+    padding: 0px;
+    width: 750px;
+    height: auto;
+}
+.inicio{
+  width: 1340px;
+  height: 660px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  background:  linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../img/fondo.jpg);
+  background-size: cover;      /* ✅ hace que la imagen cubra todo el contenedor */
+  background-position: center; /* ✅ centra la imagen */
+  background-repeat: no-repeat;              
+}
+.menu-inicial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+  margin-top: 240px;
+}
+
+/* !!!!!!!!!!! CAMBIAR NOMBRE A BTN_START */
+/* Btn "comenzar" el juego*/
+
+#btn_comenzar {
+  top: 50%;
+  left: 50%;
+}
+
+.btn-primary-big {
+  display: inline-block;
+  background: linear-gradient(90deg, #00f5e9, #00bcd4);
+  color: #000;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 1px;
+  padding: 14px 50px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6), inset 0 0 10px rgba(0, 255, 255, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-primary-big:hover {
+  background: linear-gradient(90deg, #00e5ff, #00ffa3);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.9), 0 0 60px rgba(0, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.btn-primary-big:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+
+.btn-container-help{
+    text-align: center;
+    padding: 0px;
+    margin-top: 10px;
+}
+
+.btn-accept{
+    color: #FFFFFF;
+    border: solid 1px #FFFFFF;
+    border-radius: 4px;
+    padding: 6px 18px 6px 18px;
+    font-family: 'Khula', sans-serif;
+    font-size: 16px;
+    height: 38px;
+    width: 90px;
+    margin: 0px;
+
+}
+.next-level svg{
+    padding: 0px;
+    margin: 0px;
+}
+
+B
+
+/*Como jugar*/
+.btn-controls svg {
+    fill: #FFFFFF;
+}
+/*Seccion de nivel finalizado*/
+.finished-level{
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background-floating);
+    box-shadow: 0px 0px 45px 2px #FFFFFF;
+    border-radius: 12px;
+    padding: 40px;
+    display: grid;
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+}
+
+.deselected{
+    display: none;
+}
+
+#btn_comenzar{
+    margin-bottom:10px ;
+}
+.game-mode {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centra el <p> y los botones */
+  background-color: #2a2a2a;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 15px 20px;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  gap: 10px;
+  margin: 20px auto;
+}
+
+.game-mode p {
+  font-weight: 600;
+  font-size: 1rem;
+  text-shadow: 0 0 8px #00ffd0;
+  text-align: center; /* asegura que el texto esté centrado */
+  margin: 0;
+}
+
+.mode-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px; /* separa los botones uniformemente */
+}
+
+.mode-btn {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.mode-btn:hover {
+  background-color: #555;
+}
+
+.mode-btn.active {
+  background-color: #1db954;
+}
+
+
+#info {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 300px;
+    background-color: #383636;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px 3px #00F5E9;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    margin: 20px;
+}
+
+#info p {
+    margin: 0;
+    font-size: 20px;
+    color: #FFFFFF;
+}
+
+#info span {
+    color: #00F5E9;
+    font-weight: bold;
+}
+
+#message {
+    font-size: 18px;
+    color: #FFE500;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+/* Modal fondo semi-transparente */
+/* Popup modal */
+#popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  transition: opacity 0.3s ease;
+}
+
+#popup.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#popup-content {
+  background: #121212;
+  border: 2px solid #0ff;
+  border-radius: 20px;
+  padding: 40px 50px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0,255,255,0.3);
+  animation: popupScale 0.4s ease forwards;
+}
+
+#popup-title {
+  font-size: 1.8em;
+  color: #00ffff;
+  margin-bottom: 15px;
+}
+
+#popup-message {
+  color: #ccc;
+  font-size: 1.1em;
+  margin-bottom: 25px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.popup-buttons button {
+  background: linear-gradient(135deg, #00ffff, #0099cc);
+  border: none;
+  padding: 10px 20px;
+  color: black;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.popup-buttons button:hover {
+  background: linear-gradient(135deg, #00ccff, #00ffaa);
+  transform: scale(1.05);
+}
+
+/* 🔥 Diferentes estilos para popup de pérdida */
+#popup.lose #popup-content {
+  border-color: #ff4444;
+  box-shadow: 0 0 25px rgba(255,0,0,0.3);
+}
+
+#popup.lose #popup-title {
+  color: #ff4444;
+}
+
+#popup.lose .popup-buttons button {
+  background: linear-gradient(135deg, #ff5555, #cc0000);
+  color: white;
+}
+
+#popup.lose .popup-buttons button:hover {
+  background: linear-gradient(135deg, #ff6666, #ff3333);
+}
+
+@keyframes popupScale {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Contenedor principal */
+#game-ui {
+  display: none;
+  justify-content: center;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 50px;
+  padding: 40px;
+  margin-right: 20px;
+}
+.left-panel {
+  position: absolute;
+  left:16%;
+  top: 12%;
+  display: flex;
+  gap: 10px; /* espacio entre nivel-bar e info */
+  align-items: start;
+  margin: 10px;
+}
+
+#nivel-bar,
+#info {
+  width: 150px;
+  background-color: #222;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+/* ================================
+   NIVEL BAR
+================================ */
+#nivel-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  background: #1f1f1f;
+  border: 1px solid #00f5e9;
+  box-shadow: 0 0 10px rgba(0, 245, 233, 0.4);
+  border-radius: 12px;
+  width: 220px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 20px;
+}
+
+#nivel-bar p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+}
+
+#nivel-bar span {
+  color: #00f5e9;
+}
+
+/* Barra de progreso del nivel */
+#nivel-progress {
+  width: 100%;
+  height: 10px;
+  background-color: #333;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 0 5px rgba(0, 245, 233, 0.6);
+}
+
+#nivel-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #00f5e9, #00ffa3);
+  transition: width 0.4s ease-in-out;
+}
+
+/* ================================
+   CANVAS
+================================ */
+#myCanvas-2 {
+  border-radius: 12px;
+}
+
+/* ================================
+   INFO PANEL
+================================ */
+#info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 220px;
+  background-color: #1f1f1f;
+  border-radius: 12px;
+  box-shadow: 0px 0px 15px rgba(0, 245, 233, 0.3);
+  border: 1px solid #00f5e9;
+  text-align: left;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  margin: 0px;
+}
+
+#info p {
+  margin: 0;
+  font-size: 18px;
+}
+
+#info span {
+  color: #00f5e9;
+  font-weight: bold;
+}
+
+#message {
+  font-size: 16px;
+  color: #ffe500;
+  font-style: italic;
+}
+
+#canvas-ruleta {
+  display: none;
+  margin-bottom: 65px;
+  background: radial-gradient(circle at center, #111, #000);
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0,255,255,0.3), inset 0 0 15px rgba(0,255,255,0.2);
+  border: 2px solid rgba(0,255,255,0.5);
+  transition: transform 0.8s ease, box-shadow 0.8s ease;
+}
+
+#canvas-ruleta.zoom {
+  transform: scale(1.1);
+  box-shadow: 0 0 50px cyan, inset 0 0 20px rgba(0,255,255,0.6);
+}
+
+#message {
+  font-size: 1.1rem;
+  color: #00ffe0;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+  margin-bottom: 10px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+/* Botón de pausa */
+#btn_pause {
+  background: rgba(30, 30, 30, 0.6);
+  color: #00ffe0;
+  font-weight: bold;
+  font-size: 1rem;
+  border: 2px solid rgba(0, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 10px 20px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+  transition: all 0.25s ease;
+}
+
+/* Efecto al pasar el mouse */
+#btn_pause:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+  transform: scale(1.05);
+}
+
+/* Estado cuando está en pausa (podés activarlo con JS) */
+#btn_pause.paused {
+  color: #ff5e5e;
+  border-color: rgba(255, 100, 100, 0.7);
+  box-shadow: 0 0 15px rgba(255, 80, 80, 0.4);
+}
