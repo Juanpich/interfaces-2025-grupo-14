@@ -87,6 +87,7 @@ function initBlocka() {
             pausedByHelp = false; // reseteamos la bandera
           }
           mostrarPenalizacion();
+          icon.classList.remove("op-active");
         }
       } else if (icon.getAttribute("data-value") === "instrucciones") {
         //Mostrar instrucciones.
