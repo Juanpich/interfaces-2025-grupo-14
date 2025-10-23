@@ -296,6 +296,9 @@ body {
     border: 1px solid var(--acento-color);
     box-shadow: 0px 0px 5px 0 var(--acento-color);
 }
+.btn-controls svg {
+    fill:white
+}
 
 .title-controls {
     font-size: 19px;
