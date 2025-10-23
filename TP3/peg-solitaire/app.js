@@ -448,8 +448,8 @@ function startTimer() {
 
   function dibujarImagen(r) {
     // Calcula qué parte de la imagen original corresponde al cuadrante
-    const sourceW = ImagenHTML5.width / numCols;
-    const sourceH = ImagenHTML5.height / numRows;
+    const sourceW = canvas.width / numCols;
+    const sourceH = canvas.height / numRows;
     const sourceX = r.sx * sourceW;
     const sourceY = r.sy * sourceH;
 
@@ -521,7 +521,7 @@ function startTimer() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ImagenHTML5 = new Image();
         ImagenHTML5.src = imgAleatoria;
-        ImagenHTML5.onload = () => ctx.drawImage(ImagenHTML5, 0, 0, canvas.width, canvas.height);
+        ImagenHTML5.onload = () => ctx.drawImage(ImagenHTML5, 0, 0);
 
         rects = [];
         setTimeout(finishGame, 900);
