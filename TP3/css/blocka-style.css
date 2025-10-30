@@ -621,3 +621,23 @@ B
   border-color: rgba(255, 100, 100, 0.7);
   box-shadow: 0 0 15px rgba(255, 80, 80, 0.4);
 }
+#time.time-warning{
+    color: var(--secondary-color);
+
+}
+.left-panel #info.time-warning{
+    animation: time-animation 1s infinite;
+}
+
+@keyframes time-animation {
+    0%, 100% {
+      box-shadow: 0px 0px 10px 3px var(--primary-color);
+      border: 1px solid #00f5e9;
+      transform: scale(1.05 );
+    }
+    50% {
+      box-shadow: 0px 0px 10px 3px var(--secondary-color);
+      border: 1px solid var(--secondary-color);
+      transform: scale(1.01);
+    }
+}
