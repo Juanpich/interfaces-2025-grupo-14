@@ -4,7 +4,8 @@ class TableroVista {
         this.ctx = canvas.getContext('2d');
         this.tablero = tablero;
         this.tamanioCelda = canvas.width / 7;
-
+        this.imgFichasUrl = ["ficha_amarillo.png", "ficha_rojo.png", "ficha_verde.png"];
+        this.imgFichas = [];
         this.destinosValidos = [];
         // Cargar imagen de fondo una sola vez
         this.fondo = new Image();
@@ -12,6 +13,7 @@ class TableroVista {
         this.fondoCargado = false;
         this.fondo.onload = () => {
             this.fondoCargado = true;
+            this.cargarImagenesFichas();
             this.dibujar(); // primer render cuando la imagen esté lista
         };
 
@@ -25,6 +27,16 @@ class TableroVista {
         canvas.addEventListener('mousedown', e => this.onMouseDown?.(e));
         canvas.addEventListener('mousemove', e => this.onMouseMove?.(e));
         canvas.addEventListener('mouseup', e => this.onMouseUp?.(e));
+    }
+    cargarImagenesFichas() {
+        for (let url of this.imgFichasUrl) {
+            const imgF = new Image();
+            imgF.src = url;
+            imgF.onload = () => {
+                this.imgFichas.push(imgF);
+                this.dibujar()
+            }
+        }
     }
 
     obtenerCeldaDesdeEvento(e) {
@@ -57,7 +69,7 @@ class TableroVista {
 
                 this.ctx.strokeStyle = '#999';
                 this.ctx.strokeRect(x, y, this.tamanioCelda, this.tamanioCelda);
-                if(estado === -1){
+                if (estado === -1) {
                     this.ctx.fillStyle = '#0000006e';
                     this.ctx.fillRect(x, y, this.tamanioCelda, this.tamanioCelda);
                 }
@@ -68,7 +80,7 @@ class TableroVista {
                 }
 
                 if (ficha?.estaActiva() && ficha !== fichaArrastrada) {
-                    this.dibujarFicha(x, y, false);
+                    this.dibujarFicha(x, y, false, ficha);
                 }
             }
         }
@@ -77,7 +89,8 @@ class TableroVista {
             this.dibujarFicha(
                 arrastreX - offset.x,
                 arrastreY - offset.y,
-                true
+                true,
+                fichaArrastrada
             );
         }
 
@@ -86,26 +99,39 @@ class TableroVista {
 
     }
 
-    dibujarFicha(x, y, seleccionada) {
+    dibujarFicha(x, y, seleccionada, ficha) {
+        const cx = x + this.tamanioCelda / 2;
+        const cy = y + this.tamanioCelda / 2;
+        const radio = this.tamanioCelda / 3;
+        let indiceImg = ficha.getIndiceImg();
+        console.log(this.imgFichas.length === this.imgFichasUrl.length)
+        if (this.imgFichas.length === this.imgFichasUrl.length) {
+            if (indiceImg === -1) {
+                ficha.setIndiceImg( Math.floor(Math.random() * this.imgFichas.length));
+                indiceImg = ficha.getIndiceImg();
+            }
+        }
+        const img = this.imgFichas[indiceImg];
+
+
+        this.ctx.save();
         this.ctx.beginPath();
-        this.ctx.arc(
-            x + this.tamanioCelda / 2,
-            y + this.tamanioCelda / 2,
-            this.tamanioCelda / 3,
-            0,
-            2 * Math.PI
-        );
-        this.ctx.fillStyle = '#007bff';
-        this.ctx.fill();
+        this.ctx.arc(cx, cy, radio, 0, 2 * Math.PI);
+        this.ctx.closePath();
+        this.ctx.clip();
+
+        if (img) {
+            const size = radio * 2;
+            this.ctx.drawImage(img, cx - radio, cy - radio, size, size);
+        } else {
+            this.ctx.fillStyle = '#34577dff';
+            this.ctx.fill();
+        }
+
+        this.ctx.restore();
 
         this.ctx.beginPath();
-        this.ctx.arc(
-            x + this.tamanioCelda / 2,
-            y + this.tamanioCelda / 2,
-            this.tamanioCelda / 3,
-            0,
-            2 * Math.PI
-        );
+        this.ctx.arc(cx, cy, radio, 0, 2 * Math.PI);
         this.ctx.strokeStyle = seleccionada ? '#ff0000' : '#000';
         this.ctx.lineWidth = seleccionada ? 3 : 1;
         this.ctx.stroke();
