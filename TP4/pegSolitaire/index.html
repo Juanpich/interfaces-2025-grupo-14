@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <p>A_______B_______C_______D_______E_______F______G</p>
-    <canvas id="tablero" width="420" height="420"></canvas>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <button id="btn_mover">mover</button>
-    <script src="./controller/TableroControlador.js"></script>
-    <script src="./view/TableroView.js"></script>
+    <title>Peg Solitaire</title>
+</head>
+
+<body>
+    <canvas id="tablero" width="650" height="650"></canvas>
+
+    <!-- Scripts del juego -->
+    <script src="./controller/CargaDelJuego.js"></script>
     <script src="./model/Ficha.js"></script>
     <script src="./model/Tablero.js"></script>
+    <script src="./model/Temporizador.js"></script>
+    <script src="./view/TableroView.js"></script>
+    <script src="./controller/TableroControlador.js"></script>
     <script src="./mian.js"></script>
-    
-
 </body>
+
 </html>
