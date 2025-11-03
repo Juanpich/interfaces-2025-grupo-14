@@ -12,9 +12,9 @@ class Cargado {
 
         // Opciones de fichas
         this.opcionesFichas = [
-            { nombre: "Roja", img: "ficha_rojo.png" },
-            { nombre: "Amarilla", img: "ficha_amarillo.png" },
-            { nombre: "Verde", img: "ficha_verde.png" },
+            { nombre: "Roja", img: "../pegSolitaire//img-peg/ficha_rojo.png" },
+            { nombre: "Amarilla", img: "../pegSolitaire/img-peg/ficha_amarillo.png" },
+            { nombre: "Verde", img: "../pegSolitaire/img-peg/ficha_verde.png" },
         ];
         this.fichaSeleccionada = 0;
         this.imagenesCargadas = {};
@@ -26,7 +26,7 @@ class Cargado {
 
         // Imagen de fondo
         this.fondo = new Image();
-        this.fondo.src = "fondoLoading.jpg"; // <- tu imagen de fondo
+        this.fondo.src = "../pegSolitaire/img-peg/fondoLoading.jpg"; // <- tu imagen de fondo
 
         this.precargarImagenes(() => {
             this.canvas.addEventListener("click", (e) => this.detectarClick(e));

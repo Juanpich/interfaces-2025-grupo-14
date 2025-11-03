@@ -11,7 +11,7 @@ class TableroVista {
 
 
         this.fondo = new Image();
-        this.fondo.src = "fondo.png";
+        this.fondo.src = "../pegSolitaire/img-peg/fondo.png";
         this.fondoCargado = false;
         this.fondo.onload = () => {
             this.fondoCargado = true;

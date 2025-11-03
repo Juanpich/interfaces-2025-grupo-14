@@ -1,0 +1,176 @@
+[
+  {
+    "nombre": "Lucía Fernández",
+    "fecha_publicacion": "2025-09-08",
+    "puntuacion": 5,
+    "comentario": "Blocka me enganchó desde el primer nivel. Es adictivo y perfecto para desconectar un rato."
+  },
+  {
+    "nombre": "Martín Rivas",
+    "fecha_publicacion": "2025-09-09",
+    "puntuacion": 4,
+    "comentario": "Muy buen diseño y mecánicas simples pero efectivas. Ideal para jugar en el colectivo."
+  },
+  {
+    "nombre": "Sofía Méndez",
+    "fecha_publicacion": "2025-09-10",
+    "puntuacion": 5,
+    "comentario": "Me encanta cómo te obliga a pensar cada movimiento. ¡Gran ejercicio mental!"
+  },
+  {
+    "nombre": "Pedro Gómez",
+    "fecha_publicacion": "2025-09-10",
+    "puntuacion": 2,
+    "comentario": "El juego tenía buena pinta, pero la jugabilidad me resultó repetitiva."
+  },
+  {
+    "nombre": "Diego Torres",
+    "fecha_publicacion": "2025-09-06",
+    "puntuacion": 3,
+    "comentario": "Está bien para pasar el rato, pero le falta variedad en los desafíos."
+  },
+  {
+    "nombre": "Valentina Ruiz",
+    "fecha_publicacion": "2025-09-05",
+    "puntuacion": 4,
+    "comentario": "Los colores y sonidos son muy agradables. Relaja bastante."
+  },
+  {
+    "nombre": "Tomás Herrera",
+    "fecha_publicacion": "2025-09-04",
+    "puntuacion": 5,
+    "comentario": "Lo juego todos los días. Me encanta desbloquear nuevos niveles."
+  },
+  {
+    "nombre": "Agustina López",
+    "fecha_publicacion": "2025-09-03",
+    "puntuacion": 2,
+    "comentario": "Se traba en mi celular y consume mucha batería."
+  },
+  {
+    "nombre": "Federico Molina",
+    "fecha_publicacion": "2025-09-02",
+    "puntuacion": 3,
+    "comentario": "Tiene potencial, pero le falta pulido en la interfaz."
+  },
+  {
+    "nombre": "Camila Paredes",
+    "fecha_publicacion": "2025-09-01",
+    "puntuacion": 5,
+    "comentario": "Perfecto para jugar en ratos libres. Muy bien pensado."
+  },
+  {
+    "nombre": "Julián Castro",
+    "fecha_publicacion": "2025-08-31",
+    "puntuacion": 1,
+    "comentario": "No me gustó. Se siente como una copia de otros juegos."
+  },
+  {
+    "nombre": "Micaela Soto",
+    "fecha_publicacion": "2025-08-30",
+    "puntuacion": 4,
+    "comentario": "Buena curva de dificultad. Te mantiene enganchado sin frustrarte."
+  },
+  {
+    "nombre": "Nicolás Varela",
+    "fecha_publicacion": "2025-08-29",
+    "puntuacion": 2,
+    "comentario": "Demasiado simple. Me aburrió rápido."
+  },
+  {
+    "nombre": "Florencia Acosta",
+    "fecha_publicacion": "2025-08-28",
+    "puntuacion": 5,
+    "comentario": "¡Excelente! Lo recomendé a todos mis amigos."
+  },
+  {
+    "nombre": "Ramiro Peña",
+    "fecha_publicacion": "2025-08-27",
+    "puntuacion": 3,
+    "comentario": "Está bien, pero no me atrapó como esperaba."
+  },
+  {
+    "nombre": "Daniela Correa",
+    "fecha_publicacion": "2025-08-26",
+    "puntuacion": 4,
+    "comentario": "Buena experiencia general. Podrían mejorar los tutoriales."
+  },
+  {
+    "nombre": "Gonzalo Medina",
+    "fecha_publicacion": "2025-08-25",
+    "puntuacion": 1,
+    "comentario": "No carga bien en mi dispositivo. Muy decepcionante."
+  },
+  {
+    "nombre": "María Beltrán",
+    "fecha_publicacion": "2025-08-24",
+    "puntuacion": 5,
+    "comentario": "¡Lo amo! Me ayuda a relajarme después del trabajo."
+  },
+  {
+    "nombre": "Esteban Núñez",
+    "fecha_publicacion": "2025-08-23",
+    "puntuacion": 3,
+    "comentario": "Entretenido, pero no aporta nada nuevo al género."
+  },{
+    "nombre": "Ezequiel Bravo",
+    "fecha_publicacion": "2025-10-15",
+    "puntuacion": 4,
+    "comentario": "Buena propuesta visual y sonido envolvente. Me sorprendió gratamente."
+  },
+  {
+    "nombre": "Laura Quintana",
+    "fecha_publicacion": "2025-10-14",
+    "puntuacion": 2,
+    "comentario": "No entendí bien las reglas al principio. El tutorial debería ser más claro."
+  },
+  {
+    "nombre": "Rodrigo Salas",
+    "fecha_publicacion": "2025-10-13",
+    "puntuacion": 5,
+    "comentario": "¡Excelente! Lo juego con mi hijo y nos divertimos mucho juntos."
+  },
+  {
+    "nombre": "Milena Godoy",
+    "fecha_publicacion": "2025-10-12",
+    "puntuacion": 3,
+    "comentario": "Tiene momentos entretenidos, pero se vuelve repetitivo después de un rato."
+  },
+  {
+    "nombre": "Iván Cabrera",
+    "fecha_publicacion": "2025-10-11",
+    "puntuacion": 1,
+    "comentario": "No me gustó nada. Se siente lento y poco intuitivo."
+  },
+  {
+    "nombre": "Julieta Navarro",
+    "fecha_publicacion": "2025-10-10",
+    "puntuacion": 5,
+    "comentario": "Muy bien logrado. Los niveles avanzados son un verdadero desafío."
+  },
+  {
+    "nombre": "Matías Leiva",
+    "fecha_publicacion": "2025-10-09",
+    "puntuacion": 4,
+    "comentario": "Ideal para relajarse antes de dormir. Buen ritmo y estética."
+  },
+  {
+    "nombre": "Celeste Ramírez",
+    "fecha_publicacion": "2025-10-08",
+    "puntuacion": 2,
+    "comentario": "Esperaba más variedad en los modos de juego. Se siente limitado."
+  },
+  {
+    "nombre": "Franco Aguirre",
+    "fecha_publicacion": "2025-10-07",
+    "puntuacion": 3,
+    "comentario": "Está bien, pero los controles podrían ser más precisos."
+  },
+  {
+    "nombre": "Rocío Benítez",
+    "fecha_publicacion": "2025-10-06",
+    "puntuacion": 5,
+    "comentario": "Una joya oculta. Lo descubrí por casualidad y ahora no lo suelto."
+  }
+
+]
