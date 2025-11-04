@@ -4,7 +4,12 @@ class TableroVista {
         this.ctx = canvas.getContext('2d');
         this.tablero = tablero;
         this.tamanioCelda = canvas.width / 7;
-        this.imgFichasUrl = [fichaSeleccionada];
+        let esAleatorio = this.verificarModoDeJuego(fichaSeleccionada)
+        if(!esAleatorio){
+            this.imgFichasUrl = [fichaSeleccionada.img];
+        }else{
+            this.imgFichasUrl = esAleatorio
+        }
         this.imgFichas = [];
         this.destinosValidos = [];
         this.movimientos = 0;
@@ -18,6 +23,12 @@ class TableroVista {
             this.cargarImagenesFichas();
             this.dibujar();
         };
+        this.imgBandera = new Image();
+        this.imgBandera.src = "../pegSolitaire/img-peg/bandera.png";
+        this.banderaCargada = false;
+        this.imgBandera.onload = () => {
+            this.banderaCargada = true;
+        };
 
         this.onMouseDown = null;
         this.onMouseMove = null;
@@ -26,6 +37,12 @@ class TableroVista {
         canvas.addEventListener('mousedown', e => this.onMouseDown?.(e));
         canvas.addEventListener('mousemove', e => this.onMouseMove?.(e));
         canvas.addEventListener('mouseup', e => this.onMouseUp?.(e));
+    }
+    verificarModoDeJuego(fichaSeleccionada){
+        if(fichaSeleccionada.nombre === "aleatorio"){
+            return ["../pegSolitaire/img-peg/ficha_verde.png", "../pegSolitaire/img-peg/ficha_amarillo.png", "../pegSolitaire//img-peg/ficha_rojo.png"]
+        }
+        return null
     }
 
     cargarImagenesFichas() {
@@ -83,10 +100,23 @@ class TableroVista {
                 }
 
                 // Posiciones destino válidas
-                if (this.destinosValidos.some(d => d.fila === fila && d.col === col)) {
-                    ctx.fillStyle = "rgba(0, 255, 0, 0.25)";
-                    ctx.fillRect(x, y, this.tamanioCelda, this.tamanioCelda);
+                // --- HINTS ANIMADOS CON BANDERAS (Temática F1) ---
+                const destino = this.destinosValidos.some(d => d.fila === fila && d.col === col);
+                if (destino && this.banderaCargada) {
+                    const tiempo = Date.now() / 400;
+                    const movimientoY = Math.sin(tiempo) * 5; // movimiento ondulante arriba y abajo
+
+                    const banderaAncho = this.tamanioCelda * 0.6;
+                    const banderaAlto = this.tamanioCelda * 0.6;
+                    const banderaX = x + (this.tamanioCelda - banderaAncho) / 2 ;
+                    const banderaY = y - banderaAlto / 1.5 + movimientoY + 40; 
+
+                    ctx.save();
+                    ctx.globalAlpha = 0.9 + 0.1 * Math.sin(tiempo * 2); // efecto de parpadeo leve
+                    ctx.drawImage(this.imgBandera, banderaX, banderaY, banderaAncho, banderaAlto);
+                    ctx.restore();
                 }
+
 
                 // Dibujar fichas activas (excepto la que se arrastra)
                 if (ficha?.estaActiva() && ficha !== fichaArrastrada) {
@@ -146,7 +176,7 @@ class TableroVista {
         const radio = 12;
         const separacion = 30;
 
-        
+
         // MOVIMIENTOS (lado izquierdo)
         const movAncho = 180;
         const movX = padding;
@@ -178,7 +208,7 @@ class TableroVista {
         ctx.textAlign = "left";
         ctx.fillText(`Movimientos: ${this.movimientos}`, movX + 15, movY + 28);
 
-        
+
         //TIEMPO (lado derecho)
         const tiempoAncho = 130;
         const tiempoX = this.canvas.width - tiempoAncho - padding - separacion; // <- separacion añadida

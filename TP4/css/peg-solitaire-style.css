@@ -27,7 +27,7 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-     background:  linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/portada_blocka.png);
+     background:  linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../img/portada-peg-solitaire.jpg);
     background-size: cover;      /* ✅ hace que la imagen cubra todo el contenedor */
     background-position: center; /* ✅ centra la imagen */
     background-repeat: no-repeat;

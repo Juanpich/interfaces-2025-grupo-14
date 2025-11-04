@@ -3,7 +3,7 @@
     "id": 30001,
     "name": "Peg-solitaire",
     "released": "2025-10-7",
-    "background_image": "../img/multimedia-juego/img-mult-1.jpg",
+    "background_image": "../img/portada-peg-solitaire.jpg",
     "rating": 4.9,
     "platforms": [
       { "id": 1, "name": "PC" },

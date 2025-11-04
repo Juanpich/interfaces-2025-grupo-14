@@ -12,6 +12,7 @@ class Cargado {
 
         // Opciones de fichas
         this.opcionesFichas = [
+            { nombre: "aleatorio", img: "../pegSolitaire/img-peg/aleatorio.jpg"},
             { nombre: "Roja", img: "../pegSolitaire//img-peg/ficha_rojo.png" },
             { nombre: "Amarilla", img: "../pegSolitaire/img-peg/ficha_amarillo.png" },
             { nombre: "Verde", img: "../pegSolitaire/img-peg/ficha_verde.png" },
@@ -128,7 +129,7 @@ class Cargado {
         ctx.fillText("Elegí tu ficha:", canvas.width / 2, 290);
 
         const espacio = 120;
-        const inicioX = canvas.width / 2 - espacio;
+        const inicioX = canvas.width / 2 - espacio - espacio/2;
         this.opcionesFichas.forEach((op, i) => {
             const x = inicioX + i * espacio;
             const y = 350;
@@ -249,7 +250,7 @@ class Cargado {
 
         // Fichas
         const espacio = 120;
-        const inicioX = this.canvas.width / 2 - espacio;
+        const inicioX = this.canvas.width / 2 - espacio - espacio/2;
         this.opcionesFichas.forEach((_, i) => {
             const fx = inicioX + i * espacio;
             const fy = 350;
@@ -289,7 +290,7 @@ class Cargado {
 
     prepararJuego() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        const fichaElegida = this.opcionesFichas[this.fichaSeleccionada].img;
+        const fichaElegida = this.opcionesFichas[this.fichaSeleccionada];
         const tablero = new Tablero();
         const vista = new TableroVista(this.canvas, tablero, fichaElegida);
         const controlador = new TableroControlador(tablero, vista, this.modos[this.modoSeleccionado], this.tiempoContraReloj);
