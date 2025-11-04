@@ -612,7 +612,7 @@ font-family: 'Jockey One', sans-serif;
     box-shadow: 0 0 12px #FFFFFF;
     margin: 27px;
     position: absolute;
-    transition: transform 1s, filter s;
+    transition: transform 1s, filter 5s;
     filter: blur(2px);
     transform: scale(0.8);
     opacity: 0.6;

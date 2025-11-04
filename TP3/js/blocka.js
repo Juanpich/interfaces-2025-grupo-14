@@ -20,7 +20,9 @@ function initBlocka() {
   const icon_play = document.querySelector(".icon-play");
   const penaltyMessage = document.getElementById("penalty-message");
   const blocka_article = document.querySelector(".blocka");
+
   const audio = document.querySelector("#audio");
+
 
   let gameMode = "countup";
   let randomMode = false;
@@ -80,8 +82,6 @@ function initBlocka() {
           flotante_instrucciones.classList.add("deselected");
 
         } else {
-          //defenzaTiempo
-
 
           // si estas jugando, fijar un cuadrante al azar.
           fijarCuadranteAlAzar();
@@ -159,7 +159,9 @@ function initBlocka() {
   // ============================
   function fijarCuadranteAlAzar() {
     // Filtrar los cuadrantes que aún no están fijados
+
     const noFijados = rects.filter(q => q.angulo !== 0);
+
     // // Si no queda ninguno, salir
     if (noFijados.length === 1) {
       finishGame();
@@ -421,8 +423,10 @@ function initBlocka() {
         0, 0,                        // posición en el canvas
         canvas.width, canvas.height  // tamaño de destino
       );
-      //defenzaBlour
-      const filtros = [ setPixelBlour,setPixelB30, setPixelNegative, setPixelBW, setPixelRed];
+
+
+      const filtros = [setPixelBW, setPixelRed, setPixelB30, setPixelNegative];
+
       const filtroGlobal = filtros[Math.floor(Math.random() * filtros.length)];
 
       const imgData = ctxBW.getImageData(0, 0, canvasBW.width, canvasBW.height);
@@ -457,8 +461,10 @@ function initBlocka() {
   }
 
   function startTimer() {
+
     timeHTML.classList.remove("time-warning");
     document.getElementById("info").classList.remove("time-warning");
+
     // Asegurarse de limpiar cualquier intervalo previo
     clearInterval(interval);
 
@@ -467,25 +473,28 @@ function initBlocka() {
       interval = setInterval(() => {
         time++;
         timeHTML.textContent = time;
+
         if (time >= 5) {
           avisoDeTiempo()
         }
+
       }, 1000);
     } else if (gameMode === "countdown") {
       // Descendente
       interval = setInterval(() => {
         time--;
         timeHTML.textContent = time;
+
         if (time <= 3) {
           avisoDeTiempo();
         }
         if (time <= 0) {
           clearInterval(interval);
           finishGame();
-
-
         }
-      }, 1000);
+
+
+        }, 1000);
     }
   }
   function avisoDeTiempo() {
@@ -604,7 +613,9 @@ function initBlocka() {
   // Fin del juego
   // ============================
   function finishGame() {
+
     audio.pause();
+
     clearInterval(interval);
     state = "finished";
 
@@ -764,6 +775,7 @@ function initBlocka() {
     imageData.data[index + 1] = 255 - imageData.data[index + 1];
     imageData.data[index + 2] = 255 - imageData.data[index + 2];
   }
+
   function setPixelBlour(imageData, x, y) {
     let promedio = calcularPromedioAlrededor(imageData, x, y);
     const index = (x + y * imageData.width) * 4;

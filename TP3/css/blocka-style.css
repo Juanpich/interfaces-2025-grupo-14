@@ -620,6 +620,7 @@ B
   color: #ff5e5e;
   border-color: rgba(255, 100, 100, 0.7);
   box-shadow: 0 0 15px rgba(255, 80, 80, 0.4);
+
 }
 #time.time-warning{
     color: var(--secondary-color);
