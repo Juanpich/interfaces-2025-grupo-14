@@ -24,7 +24,7 @@ function cargarPeg(){
 
     // Lista de scripts en el orden correcto (modelo → vista → controlador → main)
     const scripts = [
-      '../js/pegSolitaire/controller/CargaDelJuego.js',
+      '../js/pegSolitaire/controller/CargaDeljuego.js',
       '../js/pegSolitaire/model/Ficha.js',
       '../js/pegSolitaire/model/Tablero.js',
       '../js/pegSolitaire/model/Temporizador.js',
