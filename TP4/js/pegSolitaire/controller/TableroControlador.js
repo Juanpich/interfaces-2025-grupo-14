@@ -86,7 +86,7 @@ class TableroControlador {
       }
     }
 
-    if (destinoValido && minDist <= 1) {
+    if (destinoValido && filaMouse === destinoValido.fila && colMouse === destinoValido.col) {
       const exito = this.tablero.moverFicha(origenFila, origenCol, destinoValido.fila, destinoValido.col);
       if (exito) {
         this.contadorMovimientos++;
