@@ -275,33 +275,36 @@ class TableroVista {
     }
 
     // DERROTA - sin movimientos
-    mostrarCartelDerrotaMovimientos(onReiniciar, onVolver) {
+    mostrarCartelDerrotaMovimientos(onReiniciar, onVolver, faltantes ) {
         this._mostrarCartel({
             titulo: "No quedan movimientos",
             subtitulo: `Movimientos realizados: ${this.movimientos}`,
             color: "#ff5252", // rojo
             esVictoria: false,
             onReiniciar,
-            onVolver
+            onVolver,
+            faltantes
         });
+
     }
 
     // DERROTA - por tiempo
-    mostrarCartelDerrotaTiempo(onReiniciar, onVolver) {
+    mostrarCartelDerrotaTiempo( onReiniciar, onVolver, faltantes) {
         this._mostrarCartel({
             titulo: "¡Se acabó el tiempo!",
             subtitulo: `Lograste ${this.movimientos} movimientos antes del final.`,
             color: "#ff5252",
             esVictoria: false,
             onReiniciar,
-            onVolver
+            onVolver,
+            faltantes
         });
     }
 
     // ------------------------------------------------------------
     // FUNCIÓN BASE - dibuja el cartel visualmente
     // ------------------------------------------------------------
-    _mostrarCartel({ titulo, subtitulo, color, esVictoria, onReiniciar, onVolver }) {
+    _mostrarCartel({ titulo, subtitulo, color, esVictoria, onReiniciar, onVolver, faltantes = 0 }) {
         const ctx = this.ctx;
         const { width, height } = this.canvas;
         let alpha = 0;
@@ -354,6 +357,11 @@ class TableroVista {
             ctx.font = "18px 'Poppins'";
             ctx.fillStyle = "#e2e8f0";
             ctx.fillText(subtitulo, width / 2, y + 100);
+            if(faltantes > 0){
+                ctx.font = "18px 'Poppins'";
+            ctx.fillStyle = "#e2e8f0";
+            ctx.fillText(`Faltaron ${faltantes} fichas por acomodar`, width / 2, y + 123);    
+            }
 
             // Botones
             botones.forEach(b => {
