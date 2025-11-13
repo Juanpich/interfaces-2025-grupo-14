@@ -30,10 +30,12 @@ class TableroControlador {
 
     this.temporizador.onTerminado = () => {
       if (this.modo === "Contra Reloj" && !this.juegoTerminado) {
+        let fichasFaltantes = this.tablero.fichasFaltantes()
         this.juegoTerminado = true;
         this.vista.mostrarCartelDerrotaTiempo(
           () => this.reiniciarJuego(),
-          () => location.reload()
+          () => location.reload(),
+          fichasFaltantes
         );
       }
     };
@@ -91,7 +93,7 @@ class TableroControlador {
       if (exito) {
         this.contadorMovimientos++;
         this.vista.setMovimientos(this.contadorMovimientos);
-      }
+      }    
     }
 
     this.fichaArrastrada = null;
@@ -101,14 +103,18 @@ class TableroControlador {
   }
 
   verificarEstadoJuego() {
-    const fichasRestantes = this.tablero.contarFichasActivas();
-
+    let fichasRestantes = this.tablero.fichasFaltantes()
+    
     if (fichasRestantes === 1) {
       this.juegoTerminado = true;
       this.temporizador.pausar();
+      
+      let cantFaltantes = this.consultarFichasRestantes();
       this.vista.mostrarCartelVictoria(
+      
         () => this.reiniciarJuego(),
-        () => location.reload()
+        () => location.reload(),
+        fichasRestantes
       );
       return;
     }
@@ -117,8 +123,10 @@ class TableroControlador {
       this.juegoTerminado = true;
       this.temporizador.pausar();
       this.vista.mostrarCartelDerrotaMovimientos(
+        
         () => this.reiniciarJuego(),
-        () => location.reload()
+        () => location.reload(),
+        fichasRestantes
       );
     }
   }
@@ -133,4 +141,5 @@ class TableroControlador {
     this.temporizador.iniciar();
     this.vista.dibujar();
   }
+
 }

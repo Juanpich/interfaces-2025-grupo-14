@@ -10,7 +10,7 @@ class Tablero {
       [-1, -1, 1, 1, 1, -1, -1] //6
       //0   1   2   3   4   5   6
     ];
-   
+
     this.fichas = this.generarMatrizFichas();
   }
 
@@ -42,36 +42,72 @@ class Tablero {
   obtenerEstado(fila, col) {
     return this.estado?.[fila]?.[col];
   }
-
   moverFicha(origenFila, origenCol, destinoFila, destinoCol) {
     const fichaOrigen = this.obtenerFicha(origenFila, origenCol);
     const fichaDestino = this.obtenerFicha(destinoFila, destinoCol);
-    const filaIntermedia = (origenFila + destinoFila) / 2;
-    const colIntermedia = (origenCol + destinoCol) / 2;
-    const fichaIntermedia = this.obtenerFicha(filaIntermedia, colIntermedia);
+    if (!fichaOrigen || fichaDestino) return false;
 
-    if (
-      fichaOrigen?.estaActiva() &&
-      !fichaDestino &&
-      fichaIntermedia?.estaActiva() &&
-      (Math.abs(origenFila - destinoFila) === 2 || Math.abs(origenCol - destinoCol) === 2)
-    ) {
-      this.estado[origenFila][origenCol] = 0;
+    const df = destinoFila - origenFila;
+    const dc = destinoCol - origenCol;
+
+    const esMovimientoRecto = (df === 0 && dc !== 0) || (dc === 0 && df !== 0);
+    if (!esMovimientoRecto) return false;
+
+    // Movimiento simple (una casilla)
+    if (Math.abs(df) === 1 || Math.abs(dc) === 1) {
       this.estado[destinoFila][destinoCol] = 1;
-      this.estado[filaIntermedia][colIntermedia] = 0;
-
+      this.estado[origenFila][origenCol] = 0;
       fichaOrigen.fila = destinoFila;
       fichaOrigen.columna = destinoCol;
       this.fichas[destinoFila][destinoCol] = fichaOrigen;
       this.fichas[origenFila][origenCol] = null;
-      fichaIntermedia.eliminar();
-      this.fichas[filaIntermedia][colIntermedia] = null;
-
       return true;
     }
 
-    return false;
+    // Movimiento de salto simple (2) o doble (4)
+    const distancia = Math.max(Math.abs(df), Math.abs(dc));
+    if (distancia !== 2 && distancia !== 4) return false;
+
+    // Calcular fichas intermedias correctamente
+    const pasos = [];
+    const pasoFila = df === 0 ? 0 : df / distancia;
+    const pasoCol = dc === 0 ? 0 : dc / distancia;
+
+    for (let i = 1; i < distancia; i++) {
+      pasos.push({
+        fila: origenFila + i * pasoFila,
+        col: origenCol + i * pasoCol,
+      });
+    }
+
+    // Verificar fichas intermedias
+    const intermedias = pasos
+      .map(p => this.obtenerFicha(p.fila, p.col))
+      .filter(f => f && f.estaActiva());
+
+    // Si no hay fichas intermedias o demasiadas, no es válido
+    if (intermedias.length === 0 || intermedias.length > 2) return false;
+
+    // Mover ficha
+    this.estado[origenFila][origenCol] = 0;
+    this.estado[destinoFila][destinoCol] = 1;
+    fichaOrigen.fila = destinoFila;
+    fichaOrigen.columna = destinoCol;
+    this.fichas[destinoFila][destinoCol] = fichaOrigen;
+    this.fichas[origenFila][origenCol] = null;
+
+    // Eliminar las fichas comidas (una o dos)
+    for (const inter of pasos) {
+      const f = this.obtenerFicha(inter.fila, inter.col);
+      if (f && f.estaActiva()) {
+        f.eliminar();
+        this.fichas[inter.fila][inter.col] = null;
+        this.estado[inter.fila][inter.col] = 0;
+      }
+    }
+    return true;
   }
+
 
   imprimirEstado() {
     console.table(this.estado);
@@ -83,8 +119,12 @@ class Tablero {
     );
     console.table(matriz);
   }
-  obtenerMovimientosValidos(fila, col) {
+
+  obtenerMovimientosValidos(fila, col, visitados = new Set(), direccion = null) {
     const movimientos = [];
+    const clave = `${fila},${col}`;
+    if (visitados.has(clave)) return [];
+    visitados.add(clave);
 
     const direcciones = [
       { df: -2, dc: 0 }, // arriba
@@ -94,19 +134,27 @@ class Tablero {
     ];
 
     for (const { df, dc } of direcciones) {
+      if (direccion && (df !== direccion.df || dc !== direccion.dc)) continue
       const destinoFila = fila + df;
       const destinoCol = col + dc;
       const interFila = fila + df / 2;
       const interCol = col + dc / 2;
 
+      // Verificamos si es un salto válido (come una ficha)
       if (
         this.estado?.[destinoFila]?.[destinoCol] === 0 &&
         this.estado?.[interFila]?.[interCol] === 1
       ) {
         movimientos.push({ fila: destinoFila, col: destinoCol });
+
+
+        const saltosEncadenados = this.obtenerMovimientosValidos(destinoFila, destinoCol, visitados, { df, dc });
+        for (const salto of saltosEncadenados) {
+          movimientos.push(salto);
+        }
       }
     }
-
+  
     return movimientos;
   }
   hayMovimientosDisponibles() {
@@ -123,15 +171,17 @@ class Tablero {
     }
     return false; // no hay ningún movimiento
   }
-
-  contarFichasActivas() {
+  fichasFaltantes() {
     let contador = 0;
-    for (let fila of this.fichas) {
-      for (let f of fila) {
-        if (f?.estaActiva()) contador++;
+    for (let fila of this.estado) {
+      for (let celda of fila) {
+        if (celda === 1) contador++;
       }
     }
     return contador;
   }
+
+
+
 
 }
