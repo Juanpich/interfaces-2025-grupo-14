@@ -85,18 +85,25 @@
 
 .tuberia-abajo, .tuberia-arriba{
     position: absolute;
-    width: 121px;
-    height: 456px;
     z-index: 9999;
 }
 .tuberia-abajo{
+    width: 75px;
+    height: 475px;
+}
+
+.tuberia-arriba{
+    width: 113px;
+    height: 734px;
+}
+.tuberia-abajo{
     background-image: url("/img/pipe/tuberia-abajo.png");
-    transform: translateY(330px);
+    transform: translateY(200px);
 }
 .tuberia-arriba{
     background-image: url("/img/pipe/tuberia-arriba.png");
-    transform: translateX(120px);
-    transform: translateY(-260px);
+    /* transform: translateX(1760px); */
+    transform: translateY(-360px);
 }
 
 
