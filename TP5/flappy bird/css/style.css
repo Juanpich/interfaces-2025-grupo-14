@@ -1,0 +1,103 @@
+.game-container{
+    width: 1280px; /* alinear con tus imágenes */
+    height: 360px; /* alinear con tus imágenes */
+    position: relative;
+    overflow: hidden;
+}
+
+.capa{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: repeat-x;
+    background-size: 1280px 360px; /* <-- forzamos el tamaño exacto */
+    background-position: 0;
+}
+
+@keyframes scroll {
+  0%   { background-position-x: 0; }
+  100% { background-position-x: -1280px; }
+}
+
+
+    
+
+.capa.capa-1{
+    background-image: url("/img/parallax_background_forest/capa-fondo1.png"); 
+    animation: scroll 145s infinite linear;
+    z-index: 0;
+}
+.capa.capa-2{
+    background-image: url("/img/parallax_background_forest/capa-nubes.png");
+    animation: scroll 140s infinite linear;
+} 
+
+.capa.capa-3{
+    background-image: url("/img/parallax_background_forest/capa-sol.png");
+    animation: scroll 160s infinite linear;
+}
+.capa.capa-4{
+    background-image: url("/img/parallax_background_forest/capa-montains1.png");
+    animation: scroll 105s infinite linear;
+}
+
+.capa.capa-5{
+    background-image: url("/img/parallax_background_forest/capa-montains2.png");
+    animation: scroll 80s infinite linear;
+}
+
+.capa.capa-6{
+    background-image: url("/img/parallax_background_forest/capa-montains3.png");
+    animation: scroll 75s infinite linear;
+}
+.capa.capa-7{
+    background-image: url("/img/parallax_background_forest/capa-arboles.png");
+    animation: scroll 50s infinite linear;
+}   
+.capa.capa-8{
+    background-image: url("/img/parallax_background_forest/capa-suelo.png");
+    animation: scroll 45s infinite linear;
+} 
+   
+
+
+#coin {
+  
+  width:83px;
+  height:71px;
+  transform: scale(0.6);
+  margin:auto;  
+  background:url("/img/monedas.png") repeat-x;
+  animation:rotate-coin .8s steps(6) infinite;
+  position: absolute;
+  z-index: 999;
+}
+
+
+@keyframes rotate-coin {
+  
+  0% { background-position:0px }
+ 
+  100% { background-position:-500px }
+}
+
+.tuberia-abajo, .tuberia-arriba{
+    position: absolute;
+    width: 121px;
+    height: 456px;
+    z-index: 9999;
+}
+.tuberia-abajo{
+    background-image: url("/img/pipe/tuberia-abajo.png");
+    transform: translateY(330px);
+}
+.tuberia-arriba{
+    background-image: url("/img/pipe/tuberia-arriba.png");
+    transform: translateX(120px);
+    transform: translateY(-260px);
+}
+
+
+
