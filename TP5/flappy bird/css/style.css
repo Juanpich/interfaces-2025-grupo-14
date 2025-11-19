@@ -25,39 +25,39 @@
     
 
 .capa.capa-1{
-    background-image: url("/img/parallax_background_forest/capa-fondo1.png"); 
+    background-image: url("../../img/parallax_background_forest/capa-fondo1.png"); 
     animation: scroll 145s infinite linear;
     z-index: 0;
 }
 .capa.capa-2{
-    background-image: url("/img/parallax_background_forest/capa-nubes.png");
+    background-image: url("../../img/parallax_background_forest/capa-nubes.png");
     animation: scroll 140s infinite linear;
 } 
 
 .capa.capa-3{
-    background-image: url("/img/parallax_background_forest/capa-sol.png");
+    background-image: url("../../img/parallax_background_forest/capa-sol.png");
     animation: scroll 160s infinite linear;
 }
 .capa.capa-4{
-    background-image: url("/img/parallax_background_forest/capa-montains1.png");
+    background-image: url("../../img/parallax_background_forest/capa-montains1.png");
     animation: scroll 105s infinite linear;
 }
 
 .capa.capa-5{
-    background-image: url("/img/parallax_background_forest/capa-montains2.png");
+    background-image: url(".././img/parallax_background_forest/capa-montains2.png");
     animation: scroll 80s infinite linear;
 }
 
 .capa.capa-6{
-    background-image: url("/img/parallax_background_forest/capa-montains3.png");
+    background-image: url("../../img/parallax_background_forest/capa-montains3.png");
     animation: scroll 75s infinite linear;
 }
 .capa.capa-7{
-    background-image: url("/img/parallax_background_forest/capa-arboles.png");
+    background-image: url("../../img/parallax_background_forest/capa-arboles.png");
     animation: scroll 50s infinite linear;
 }   
 .capa.capa-8{
-    background-image: url("/img/parallax_background_forest/capa-suelo.png");
+    background-image: url("../../img/parallax_background_forest/capa-suelo.png");
     animation: scroll 45s infinite linear;
 } 
    
@@ -67,14 +67,30 @@
   
   width:83px;
   height:71px;
-  transform: scale(0.6);
   margin:auto;  
-  background:url("/img/monedas.png") repeat-x;
+  background:url("../../img/monedas.png") repeat-x;
   animation:rotate-coin .8s steps(6) infinite;
   position: absolute;
+  top: 50%;
+  left: 70%;
   z-index: 999;
 }
-
+#bird{
+     width:34px;
+  height:40px;
+    margin:auto;  
+  background:url("../../img/pajaros-final-naranja.png") repeat-x;
+  animation:rotate-bird .8s steps(4) infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+@keyframes rotate-bird {
+  
+  0% { background-position:0px }
+ 
+  100% { background-position:-136px }
+}
 
 @keyframes rotate-coin {
   
@@ -90,11 +106,11 @@
     z-index: 9999;
 }
 .tuberia-abajo{
-    background-image: url("/img/pipe/tuberia-abajo.png");
+    background-image: url("../../img/pipe/tuberia-abajo.png");
     transform: translateY(330px);
 }
 .tuberia-arriba{
-    background-image: url("/img/pipe/tuberia-arriba.png");
+    background-image: url("../../img/pipe/tuberia-arriba.png");
     transform: translateX(120px);
     transform: translateY(-260px);
 }
