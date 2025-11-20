@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>flappy bird</title>
+    <title>Flappy Bird</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
+
 <body>
     <div class="game-container">
+        <!-- Pantalla de inicio -->
+        <div id="start-screen">
+            <div class="title">FLAPPY BIRD</div>
+            <div class="subtitle">Presiona ESPACIO para comenzar</div>
+        </div>
+
+        <!-- Contenedor de tuberías -->
         <div id="pipes-container"></div>
 
+        <!-- Capas de fondo parallax -->
         <div class="capa capa-1"></div>
+        <div class="capa capa-2"></div>
         <div class="capa capa-3"></div>
         <div class="capa capa-4"></div>
-        <div class="capa capa-2"></div>
         <div class="capa capa-5"></div>
         <div class="capa capa-6"></div>
         <div class="capa capa-7"></div>
         <div class="capa capa-8"></div>
 
+        <!-- Pájaro -->
         <div id="bird"></div>
 
+        <!-- Contenedor de puntaje -->
         <div id="score-container">
             <div id="score">0</div>
         </div>
 
+        <!-- HUD: vidas -->
         <div id="hud">
             <div id="lives">
                 <div class="life full"></div>
@@ -32,12 +46,35 @@
                 <div class="life full"></div>
             </div>
         </div>
+
+        <!-- Pantalla de Game Over -->
+        <div id="game-over" class="hidden">
+            <div class="go-title">GAME OVER</div>
+            <div class="go-sub">Presiona ESPACIO para reiniciar</div>
+        </div>
     </div>
 
+    <!-- Scripts del juego -->
     <script src="js/Hud.js"></script>
     <script src="js/Bird.js"></script>
+    <script src="js/Pipe.js"></script>
     <script src="js/Coin.js"></script>
     <script src="js/Heart.js"></script>
     <script src="js/Game.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const startScreen = document.getElementById("start-screen");
+
+            // Cuando el juego comienza, ocultar la pantalla de inicio
+            document.addEventListener("game-started", () => {
+                startScreen.style.display = "none";
+            });
+
+            // Inicializar juego
+            const game = new Game();
+        });
+    </script>
 </body>
+
 </html>

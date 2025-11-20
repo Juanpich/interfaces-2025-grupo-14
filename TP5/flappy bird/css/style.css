@@ -6,6 +6,32 @@
     position: relative;
     overflow: hidden;
 }
+#start-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    color: #FFD700;
+    background: #000000cc;
+    border: 4px solid #ffffff;
+    border-radius: 10px;
+    padding: 40px 20px;
+    z-index: 10000;
+}
+
+#start-screen .title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 0px black;
+}
+
+#start-screen .subtitle {
+    font-size: 14px;
+    opacity: 0.8;
+}
 
 .capa {
     width: 100%;
@@ -61,6 +87,7 @@
 
 .capa.capa-7 {
     background-image: url("../../img/parallax_background_forest/capa-arboles.png");
+    animation: scroll 50s infinite linear;
 }
 
 .capa.capa-8 {
@@ -127,17 +154,16 @@
 /* imagen de arriba */
 .tuberia-arriba {
     height: 360px; /* se recorta con top/bottom */
-    background-image: url("../../img/pipe2/pipedown.png");
+    background-image: url("../../img/pipe/pipe_green_top.png");
     background-position: bottom;
 }
 
 /* imagen de abajo */
 .tuberia-abajo {
     height: 360px;
-    background-image: url("../../img/pipe2/pipe.png");
+    background-image: url("../../img/pipe/pipe_green_bottom.png");
     background-position: top;
 }
-
 
 
 
@@ -222,4 +248,42 @@
 
 .life.empty {
     background-image: url('../../img/heart/corazon-vacio.png');
+}
+#game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 420px;
+    padding: 25px;
+    background: #000000cc;
+    border: 6px solid #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    z-index: 999999;
+    opacity: 0;
+    pointer-events: none; /* No bloquea el juego mientras aparece */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#game-over.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.go-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 0px black;
+}
+
+.go-sub {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.hidden {
+    display: none;
 }
