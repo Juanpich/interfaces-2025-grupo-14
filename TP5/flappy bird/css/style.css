@@ -44,7 +44,7 @@
 }
 
 .capa.capa-5{
-    background-image: url(".././img/parallax_background_forest/capa-montains2.png");
+    background-image: url("../../img/parallax_background_forest/capa-montains2.png");
     animation: scroll 80s infinite linear;
 }
 
@@ -64,9 +64,8 @@
 
 
 #coin {
-  
-  width:83px;
-  height:71px;
+  width:46.6px;
+  height:42px;
   margin:auto;  
   background:url("../../img/monedas.png") repeat-x;
   animation:rotate-coin .8s steps(6) infinite;
@@ -75,52 +74,65 @@
   left: 70%;
   z-index: 999;
 }
+
 #bird{
-     width:34px;
-  height:40px;
+     width:50px;
+  height:35px;
     margin:auto;  
-  background:url("../../img/pajaros-final-naranja.png") repeat-x;
+  background:url("../../img/birds.png") repeat-x;
   animation:rotate-bird .8s steps(4) infinite;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  left: 130px;
+  top:50%;
 }
+
+
+
 @keyframes rotate-bird {
   
   0% { background-position:0px }
  
-  100% { background-position:-136px }
+  100% { background-position:-200px }
 }
 
 @keyframes rotate-coin {
   
   0% { background-position:0px }
  
-  100% { background-position:-500px }
+  100% { background-position:-280px }
 }
-
-.tuberia-abajo, .tuberia-arriba{
+.tuberia {
     position: absolute;
-    z-index: 9999;
-}
-.tuberia-abajo{
-    width: 75px;
-    height: 475px;
+    top: 0;
+    width: 90px;
+    height: 360px; /* igual que el game-container */
+    pointer-events: none;
 }
 
-.tuberia-arriba{
-    width: 113px;
-    height: 734px;
+.tuberia-arriba,
+.tuberia-abajo {
+    position: absolute;
+    width: 90px;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
-.tuberia-abajo{
-    background-image: url("../../img/pipe/tuberia-abajo.png");
-    transform: translateY(200px);
+
+/* imagen de arriba */
+.tuberia-arriba {
+    height: 360px; /* se recorta con top/bottom */
+    background-image: url("../../img/pipe2/pipedown.png");
+    background-position: bottom;
 }
-.tuberia-arriba{
-    background-image: url("../../img/pipe/tuberia-arriba.png");
-    /* transform: translateX(1760px); */
-    transform: translateY(-360px);
+
+/* imagen de abajo */
+.tuberia-abajo {
+    height: 360px;
+    background-image: url("../../img/pipe2/pipe.png");
+    background-position: top;
 }
+
+
+
 
 
 
