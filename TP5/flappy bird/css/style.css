@@ -84,15 +84,29 @@
     background-image: url("../../img/parallax_background_forest/capa-montains3.png");
     animation: scroll 75s infinite linear;
 }
+.capa.capa-7{
 
-.capa.capa-7 {
-    background-image: url("../../img/parallax_background_forest/capa-arboles.png");
-    animation: scroll 50s infinite linear;
-}
+    background-image: url("/img/parallax_background_forest/capa-arboles.png");
+    animation: scroll 25s infinite linear;
+}   
+.capa.capa-8{
+    background-image: url("/img/parallax_background_forest/capa-suelo.png");
+    animation: scroll 20s infinite linear;
+}   
 
-.capa.capa-8 {
-    background-image: url("../../img/parallax_background_forest/capa-suelo.png");
-    animation: scroll 45s infinite linear;
+   
+
+
+#coin {
+  width:46.6px;
+  height:42px;
+  margin:auto;  
+  background:url("../../img/monedas.png") repeat-x;
+  animation:rotate-coin .8s steps(6) infinite;
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  z-index: 999;
 }
 
 #bird{
@@ -137,6 +151,19 @@
 }
 .tuberia {
     position: absolute;
+
+    z-index: 9999;
+}
+.tuberia-abajo, .tuberia-arriba{
+    width: 75px;
+    height: 475px;
+}
+
+.tuberia-abajo{
+    background-image: url("/img/pipe/tuberia-abajo.png");
+}
+.tuberia-arriba{
+    background-image: url("/img/pipe/tuberia-arriba.png");
     top: 0;
     width: 90px;
     height: 360px; /* igual que el game-container */
