@@ -4,7 +4,6 @@ class Game {
         this.bird = null;
         this.coins = null;
         this.hearts = null;
-        this.pipes = null;
         this.score = 0;
         this.lives = 3;
         this.gameStarted = false;
@@ -37,11 +36,8 @@ class Game {
         if (window.GeneradorTuberias) {
             // Generador que controla spawn y dificultad dinámica (gap, spacing, velocidad)
             this.generadorTuberias = new GeneradorTuberias({
-                container: document.getElementById("pipes-container")
+                contenedor: document.getElementById("pipes-container")
             });
-        } else {
-            // Fallback a la implementación anterior
-            this.pipes = new Pipes(this.container, this.bird, this.hud);
         }
 
         // Eventos
@@ -63,9 +59,9 @@ class Game {
                 // Iniciar tuberías:
                 // - Si usamos la clase antigua Pipes, llamamos a su método start() si existe.
                 // - Si usamos GeneradorTuberias, no hace falta "start" explícito: empezará a generar cuando reciba updates en el bucle.
-                if (this.pipes && typeof this.pipes.start === "function") {
-                    this.pipes.start();
-                }
+                // if (this.pipes && typeof this.pipes.start === "function") {
+                //     this.pipes.start();
+                // }
                 if (this.generadorTuberias) {
                     // Reset opcional para asegurar valores iniciales
                     if (typeof this.generadorTuberias.reset === "function") {
@@ -145,20 +141,17 @@ class Game {
 
             // Solo procesar actualizaciones mientras el pájaro esté vivo
             if (this.bird && this.bird.isAlive) {
-                // Si el juego ya empezó, actualizar el generador/las pipes para que generen tuberías
-                if (this.gameStarted) {
-                    // Si usamos el generador nuevo, le pasamos dt para que aplique su lógica de spawn y dificultad progresiva
-                    if (this.generadorTuberias && typeof this.generadorTuberias.update === "function") {
-                        this.generadorTuberias.update(dt);
-                    }
-                    // Compatibilidad: si usamos la antigua clase Pipes que tenga update
-                    if (this.pipes && typeof this.pipes.update === "function") {
-                        this.pipes.update(dt);
-                    }
-                    // También podés actualizar otros sistemas que dependan del tiempo aquí (coins, hearts...) si tienen update(dt)
-                    if (this.coins && typeof this.coins.update === "function") this.coins.update(dt);
-                    if (this.hearts && typeof this.hearts.update === "function") this.hearts.update(dt);
+                // Actualizar el generador/las pipes aunque el juego aún no se haya "iniciado"
+                // de esta forma las tuberías empiezan a generarse desde que se carga la página.
+                if (this.generadorTuberias && typeof this.generadorTuberias.update === "function") {
+                    this.generadorTuberias.update(dt);
                 }
+                // Compatibilidad: si usamos la antigua clase Pipes que tenga update
+
+                // Actualizar otros sistemas que dependan del tiempo (monedas/corazones)
+                // NOTA: su comportamiento de start sigue controlado por el evento 'game-started'
+                if (this.coins && typeof this.coins.update === "function") this.coins.update(dt);
+                if (this.hearts && typeof this.hearts.update === "function") this.hearts.update(dt);
 
                 // Lógica adicional por frame (si hace falta)
                 // ...existing code...

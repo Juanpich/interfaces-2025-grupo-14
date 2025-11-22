@@ -7,7 +7,7 @@
 			this.contenedor = opciones.contenedor;
 			this.posX = opciones.x ?? (this.contenedor ? this.contenedor.clientWidth : 1280);
 			// distancia vertical entre tubos (hueco). Valor por defecto reducido para que no sea tan ancho al inicio.
-			this.separacionVertical = opciones.separacionVertical ?? opciones.gap ?? 90;
+			this.separacionVertical = opciones.separacionVertical ?? opciones.gap ?? 120;
 			// altura mínima que debe tener cada segmento de tubo (superior/inferior) en pixels.
 			this.minAlturaTubo = opciones.minAlturaTubo ?? 30;
 			this.centroY = opciones.centroY ?? opciones.centerY ?? 180;

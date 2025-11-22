@@ -106,8 +106,8 @@
 			this.activas = [];
 			this.tiempoDesdeUltimo = 0;
 			this.tiempoTotal = 0;
-			this.separacionVertical = 140;
-			this.separacionHorizontal = 450;
+			this.separacionVertical = 900;
+			this.separacionHorizontal = 100;
 			this.velocidad = 200;
 			this.establecerVelocidad(this.velocidad);
 		}

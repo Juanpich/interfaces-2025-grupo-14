@@ -6,6 +6,15 @@
     position: relative;
     overflow: hidden;
 }
+#pipes-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;  /* MUY IMPORTANTE */
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 5;
+}
 #start-screen {
     position: absolute;
     top: 50%;
@@ -146,21 +155,21 @@
 .tuberia-arriba,
 .tuberia-abajo {
     position: absolute;
-    width: 90px;
+    width: 100%;
     background-repeat: no-repeat;
-    background-size: contain;
+        background-size: cover;
+    height: 360px;
 }
 
 /* imagen de arriba */
 .tuberia-arriba {
-    height: 360px; /* se recorta con top/bottom */
     background-image: url("../../img/pipe/pipe_green_top.png");
+    /* background-color: aqua; */
     background-position: bottom;
 }
 
 /* imagen de abajo */
 .tuberia-abajo {
-    height: 360px;
     background-image: url("../../img/pipe/pipe_green_bottom.png");
     background-position: top;
 }
