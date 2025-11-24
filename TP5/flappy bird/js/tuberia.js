@@ -14,6 +14,7 @@
 			this.ancho = opciones.ancho ?? opciones.width ?? 90;
 			this.altoTotal = opciones.altoTotal ?? opciones.totalHeight ?? 360;
 			this.velocidad = opciones.velocidad ?? opciones.speed ?? 150; // px/s
+			this.objeto_especial = opciones.objeto_especial ?? null;
 
 			// crear elementos DOM
 			this.elemento = document.createElement('div');
@@ -70,6 +71,11 @@
 			const segundos = dt / 1000;
 			this.posX -= this.velocidad * segundos;
 			this.elemento.style.left = Math.round(this.posX) + 'px';
+			// Mover objeto especial junto con la tubería
+			if (this.objeto_especial) {
+				this.objeto_especial.style.left = this.elemento.style.left;
+			}
+			
 		}
 
 		// Devuelve true si la tubería ya salió completamente de la pantalla

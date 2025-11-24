@@ -3,8 +3,6 @@ class Game {
         this.container = document.querySelector(".game-container");
         this.startScreen = document.getElementById("start-screen");
         this.bird = null;
-        this.coins = null;
-        this.hearts = null;
         this.generadorTuberias = null;
         this.score = 0;
         this.lives = 3;
@@ -22,41 +20,31 @@ class Game {
         this.bird = new Bird("bird", containerHeight);
 
         // Crear generador de tuberías con valores iniciales más amplios
-        if (window.GeneradorTuberias && window.Tuberia) {
+        if (window.GeneradorTuberias) {
             this.generadorTuberias = new GeneradorTuberias({
                 contenedor: document.getElementById("pipes-container"),
                 
-                // ═══════════════════════════════════════════════════════════
-                // 🎯 AJUSTA ESTOS VALORES PARA CAMBIAR LA DIFICULTAD
-                // ═══════════════════════════════════════════════════════════
+                //SEPARACIÓN VERTICAL
+                separacionVerticalInicial: 300,  // separacion entre los tubos al comenzar
+                minSeparacion: 100,              // separacion minima entre tubos
                 
-                // 📏 SEPARACIÓN VERTICAL (hueco entre tubo superior e inferior)
-                separacionVerticalInicial: 300,  // 🔧 MÁS GRANDE = MÁS FÁCIL (rango: 150-300)
-                minSeparacion: 100,              // 🔧 Mínimo al que llega (rango: 70-150)
+                // SEPARACIÓN HORIZONTAL
+                separacionHorizontalInicial: 900, // separacion entre pares de tubos al inicio
+                minSeparacionHorizontal: 250,     // minima separacion a la que llega
                 
-                // ↔️ SEPARACIÓN HORIZONTAL (distancia entre pares de tuberías)
-                separacionHorizontalInicial: 700, // 🔧 MÁS GRANDE = MÁS TIEMPO (rango: 400-900)
-                minSeparacionHorizontal: 250,     // 🔧 Mínimo al que llega (rango: 180-400)
+                // VELOCIDAD 
+                velocidadInicial: 100,            // velocidad de movimineto de las tuberias
                 
-                // 🚀 VELOCIDAD (píxeles por segundo)
-                velocidadInicial: 100,            // 🔧 MÁS BAJO = MÁS LENTO (rango: 100-200)
+                // Reducion de dificultad del juego
+                factorDificultad: 0.9999,         //si se hacerca a uno la dificultad de va haciendo mas lenta 
                 
-                // 📉 FACTOR DE DIFICULTAD (reducción progresiva)
-                factorDificultad: 0.9999,         // 🔧 MÁS CERCA DE 1 = MÁS LENTO (rango: 0.9995-0.9999)
-                
-                // 🔨 ALTURA MÍNIMA DE CADA TUBO
-                minAlturaTubo: 30                 // No modificar (mantener en 30)
+                //ALTURA MÍNIMA DE CADA TUBO
+                minAlturaTubo: 30                 // No modificar
             });
             
             // Establecer referencia al pájaro para detección de colisiones
             this.generadorTuberias.setPajaro(this.bird);
         }
-
-        // Crear monedas
-        this.coins = new Coin(this.container, document.getElementById("bird"));
-
-        // Crear corazones
-        this.hearts = new Heart(this.container, document.getElementById("bird"));
 
         // Crear HUD
         this.hud = new HUD();
@@ -103,14 +91,14 @@ class Game {
                 }
 
                 // Iniciar monedas con delay
-                setTimeout(() => {
-                    if (this.coins) this.coins.start();
-                }, 3000);
+                // setTimeout(() => {
+                //     if (this.coins) this.coins.start();
+                // }, 3000);
 
                 // Iniciar corazones con delay mayor
-                setTimeout(() => {
-                    if (this.hearts) this.hearts.start();
-                }, 8000);
+                // setTimeout(() => {
+                //     if (this.hearts) this.hearts.start();
+                // }, 8000);
             }
         });
     }
@@ -119,7 +107,7 @@ class Game {
         if (this.lives < 3) {
             this.lives++;
             this.hud.updateLives(this.lives);
-            this.bird.gainLife();
+            
         }
     }
 
@@ -155,6 +143,7 @@ class Game {
                 this.hearts.stop();
                 this.hearts.clear();
             }
+            //TODO parar el fondo 
         }
     }
 
@@ -207,5 +196,10 @@ class Game {
 
 // Inicialización automática cuando el DOM esté listo
 document.addEventListener("DOMContentLoaded", () => {
+    const game = new Game();
+});
+
+// Volver a jugar
+document.addEventListener("reLoad", () => {
     const game = new Game();
 });

@@ -9,7 +9,8 @@ class Bird {
     this.maxFallSpeed = 4;
     this.isAlive = true;
     this.gameStarted = false;
-    this.invincible = false; // para el parpadeo
+    this.isBlinking = false; // para el parpadeo
+    this.isFrozen = false;
     this.radius = this.bird.offsetWidth / 2; // para colisión circular
     this.sonidoVuelo = new Audio("./../audio/vuelo.mp3");
     this.init();
@@ -33,8 +34,11 @@ class Bird {
   }
 
   flap() {
-    if (this.isAlive) this.velocity = this.lift;
+    if (!this.isAlive) return;
+    if (this.isFrozen) return;
+    this.velocity = this.lift;
   }
+
 
   update() {
     if (!this.isAlive) return;
@@ -59,51 +63,46 @@ class Bird {
   }
 
   hitPipe() {
-    if (this.invincible) return; // si ya es invencible, no pasa nada
 
-    this.invincible = true;
+    // Evitar perder vida múltiple
+    if (this.isBlinking) return;
 
-    // Guardar valores originales
-    const gravityOriginal = this.gravity;
+    this.isBlinking = true;
 
-    // Tiempo
-    const tiempoInmovil = 900;  // tiempo Inmovil segundos
-    const tiempoInvencible = 4000; // tiempo Invencible segundos
+    document.dispatchEvent(new Event("hit-limit"));
 
-    // --- BLOQUEAR GRAVEDAD ---
+    // Congelar por un momento
+    this.isFrozen = true;
+
+    const originalGravity = this.gravity;
+
     this.gravity = 0;
     this.velocity = 0;
 
-    // --- POSICIÓN FIJA DURANTE 0.5s ---
+    // A media pantalla
     this.position = this.containerHeight / 2;
     this.bird.style.top = `${this.position}px`;
 
-    // --- EVENTO DE VIDA PERDIDA ---
-    document.dispatchEvent(new Event("hit-limit"));
+    const freezeTime = 150;  // ⬅ ESTE NÚMERO ES CLAVE (100–200ms)
 
-    // --- PARPADEO ---
+    // Restore gravity y permitir flap normalmente
+    setTimeout(() => {
+      this.gravity = originalGravity;
+      this.isFrozen = false;
+    }, freezeTime);
+
+    // Parpadeo visual
     let visible = true;
     const blinkInterval = setInterval(() => {
       this.bird.style.opacity = visible ? "0.3" : "1";
       visible = !visible;
     }, 150);
 
-    // liberar movimiento pero sigue invencible
     setTimeout(() => {
-      // Restaurar gravedad pero sigue invencible
-      this.gravity = gravityOriginal;
-    }, tiempoInmovil);
-
-    // Dejar de parpadear y volver a normal
-    setTimeout(() => {
-
       clearInterval(blinkInterval);
       this.bird.style.opacity = "1";
-
-      // Restaurar estado original
-      this.invincible = false;      
-
-    }, tiempoInvencible);
+      this.isBlinking = false;
+    }, 1500);
   }
 
 
@@ -126,10 +125,7 @@ class Bird {
     }, 3000);
   }
 
-  gainLife() {
-    // Efecto de parpadeo al ganar vida
-    this.respawn();
-  }
+
 
   getCircle() {
     const rect = this.bird.getBoundingClientRect();

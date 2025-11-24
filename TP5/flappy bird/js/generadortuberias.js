@@ -1,34 +1,35 @@
 (function (global) {
 	class GeneradorTuberias {
 		constructor(opciones = {}) {
+			console.log(opciones)
 			this.contenedor = opciones.contenedor || document.getElementById('pipes-container');
 			this.pajaro = opciones.pajaro || null; // referencia al pájaro para detección de colisión
-			
+
 			// Configuración inicial de separaciones
 			this.separacionVertical = opciones.separacionVerticalInicial ?? 140;
 			this.separacionHorizontal = opciones.separacionHorizontalInicial ?? 450;
 			this.velocidad = opciones.velocidadInicial ?? 120;
-			
+
 			// Límites mínimos
 			this.minSeparacion = opciones.minSeparacion ?? 90;
 			this.minSeparacionHorizontal = opciones.minSeparacionHorizontal ?? 220;
 			this.factorDificultad = opciones.factorDificultad ?? 0.9999;
-			
+
 			// Control de tiempo
 			this.tiempoDesdeUltimo = 0;
 			this.tiempoTotal = 0;
-			
+
 			// Tuberías activas
 			this.activas = [];
-			
+
 			// Dimensiones
 			this.anchoContenedor = this.contenedor ? this.contenedor.clientWidth : 1280;
 			this.altoContenedor = this.contenedor ? this.contenedor.clientHeight : 360;
 			this.minAlturaTubo = opciones.minAlturaTubo ?? 30;
-			
+
 			// Audio
 			this.audioChoque = new Audio("./../audio/choque.mp3");
-			
+
 			// Control del bucle
 			this._stopLoop = false;
 			this._siguienteIntervaloSpawn = this._calcularIntervaloSpawn();
@@ -57,11 +58,11 @@
 			// Incrementar dificultad progresivamente
 			const factorPorSegundo = Math.pow(this.factorDificultad, dt);
 			this.separacionHorizontal = Math.max(
-				this.minSeparacionHorizontal, 
+				this.minSeparacionHorizontal,
 				this.separacionHorizontal * factorPorSegundo
 			);
 			this.separacionVertical = Math.max(
-				this.minSeparacion, 
+				this.minSeparacion,
 				this.separacionVertical * factorPorSegundoAGap(factorPorSegundo)
 			);
 
@@ -98,7 +99,29 @@
 				if (tub.fueraDePantalla()) {
 					tub.destruir();
 					this.activas.splice(i, 1);
+					if (tub.objeto_especial) {
+						tub.objeto_especial.remove();
+					}
 				}
+				// Colisión con objeto especial
+				if (tub.objeto_especial && this.pajaro) {
+					if (this._colisionCirculoRectangulo(this.pajaro.getCircle(), tub.objeto_especial.getBoundingClientRect())) {
+
+						// moneda
+						if (tub.objeto_especial.classList.contains("moneda")) {
+							document.dispatchEvent(new Event("coin-collected"));
+						}
+
+						// corazón
+						if (tub.objeto_especial.classList.contains("heart")) {
+							document.dispatchEvent(new Event("heart-collected"));
+						}
+
+						tub.objeto_especial.remove();
+						tub.objeto_especial = null;
+					}
+				}
+
 			}
 		}
 
@@ -106,11 +129,11 @@
 		_generarPar() {
 			const margen = 30;
 			const minCentro = Math.max(
-				margen + this.separacionVertical / 2, 
+				margen + this.separacionVertical / 2,
 				this.minAlturaTubo + this.separacionVertical / 2
 			);
 			const maxCentro = Math.min(
-				this.altoContenedor - margen - this.separacionVertical / 2, 
+				this.altoContenedor - margen - this.separacionVertical / 2,
 				this.altoContenedor - this.minAlturaTubo - this.separacionVertical / 2
 			);
 
@@ -129,6 +152,7 @@
 				centroY = limitar(medio + (Math.random() - 0.5) * dispersion, minCentro, maxCentro);
 			}
 
+
 			const x = this.anchoContenedor;
 			const tub = new global.Tuberia({
 				contenedor: this.contenedor,
@@ -138,8 +162,21 @@
 				minAlturaTubo: this.minAlturaTubo,
 				velocidad: this.velocidad,
 				altoTotal: this.altoContenedor
+
 			});
-			
+			// 30% prob moneda, 10% corazón, resto sin nada
+			let objeto = null;
+			const r = Math.random();
+
+			if (r < 0.30) { // moneda
+				objeto = this._crearObjetoEspecial("coin", tub);
+			}
+			else if (r < 0.40) { // corazón
+				objeto = this._crearObjetoEspecial("heart", tub);
+			}
+
+			tub.objeto_especial = objeto;
+
 			tub.pasada = false; // marcar si ya se contó el punto
 			this.activas.push(tub);
 
@@ -147,6 +184,36 @@
 			this.velocidad *= 0.990;
 			this.establecerVelocidad(this.velocidad);
 		}
+		_crearObjetoEspecial(tipo, tuberia) {
+			const obj = document.createElement("div");
+			obj.classList.add("objeto-especial");
+
+			if (tipo === "coin") {
+				obj.classList.add("moneda");
+				obj.style.width = "46px";
+				obj.style.height = "42px";
+				obj.style.background = 'url("../img/coin/monedas.png") repeat-x';
+				obj.style.animation = "rotate-coin .8s steps(6) infinite";
+			}
+			else if (tipo === "heart") {
+				obj.classList.add("heart");
+				obj.style.width = "32px";
+				obj.style.height = "32px";
+				obj.style.background = 'url("../img/heart/corazon.png") no-repeat center';
+				obj.style.backgroundSize = "contain";
+			}
+
+			obj.style.position = "absolute";
+
+			// posición inicial igual a la tubería
+			obj.style.left = tuberia.posX + "px";
+			obj.style.top = (tuberia.centroY - (tipo === "coin" ? 20 : 16)) + "px";
+
+			this.contenedor.appendChild(obj);
+
+			return obj;
+		}
+
 
 		// Verifica colisión circular entre el pájaro y una tubería
 		_verificarColision(tuberia) {
