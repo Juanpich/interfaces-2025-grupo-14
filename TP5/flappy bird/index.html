@@ -20,6 +20,7 @@
         <!-- Contenedor de tuberías -->
         <div id="pipes-container"></div>
 
+        <!-- Capas de fondo (parallax) -->
         <div class="capa capa-1"></div>
         <div class="capa capa-2"></div>
         <div class="capa capa-3"></div>
@@ -53,28 +54,15 @@
         </div>
     </div>
 
-    <!-- Scripts del juego -->
+    <!-- Scripts del juego (orden importante) -->
     <script src="js/Hud.js"></script>
     <script src="js/Bird.js"></script>
-    <script src="js/generadortuberias.js"></script>
     <script src="js/tuberia.js"></script>
+    <script src="js/generadortuberias.js"></script>
     <script src="js/Coin.js"></script>
     <script src="js/Heart.js"></script>
     <script src="js/Game.js"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const startScreen = document.getElementById("start-screen");
-
-            // Cuando el juego comienza, ocultar la pantalla de inicio
-            document.addEventListener("game-started", () => {
-                startScreen.style.display = "none";
-            });
-
-            // Inicializar juego
-            const game = new Game();
-        });
-    </script>
+    <!-- Game.js ahora inicializa todo automáticamente -->
 </body>
 
 </html>

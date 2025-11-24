@@ -1,58 +1,100 @@
 (function (global) {
 	class GeneradorTuberias {
-		// opciones: {contenedor, separacionVerticalInicial=140, separacionHorizontalInicial=450, velocidadInicial=200, minSeparacion=90, minSeparacionHorizontal=220, factorDificultad=0.9995}
 		constructor(opciones = {}) {
 			this.contenedor = opciones.contenedor || document.getElementById('pipes-container');
-			// separacion vertical inicial (hueco). Reducida para que al inicio no sea tan ancha.
-			this.separacionVertical = opciones.separacionVerticalInicial ?? opciones.initialGap ?? 90;
-			this.separacionHorizontal = opciones.separacionHorizontalInicial ?? opciones.initialSpacing ?? 250; // distancia horizontal entre pares
-			this.velocidad = opciones.velocidadInicial ?? opciones.initialSpeed ?? 100; // px/s desplazamiento de las tuberias
-			this.minSeparacion = opciones.minSeparacion ?? opciones.minGap ?? 90;
-			this.minSeparacionHorizontal = opciones.minSeparacionHorizontal ?? opciones.minSpacing ?? 220;
-			this.factorDificultad = opciones.factorDificultad ?? opciones.difficultyRamp ?? 0.9995; // factor aplicado por ms para aumentar dificultad
+			this.pajaro = opciones.pajaro || null; // referencia al pájaro para detección de colisión
+			
+			// Configuración inicial de separaciones
+			this.separacionVertical = opciones.separacionVerticalInicial ?? 140;
+			this.separacionHorizontal = opciones.separacionHorizontalInicial ?? 450;
+			this.velocidad = opciones.velocidadInicial ?? 120;
+			
+			// Límites mínimos
+			this.minSeparacion = opciones.minSeparacion ?? 90;
+			this.minSeparacionHorizontal = opciones.minSeparacionHorizontal ?? 220;
+			this.factorDificultad = opciones.factorDificultad ?? 0.9999;
+			
+			// Control de tiempo
 			this.tiempoDesdeUltimo = 0;
 			this.tiempoTotal = 0;
+			
+			// Tuberías activas
 			this.activas = [];
+			
+			// Dimensiones
 			this.anchoContenedor = this.contenedor ? this.contenedor.clientWidth : 1280;
-			// altura minima que debe tener cada tubería (superior/inferior). Mantener simétrica con Tuberia.
+			this.altoContenedor = this.contenedor ? this.contenedor.clientHeight : 360;
 			this.minAlturaTubo = opciones.minAlturaTubo ?? 30;
+			
+			// Audio
+			this.audioChoque = new Audio("./../audio/choque.mp3");
+			
+			// Control del bucle
+			this._stopLoop = false;
 			this._siguienteIntervaloSpawn = this._calcularIntervaloSpawn();
 		}
 
-		// Calcula el intervalo (en segundos) entre apariciones según separacionHorizontal y velocidad
+		// Calcula el intervalo entre apariciones según separación y velocidad
 		_calcularIntervaloSpawn() {
 			return Math.max(0.4, this.separacionHorizontal / Math.max(1, this.velocidad));
 		}
 
-		// Ajusta la velocidad y propaga a tuberías activas
+		// Establece la velocidad y la propaga a todas las tuberías activas
 		establecerVelocidad(pxPorSeg) {
 			this.velocidad = pxPorSeg;
-			for (const t of this.activas) t.establecerVelocidad(this.velocidad);
+			for (const t of this.activas) {
+				t.establecerVelocidad(this.velocidad);
+			}
 			this._siguienteIntervaloSpawn = this._calcularIntervaloSpawn();
 		}
 
-		// Actualizar generador y tuberías activas (dt en ms)
+		// Actualiza el generador y todas las tuberías (dt en milisegundos)
 		actualizar(dt) {
 			const segundos = dt / 1000;
 			this.tiempoDesdeUltimo += segundos;
 			this.tiempoTotal += segundos;
 
-			// Dificultad: reducir separaciones poco a poco con el tiempo
+			// Incrementar dificultad progresivamente
 			const factorPorSegundo = Math.pow(this.factorDificultad, dt);
-			this.separacionHorizontal = Math.max(this.minSeparacionHorizontal, this.separacionHorizontal * factorPorSegundo);
-			this.separacionVertical = Math.max(this.minSeparacion, this.separacionVertical * factorPorSegundoAGap(factorPorSegundo));
+			this.separacionHorizontal = Math.max(
+				this.minSeparacionHorizontal, 
+				this.separacionHorizontal * factorPorSegundo
+			);
+			this.separacionVertical = Math.max(
+				this.minSeparacion, 
+				this.separacionVertical * factorPorSegundoAGap(factorPorSegundo)
+			);
 
-			// comprobar si corresponde generar otro par
+			// Generar nuevo par si corresponde
 			const intervalo = this._calcularIntervaloSpawn();
 			if (this.tiempoDesdeUltimo >= intervalo) {
 				this.tiempoDesdeUltimo -= intervalo;
 				this._generarPar();
 			}
 
-			// actualizar cada tubería y eliminar las que salieron de pantalla
+			// Actualizar cada tubería
 			for (let i = this.activas.length - 1; i >= 0; i--) {
 				const tub = this.activas[i];
 				tub.actualizar(dt);
+
+				// Verificar colisión con el pájaro
+				if (this.pajaro && !this.pajaro.invincible) {
+					if (this._verificarColision(tub)) {
+						this.audioChoque.play();
+						this.pajaro.hitPipe();
+					}
+				}
+
+				// Verificar si el pájaro pasó la tubería (para sumar puntos)
+				if (!tub.pasada && this.pajaro) {
+					const pajaroX = this.pajaro.bird.offsetLeft;
+					if (tub.derecha() < pajaroX) {
+						tub.pasada = true;
+						document.dispatchEvent(new Event("pipe-passed"));
+					}
+				}
+
+				// Eliminar tuberías fuera de pantalla
 				if (tub.fueraDePantalla()) {
 					tub.destruir();
 					this.activas.splice(i, 1);
@@ -60,39 +102,75 @@
 			}
 		}
 
-		// Genera un par de tuberías variando centroY para crear rachas altas/bajas
+		// Genera un nuevo par de tuberías
 		_generarPar() {
 			const margen = 30;
-			// Calculamos min/max centro teniendo en cuenta la altura mínima requerida para cada tubo
-			const alturaContenedor = this.contenedor ? this.contenedor.clientHeight : 360;
-			const minCentro = Math.max(margen + this.separacionVertical / 2, this.minAlturaTubo + this.separacionVertical / 2);
-			const maxCentro = Math.min(alturaContenedor - margen - this.separacionVertical / 2, alturaContenedor - this.minAlturaTubo - this.separacionVertical / 2);
+			const minCentro = Math.max(
+				margen + this.separacionVertical / 2, 
+				this.minAlturaTubo + this.separacionVertical / 2
+			);
+			const maxCentro = Math.min(
+				this.altoContenedor - margen - this.separacionVertical / 2, 
+				this.altoContenedor - this.minAlturaTubo - this.separacionVertical / 2
+			);
 
+			// Generar posición Y con variación (rachas altas/bajas)
 			let centroY;
-			const probExtremo = 0.18; // 18% de probabilidad de extremo
+			const probExtremo = 0.18;
 			if (Math.random() < probExtremo) {
-				if (Math.random() < 0.5) centroY = minCentro + 10 + Math.random() * 40; // muy alto
-				else centroY = maxCentro - 10 - Math.random() * 40; // muy bajo
+				if (Math.random() < 0.5) {
+					centroY = minCentro + 10 + Math.random() * 40; // muy alto
+				} else {
+					centroY = maxCentro - 10 - Math.random() * 40; // muy bajo
+				}
 			} else {
 				const dispersion = Math.min((maxCentro - minCentro) / 2, 120 + this.tiempoTotal * 0.5);
 				const medio = (minCentro + maxCentro) / 2;
 				centroY = limitar(medio + (Math.random() - 0.5) * dispersion, minCentro, maxCentro);
 			}
 
-			const x = this.contenedor ? this.contenedor.clientWidth : 1280;
-			const tub = new window.Tuberia({
+			const x = this.anchoContenedor;
+			const tub = new global.Tuberia({
 				contenedor: this.contenedor,
 				x: x,
 				separacionVertical: Math.round(this.separacionVertical),
 				centroY: Math.round(centroY),
 				minAlturaTubo: this.minAlturaTubo,
-				velocidad: this.velocidad
+				velocidad: this.velocidad,
+				altoTotal: this.altoContenedor
 			});
+			
+			tub.pasada = false; // marcar si ya se contó el punto
 			this.activas.push(tub);
 
-			// pequeño incremento de velocidad por spawn para aumentar tensión
-			this.velocidad *= 1 + 0.002; // +0.2% por tubería
+			// Incremento gradual de velocidad
+			this.velocidad *= 0.990;
 			this.establecerVelocidad(this.velocidad);
+		}
+
+		// Verifica colisión circular entre el pájaro y una tubería
+		_verificarColision(tuberia) {
+			if (!this.pajaro) return false;
+
+			const circuloPajaro = this.pajaro.getCircle();
+			const rectSuperior = tuberia.elementoSuperior.getBoundingClientRect();
+			const rectInferior = tuberia.elementoInferior.getBoundingClientRect();
+
+			return (
+				this._colisionCirculoRectangulo(circuloPajaro, rectSuperior) ||
+				this._colisionCirculoRectangulo(circuloPajaro, rectInferior)
+			);
+		}
+
+		// Detecta colisión entre un círculo y un rectángulo
+		_colisionCirculoRectangulo(circulo, rect) {
+			const closestX = Math.max(rect.left, Math.min(circulo.x, rect.right));
+			const closestY = Math.max(rect.top, Math.min(circulo.y, rect.bottom));
+
+			const dx = circulo.x - closestX;
+			const dy = circulo.y - closestY;
+
+			return (dx * dx + dy * dy) < (circulo.r * circulo.r);
 		}
 
 		// Devuelve el array de tuberías activas
@@ -100,34 +178,48 @@
 			return this.activas;
 		}
 
-		// Reinicia el generador a valores por defecto y destruye tuberías activas
-		reiniciar() {
-			for (const t of this.activas) t.destruir();
+		// Detiene el generador
+		detener() {
+			this._stopLoop = true;
+			for (const t of this.activas) {
+				t.destruir();
+			}
 			this.activas = [];
+		}
+
+		// Reinicia el generador a valores iniciales
+		reiniciar() {
+			this.detener();
+			this._stopLoop = false;
 			this.tiempoDesdeUltimo = 0;
 			this.tiempoTotal = 0;
-			this.separacionVertical = 900;
-			this.separacionHorizontal = 100;
+			this.separacionVertical = 140;
+			this.separacionHorizontal = 450;
 			this.velocidad = 200;
 			this.establecerVelocidad(this.velocidad);
 		}
 
-		/* Alias en inglés por compatibilidad con código existente */
-		_computeSpawnInterval() { return this._calcularIntervaloSpawn(); }
+		// Establece la referencia al pájaro para colisiones
+		setPajaro(pajaro) {
+			this.pajaro = pajaro;
+		}
+
+		/* Alias en inglés para compatibilidad */
 		setSpeed(v) { return this.establecerVelocidad(v); }
 		update(dt) { return this.actualizar(dt); }
 		getActive() { return this.obtenerActivas(); }
 		reset() { return this.reiniciar(); }
+		stop() { return this.detener(); }
+		setBird(bird) { return this.setPajaro(bird); }
 	}
 
-	// helpers en español
+	// Funciones auxiliares
 	function limitar(v, a, b) {
 		return Math.max(a, Math.min(b, v));
 	}
 
-	// Convertimos el factor aplicado al "gap" para que disminuya un poco más rápido
 	function factorPorSegundoAGap(factor) {
-		return Math.max(0.992, factor * 1.0008);
+		return Math.max(0.999, factor * 1.0009);
 	}
 
 	global.GeneradorTuberias = GeneradorTuberias;

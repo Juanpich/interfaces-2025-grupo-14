@@ -159,6 +159,7 @@
     background-repeat: no-repeat;
         background-size: cover;
     height: 360px;
+    z-index: 9999;
 }
 
 /* imagen de arriba */
