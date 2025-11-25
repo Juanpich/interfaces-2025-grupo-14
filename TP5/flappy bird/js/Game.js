@@ -12,6 +12,7 @@ class Game {
 
         this.init();
     }
+   
 
     init() {
         const containerHeight = this.container.offsetHeight;
@@ -23,25 +24,25 @@ class Game {
         if (window.GeneradorTuberias) {
             this.generadorTuberias = new GeneradorTuberias({
                 contenedor: document.getElementById("pipes-container"),
-                
+
                 //SEPARACIÓN VERTICAL
                 separacionVerticalInicial: 300,  // separacion entre los tubos al comenzar
                 minSeparacion: 100,              // separacion minima entre tubos
-                
+
                 // SEPARACIÓN HORIZONTAL
-                separacionHorizontalInicial: 900, // separacion entre pares de tubos al inicio
+                separacionHorizontalInicial: 400, // separacion entre pares de tubos al inicio
                 minSeparacionHorizontal: 250,     // minima separacion a la que llega
-                
+
                 // VELOCIDAD 
                 velocidadInicial: 100,            // velocidad de movimineto de las tuberias
-                
+
                 // Reducion de dificultad del juego
                 factorDificultad: 0.9999,         //si se hacerca a uno la dificultad de va haciendo mas lenta 
-                
+
                 //ALTURA MÍNIMA DE CADA TUBO
                 minAlturaTubo: 30                 // No modificar
             });
-            
+
             // Establecer referencia al pájaro para detección de colisiones
             this.generadorTuberias.setPajaro(this.bird);
         }
@@ -73,7 +74,7 @@ class Game {
 
         // Evento de colectar corazón
         document.addEventListener("heart-collected", () => this.gainLife());
-        
+
         // Evento de perder vida
         document.addEventListener("hit-limit", () => this.loseLife());
 
@@ -89,6 +90,10 @@ class Game {
                         this.startScreen.style.display = "none";
                     }, 300);
                 }
+                if (this.generadorTuberias) {
+                    this.generadorTuberias.iniciarGeneracion();
+                }
+
 
                 // Iniciar monedas con delay
                 // setTimeout(() => {
@@ -107,7 +112,7 @@ class Game {
         if (this.lives < 3) {
             this.lives++;
             this.hud.updateLives(this.lives);
-            
+
         }
     }
 
@@ -128,12 +133,12 @@ class Game {
             this.gameStarted = false; // Detener actualizaciones
             this.showGameOverScreen();
             this.sonidoCaida.play();
-            
+
             // Detener generador de tuberías
             if (this.generadorTuberias) {
                 this.generadorTuberias.detener();
             }
-            
+
             // Detener monedas y corazones
             if (this.coins) {
                 this.coins.stop();

@@ -35,6 +35,15 @@
 			this._siguienteIntervaloSpawn = this._calcularIntervaloSpawn();
 		}
 
+		 iniciarGeneracion() {
+        // Establecer el tiempo como si ya hubiera pasado el intervalo
+        this._siguienteIntervaloSpawn = this._calcularIntervaloSpawn();
+        this.tiempoDesdeUltimo = this._siguienteIntervaloSpawn;
+
+       
+    }
+		
+
 		// Calcula el intervalo entre apariciones según separación y velocidad
 		_calcularIntervaloSpawn() {
 			return Math.max(0.4, this.separacionHorizontal / Math.max(1, this.velocidad));
@@ -113,7 +122,7 @@
 						}
 
 						// corazón
-						if (tub.objeto_especial.classList.contains("heart")) {
+						if (tub.objeto_especial.classList.contains("heart-game")) {
 							document.dispatchEvent(new Event("heart-collected"));
 						}
 
@@ -168,11 +177,11 @@
 			let objeto = null;
 			const r = Math.random();
 
-			if (r < 0.30) { // moneda
-				objeto = this._crearObjetoEspecial("coin", tub);
-			}
-			else if (r < 0.40) { // corazón
+			if (r < 0.20) { // moneda
 				objeto = this._crearObjetoEspecial("heart", tub);
+			}
+			else if (r < 0.60) { // corazón
+				objeto = this._crearObjetoEspecial("coin", tub);
 			}
 
 			tub.objeto_especial = objeto;
@@ -196,11 +205,12 @@
 				obj.style.animation = "rotate-coin .8s steps(6) infinite";
 			}
 			else if (tipo === "heart") {
-				obj.classList.add("heart");
-				obj.style.width = "32px";
+				console.log("Genero coraxon")
+				obj.classList.add("heart-game");
+				obj.style.width = "31.2px";
 				obj.style.height = "32px";
-				obj.style.background = 'url("../img/heart/corazon.png") no-repeat center';
-				obj.style.backgroundSize = "contain";
+				obj.style.background = 'url("../img/corazon2.png") no-repeat center';
+				
 			}
 
 			obj.style.position = "absolute";
@@ -290,4 +300,4 @@
 	}
 
 	global.GeneradorTuberias = GeneradorTuberias;
-})(window);
+})(window); 

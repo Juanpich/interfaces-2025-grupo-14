@@ -6,15 +6,18 @@
     position: relative;
     overflow: hidden;
 }
+
 #pipes-container {
     position: absolute;
     width: 100%;
-    height: 100%;  /* MUY IMPORTANTE */
+    height: 100%;
+    /* MUY IMPORTANTE */
     top: 0;
     left: 0;
     pointer-events: none;
     z-index: 5;
 }
+
 #start-screen {
     position: absolute;
     top: 50%;
@@ -104,15 +107,15 @@
     animation: scroll 45s infinite linear;
 }
 
-#bird{
-     width:50px;
-  height:35px;
-    margin:auto;  
-  background:url("../../img/birds.png") repeat-x;
-  animation:rotate-bird .8s steps(4) infinite;
-  position: absolute;
-  left: 130px;
-  top:50%;
+#bird {
+    width: 50px;
+    height: 35px;
+    margin: auto;
+    background: url("../../img/birds.png") repeat-x;
+    animation: rotate-bird .8s steps(4) infinite;
+    position: absolute;
+    left: 130px;
+    top: 50%;
 }
 
 @keyframes rotate-bird {
@@ -144,11 +147,13 @@
         background-position: -280px;
     }
 }
+
 .tuberia {
     position: absolute;
     top: 0;
     width: 90px;
-    height: 360px; /* igual que el game-container */
+    height: 360px;
+    /* igual que el game-container */
     pointer-events: none;
 }
 
@@ -157,7 +162,7 @@
     position: absolute;
     width: 100%;
     background-repeat: no-repeat;
-        background-size: cover;
+    background-size: cover;
     height: 360px;
     z-index: 9999;
 }
@@ -187,6 +192,29 @@
     pointer-events: none;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+.heart-game {
+    width: 31.2px;
+    height: 32px;
+    position: absolute;
+    z-index: 999;
+    pointer-events: none;
+    background: url('../../img/corazon2.png') repeat-x;
+    animation: heart-game-rotate 0.8s steps(10) infinite;
+}
+
+
+@keyframes heart-game-rotate {
+
+    0% {
+        background-position: 0px
+    }
+
+    100% {
+        background-position: -312px
+    }
+
 }
 
 #score-container {
@@ -259,6 +287,7 @@
 .life.empty {
     background-image: url('../../img/heart/corazon-vacio.png');
 }
+
 #game-over {
     position: absolute;
     top: 50%;
@@ -274,7 +303,8 @@
     color: white;
     z-index: 999999;
     opacity: 0;
-    pointer-events: none; /* No bloquea el juego mientras aparece */
+    pointer-events: none;
+    /* No bloquea el juego mientras aparece */
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
