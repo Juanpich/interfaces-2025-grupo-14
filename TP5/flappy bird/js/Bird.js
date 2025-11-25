@@ -62,48 +62,71 @@ class Bird {
     requestAnimationFrame(() => this.update());
   }
 
-  hitPipe() {
+ hitPipe() {
+  // Evitar perder vida múltiple
+  if (this.isBlinking) return;
 
-    // Evitar perder vida múltiple
-    if (this.isBlinking) return;
+  this.isBlinking = true;
+  document.dispatchEvent(new Event("hit-limit"));
 
-    this.isBlinking = true;
+  // Crear y mostrar explosión
+  this.showExplosion();
 
-    document.dispatchEvent(new Event("hit-limit"));
+  // Congelar por un momento
+  this.isFrozen = true;
+  const originalGravity = this.gravity;
+  this.gravity = 0;
+  this.velocity = 0;
 
-    // Congelar por un momento
-    this.isFrozen = true;
+  // A media pantalla
+  this.position = this.containerHeight / 2;
+  this.bird.style.top = `${this.position}px`;
 
-    const originalGravity = this.gravity;
+  const freezeTime = 150;
 
-    this.gravity = 0;
-    this.velocity = 0;
+  // Restore gravity y permitir flap normalmente
+  setTimeout(() => {
+    this.gravity = originalGravity;
+    this.isFrozen = false;
+  }, freezeTime);
 
-    // A media pantalla
-    this.position = this.containerHeight / 2;
-    this.bird.style.top = `${this.position}px`;
+  // Parpadeo visual del pájaro
+  let visible = true;
+  const blinkInterval = setInterval(() => {
+    this.bird.style.opacity = visible ? "0.3" : "1";
+    visible = !visible;
+  }, 150);
 
-    const freezeTime = 150;  // ⬅ ESTE NÚMERO ES CLAVE (100–200ms)
+  setTimeout(() => {
+    clearInterval(blinkInterval);
+    this.bird.style.opacity = "1";
+    this.isBlinking = false;
+  }, 1500);
+}
 
-    // Restore gravity y permitir flap normalmente
-    setTimeout(() => {
-      this.gravity = originalGravity;
-      this.isFrozen = false;
-    }, freezeTime);
-
-    // Parpadeo visual
-    let visible = true;
-    const blinkInterval = setInterval(() => {
-      this.bird.style.opacity = visible ? "0.3" : "1";
-      visible = !visible;
-    }, 150);
-
-    setTimeout(() => {
-      clearInterval(blinkInterval);
-      this.bird.style.opacity = "1";
-      this.isBlinking = false;
-    }, 1500);
-  }
+showExplosion() {
+  this.bird.style.opacity = '0'; // Ocultar el pájaro temporalmente
+  // Crear elemento de explosión
+  const explosion = document.createElement('div');
+  explosion.className = 'explosion';
+  
+  // Posicionar en el lugar del pájaro
+  const birdRect = this.bird.getBoundingClientRect();
+  const containerRect = this.bird.parentElement.getBoundingClientRect();
+  
+  explosion.style.position = 'absolute';
+  explosion.style.left = `${birdRect.left - containerRect.left}px`;
+  explosion.style.top = `${birdRect.top - containerRect.top}px`;
+  explosion.style.zIndex = '100';
+  
+  // Agregar al contenedor
+  this.bird.parentElement.appendChild(explosion);
+  
+  // Remover después de que termine la animación (500ms)
+  setTimeout(() => {
+    explosion.remove();
+  }, 500);
+}
 
 
   respawn() {

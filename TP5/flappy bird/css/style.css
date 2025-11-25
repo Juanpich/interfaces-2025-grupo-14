@@ -45,6 +45,23 @@
     opacity: 0.8;
 }
 
+.explosion {
+    width: 60px;
+    height: 82px;
+    background-image: url("../../img/explosion.png");
+    background-repeat: no-repeat;
+    animation: explosionScroll 0.5s steps(25) forwards;
+}   
+
+@keyframes explosionScroll {
+    from {
+        background-position-x: 0;
+    }
+    to {
+        background-position-x: -1750px; /* -(60+5)×4 = -260px */
+    }
+}
+
 .capa {
     width: 100%;
     height: 100%;
@@ -327,3 +344,4 @@
 .hidden {
     display: none;
 }
+
