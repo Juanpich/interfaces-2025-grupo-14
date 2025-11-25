@@ -1,0 +1,92 @@
+[
+  {
+    "nombre": "Mateo Rivas",
+    "fecha_publicacion": "2025-07-14",
+    "puntuacion": 4,
+    "comentario": "Flappy Bird es simple pero terriblemente adictivo. No puedo dejar de intentar superar mi propio récord."
+  },
+  {
+    "nombre": "Ana Beltrán",
+    "fecha_publicacion": "2025-03-22",
+    "puntuacion": 5,
+    "comentario": "Lo jugué por curiosidad y terminé obsesionada. Cada partida se siente como un nuevo desafío."
+  },
+  {
+    "nombre": "Diego Montalvo",
+    "fecha_publicacion": "2025-01-11",
+    "puntuacion": 3,
+    "comentario": "Divertido, aunque a veces frustrante. Igual no puedo evitar volver a jugar."
+  },
+  {
+    "nombre": "Sofía Cabrera",
+    "fecha_publicacion": "2025-06-05",
+    "puntuacion": 5,
+    "comentario": "Perfecto para matar el tiempo. Rápido, sencillo y súper entretenido."
+  },
+  {
+    "nombre": "Gabriel Silva",
+    "fecha_publicacion": "2025-04-18",
+    "puntuacion": 4,
+    "comentario": "La dificultad es justa. Te hace sentir que siempre podés mejorar un poquito más."
+  },
+  {
+    "nombre": "Paula Giménez",
+    "fecha_publicacion": "2025-10-02",
+    "puntuacion": 5,
+    "comentario": "Es increíble cómo un juego tan simple puede ser tan adictivo. ¡No puedo parar!"
+  },
+  {
+    "nombre": "Lautaro Vázquez",
+    "fecha_publicacion": "2025-02-26",
+    "puntuacion": 4,
+    "comentario": "Ideal para competir con amigos. Ver quién llega más lejos es parte de la diversión."
+  },
+  {
+    "nombre": "Carolina Ortega",
+    "fecha_publicacion": "2025-08-19",
+    "puntuacion": 5,
+    "comentario": "Flappy Bird nunca pasa de moda. Es un desafío constante que siempre engancha."
+  },
+  {
+    "nombre": "Nicolás Pardo",
+    "fecha_publicacion": "2025-09-30",
+    "puntuacion": 3,
+    "comentario": "Me divierte, pero me rompe los nervios cuando pierdo a un punto de mi récord."
+  },
+  {
+    "nombre": "Julieta Soto",
+    "fecha_publicacion": "2025-11-12",
+    "puntuacion": 5,
+    "comentario": "Uno de mis juegos casuales favoritos. Fácil de jugar, difícil de dominar."
+  },
+  {
+    "nombre": "Martín Herrera",
+    "fecha_publicacion": "2025-05-03",
+    "puntuacion": 4,
+    "comentario": "Tiene ese toque retro que lo hace especial. Muy recomendado."
+  },
+  {
+    "nombre": "Valentina Arce",
+    "fecha_publicacion": "2025-03-09",
+    "puntuacion": 5,
+    "comentario": "Una joyita. Me encanta la sensación de progresar cada vez un poquito más."
+  },
+  {
+    "nombre": "Ezequiel Álvarez",
+    "fecha_publicacion": "2025-07-27",
+    "puntuacion": 4,
+    "comentario": "Me saca canas verdes pero es imposible dejarlo. ¡Qué juego más atrapante!"
+  },
+  {
+    "nombre": "Daniela Mendez",
+    "fecha_publicacion": "2025-12-01",
+    "puntuacion": 5,
+    "comentario": "Perfecto para ratos cortos. Es rápido, dinámico y muy entretenido."
+  },
+  {
+    "nombre": "Franco Morales",
+    "fecha_publicacion": "2025-10-20",
+    "puntuacion": 4,
+    "comentario": "Una experiencia simple pero desafiante. Te atrapa desde la primera partida."
+  }
+]

@@ -9,24 +9,28 @@ class Game {
         this.gameStarted = false;
         this.hud = null;
         this.sonidoCaida = new Audio("./../audio/caida.mp3");
-
+        this.generadorPajarosEnemigos = null;
         this.init();
     }
-   
+
 
     init() {
         const containerHeight = this.container.offsetHeight;
 
         // Crear pájaro
         this.bird = new Bird("bird", containerHeight);
-
+        //generador de enemigos
+         this.generadorPajarosEnemigos = new GeneradorPajarosEnemigos(
+            this.container,
+            this.bird
+        );
         // Crear generador de tuberías con valores iniciales más amplios
         if (window.GeneradorTuberias) {
             this.generadorTuberias = new GeneradorTuberias({
                 contenedor: document.getElementById("pipes-container"),
 
                 //SEPARACIÓN VERTICAL
-                separacionVerticalInicial: 300,  // separacion entre los tubos al comenzar
+                separacionVerticalInicial: 320,  // separacion entre los tubos al comenzar
                 minSeparacion: 100,              // separacion minima entre tubos
 
                 // SEPARACIÓN HORIZONTAL
@@ -94,16 +98,12 @@ class Game {
                     this.generadorTuberias.iniciarGeneracion();
                 }
 
-
-                // Iniciar monedas con delay
-                // setTimeout(() => {
-                //     if (this.coins) this.coins.start();
-                // }, 3000);
-
-                // Iniciar corazones con delay mayor
-                // setTimeout(() => {
-                //     if (this.hearts) this.hearts.start();
-                // }, 8000);
+                if (this.generadorPajarosEnemigos) {
+                    // iniciar medio segundo despues de comenzar el juego
+                    setTimeout(() => {
+                        this.generadorPajarosEnemigos.iniciar();
+                    }, 500);
+                }
             }
         });
     }
@@ -148,6 +148,9 @@ class Game {
                 this.hearts.stop();
                 this.hearts.clear();
             }
+            if (this.generadorPajarosEnemigos) {
+                this.generadorPajarosEnemigos.detener();
+            }
             //TODO parar el fondo 
         }
     }
@@ -190,6 +193,9 @@ class Game {
                 if (this.generadorTuberias) {
                     this.generadorTuberias.update(dt);
                 }
+                if (this.generadorPajarosEnemigos) {
+                    this.generadorPajarosEnemigos.actualizar(dt);
+                }
             }
 
             requestAnimationFrame(loop);
@@ -198,13 +204,16 @@ class Game {
         requestAnimationFrame(loop);
     }
 }
-
+function iniciar_juego(){
 // Inicialización automática cuando el DOM esté listo
-document.addEventListener("DOMContentLoaded", () => {
-    const game = new Game();
+    console.log("Listo para comezar")
+    window.addEventListener("keydown", function(e) {
+    if (e.key === " " || e.keyCode === 32) {
+        e.preventDefault();
+    }
 });
+    //descativar scrool del espacio
+    const game = new Game();
+}
+iniciar_juego()
 
-// Volver a jugar
-document.addEventListener("reLoad", () => {
-    const game = new Game();
-});

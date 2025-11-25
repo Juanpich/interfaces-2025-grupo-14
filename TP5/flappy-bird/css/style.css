@@ -67,43 +67,43 @@
 }
 
 .capa.capa-1 {
-    background-image: url("../../img/parallax_background_forest/capa-fondo1.png");
+    background-image: url("../img/parallax_background_forest/capa-fondo1.png");
     animation: scroll 145s infinite linear;
     z-index: 0;
 }
 
 .capa.capa-2 {
-    background-image: url("../../img/parallax_background_forest/capa-nubes.png");
+    background-image: url("../img/parallax_background_forest/capa-nubes.png");
     animation: scroll 140s infinite linear;
 }
 
 .capa.capa-3 {
-    background-image: url("../../img/parallax_background_forest/capa-sol.png");
+    background-image: url("../img/parallax_background_forest/capa-sol.png");
     animation: scroll 160s infinite linear;
 }
 
 .capa.capa-4 {
-    background-image: url("../../img/parallax_background_forest/capa-montains1.png");
+    background-image: url("../img/parallax_background_forest/capa-montains1.png");
     animation: scroll 105s infinite linear;
 }
 
 .capa.capa-5 {
-    background-image: url("../../img/parallax_background_forest/capa-montains2.png");
+    background-image: url("../img/parallax_background_forest/capa-montains2.png");
     animation: scroll 80s infinite linear;
 }
 
 .capa.capa-6 {
-    background-image: url("../../img/parallax_background_forest/capa-montains3.png");
+    background-image: url("../img/parallax_background_forest/capa-montains3.png");
     animation: scroll 75s infinite linear;
 }
 
 .capa.capa-7 {
-    background-image: url("../../img/parallax_background_forest/capa-arboles.png");
+    background-image: url("../img/parallax_background_forest/capa-arboles.png");
     animation: scroll 50s infinite linear;
 }
 
 .capa.capa-8 {
-    background-image: url("../../img/parallax_background_forest/capa-suelo.png");
+    background-image: url("../img/parallax_background_forest/capa-suelo.png");
     animation: scroll 45s infinite linear;
 }
 
@@ -111,7 +111,7 @@
     width: 50px;
     height: 35px;
     margin: auto;
-    background: url("../../img/birds.png") repeat-x;
+    background: url("../img/birds.png") repeat-x;
     animation: rotate-bird .8s steps(4) infinite;
     position: absolute;
     left: 130px;
@@ -132,7 +132,7 @@
     width: 46px;
     height: 42px;
     position: absolute;
-    background: url('../../img/coin/monedas.png') repeat-x;
+    background: url('../img/coin/monedas.png') repeat-x;
     animation: rotate-coin .8s steps(6) infinite;
     z-index: 999;
     pointer-events: none;
@@ -169,14 +169,14 @@
 
 /* imagen de arriba */
 .tuberia-arriba {
-    background-image: url("../../img/pipe/pipe_green_top.png");
+    background-image: url("../img/pipe/pipe_green_top.png");
     /* background-color: aqua; */
     background-position: bottom;
 }
 
 /* imagen de abajo */
 .tuberia-abajo {
-    background-image: url("../../img/pipe/pipe_green_bottom.png");
+    background-image: url("../img/pipe/pipe_green_bottom.png");
     background-position: top;
 }
 
@@ -200,7 +200,7 @@
     position: absolute;
     z-index: 999;
     pointer-events: none;
-    background: url('../../img/corazon2.png') repeat-x;
+    background: url('../img/corazon2.png') repeat-x;
     animation: heart-game-rotate 0.8s steps(10) infinite;
 }
 
@@ -281,11 +281,11 @@
 }
 
 .life.full {
-    background-image: url('../../img/heart/corazon.png');
+    background-image: url('../img/heart/corazon.png');
 }
 
 .life.empty {
-    background-image: url('../../img/heart/corazon-vacio.png');
+    background-image: url('../img/heart/corazon-vacio.png');
 }
 
 #game-over {
@@ -326,4 +326,22 @@
 
 .hidden {
     display: none;
+}
+.enemy-bird {
+    width: 50px;
+    height: 50px;
+    background: url("../img/enemig.png") repeat-x;
+    background-position: 0px;
+    animation: enemy-bird-fly 0.8s steps(4) infinite;
+    position: absolute;
+    pointer-events: none;
+}
+
+@keyframes enemy-bird-fly {
+    0% {
+        background-position: 0px;
+    }
+    100% {
+        background-position: -200px;
+    }
 }

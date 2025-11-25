@@ -1,7 +1,6 @@
 (function (global) {
 	class GeneradorTuberias {
 		constructor(opciones = {}) {
-			console.log(opciones)
 			this.contenedor = opciones.contenedor || document.getElementById('pipes-container');
 			this.pajaro = opciones.pajaro || null; // referencia al pájaro para detección de colisión
 
@@ -201,15 +200,13 @@
 				obj.classList.add("moneda");
 				obj.style.width = "46px";
 				obj.style.height = "42px";
-				obj.style.background = 'url("../img/coin/monedas.png") repeat-x';
+				
 				obj.style.animation = "rotate-coin .8s steps(6) infinite";
 			}
 			else if (tipo === "heart") {
-				console.log("Genero coraxon")
 				obj.classList.add("heart-game");
 				obj.style.width = "31.2px";
 				obj.style.height = "32px";
-				obj.style.background = 'url("../img/corazon2.png") no-repeat center';
 				
 			}
 
