@@ -20,7 +20,7 @@ class Game {
         // Crear pájaro
         this.bird = new Bird("bird", containerHeight);
         //generador de enemigos
-         this.generadorPajarosEnemigos = new GeneradorPajarosEnemigos(
+        this.generadorPajarosEnemigos = new GeneradorPajarosEnemigos(
             this.container,
             this.bird
         );
@@ -129,6 +129,7 @@ class Game {
 
         // Si ya no quedan vidas → GAME OVER
         if (this.lives <= 0) {
+
             this.bird.isAlive = false;
             this.gameStarted = false; // Detener actualizaciones
             this.showGameOverScreen();
@@ -151,8 +152,30 @@ class Game {
             if (this.generadorPajarosEnemigos) {
                 this.generadorPajarosEnemigos.detener();
             }
-            //TODO parar el fondo 
+            this.detenerFondo()
+
         }
+    }
+    detenerFondo() {
+
+        let fondo = document.querySelectorAll(".capa")
+        fondo.forEach(f => {
+            f.classList.add("pause-capa")
+        });
+        document.querySelectorAll(".moneda").forEach(f => {
+            f.style.opacity = 0
+        })
+        document.querySelectorAll(".heart-game").forEach(f => {
+            f.style.opacity = 0
+        })
+        document.querySelectorAll("enemy-bird").forEach(f => {
+            f.style.opacity = 0
+        })
+        let bird = document.querySelectorAll("#bird").forEach(f => {
+            f.style.opacity = 0
+            f.style.display = 'none'
+        })
+
     }
 
     showGameOverScreen() {
@@ -204,14 +227,14 @@ class Game {
         requestAnimationFrame(loop);
     }
 }
-function iniciar_juego(){
-// Inicialización automática cuando el DOM esté listo
+function iniciar_juego() {
+    // Inicialización automática cuando el DOM esté listo
     console.log("Listo para comezar")
-    window.addEventListener("keydown", function(e) {
-    if (e.key === " " || e.keyCode === 32) {
-        e.preventDefault();
-    }
-});
+    window.addEventListener("keydown", function (e) {
+        if (e.key === " " || e.keyCode === 32) {
+            e.preventDefault();
+        }
+    });
     //descativar scrool del espacio
     const game = new Game();
 }

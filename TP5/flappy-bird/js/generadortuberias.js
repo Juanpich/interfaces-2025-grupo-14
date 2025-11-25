@@ -205,8 +205,8 @@
 			}
 			else if (tipo === "heart") {
 				obj.classList.add("heart-game");
-				obj.style.width = "31.2px";
-				obj.style.height = "32px";
+				obj.style.width = "44.9px";
+				obj.style.height = "46px";
 				
 			}
 

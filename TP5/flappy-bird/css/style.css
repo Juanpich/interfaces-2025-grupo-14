@@ -135,6 +135,8 @@
     top: 50%;
 }
 
+
+
 @keyframes rotate-bird {
     0% {
         background-position: 0px;
@@ -212,8 +214,8 @@
 }
 
 .heart-game {
-    width: 31.2px;
-    height: 32px;
+    width: 44.9px;
+    height: 46px;
     position: absolute;
     z-index: 999;
     pointer-events: none;
@@ -229,7 +231,7 @@
     }
 
     100% {
-        background-position: -312px
+        background-position: -449px
     }
 
 }
@@ -362,4 +364,8 @@
     100% {
         background-position: -200px;
     }
+}
+.pause-capa{
+    
+    animation-play-state: paused !important
 }
