@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.game-container {
+    width: 1280px;
+    height: 360px;
+    position: relative;
+    overflow: hidden;
+}
+
+#pipes-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* MUY IMPORTANTE */
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+#start-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    color: #FFD700;
+    background: #000000cc;
+    border: 4px solid #ffffff;
+    border-radius: 10px;
+    padding: 40px 20px;
+    z-index: 10000;
+}
+
+#start-screen .title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 0px black;
+}
+
+#start-screen .subtitle {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.explosion {
+    width: 60px;
+    height: 82px;
+    background-image: url("../../img/explosion.png");
+    background-repeat: no-repeat;
+    animation: explosionScroll 0.5s steps(25) forwards;
+}   
+
+@keyframes explosionScroll {
+    from {
+        background-position-x: 0;
+    }
+    to {
+        background-position-x: -1750px; /* -(60+5)×4 = -260px */
+    }
+}
+
+.capa {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: repeat-x;
+    background-size: 1280px 360px;
+    background-position: 0;
+}
+
+@keyframes scroll {
+    0% {
+        background-position-x: 0;
+    }
+
+    100% {
+        background-position-x: -1280px;
+    }
+}
+
+.capa.capa-1 {
+    background-image: url("../img/parallax_background_forest/capa-fondo1.png");
+    animation: scroll 145s infinite linear;
+    z-index: 0;
+}
+
+.capa.capa-2 {
+    background-image: url("../img/parallax_background_forest/capa-nubes.png");
+    animation: scroll 140s infinite linear;
+}
+
+.capa.capa-3 {
+    background-image: url("../img/parallax_background_forest/capa-sol.png");
+    animation: scroll 160s infinite linear;
+}
+
+.capa.capa-4 {
+    background-image: url("../img/parallax_background_forest/capa-montains1.png");
+    animation: scroll 105s infinite linear;
+}
+
+.capa.capa-5 {
+    background-image: url("../img/parallax_background_forest/capa-montains2.png");
+    animation: scroll 80s infinite linear;
+}
+
+.capa.capa-6 {
+    background-image: url("../img/parallax_background_forest/capa-montains3.png");
+    animation: scroll 75s infinite linear;
+}
+
+.capa.capa-7 {
+    background-image: url("../img/parallax_background_forest/capa-arboles.png");
+    animation: scroll 50s infinite linear;
+}
+
+.capa.capa-8 {
+    background-image: url("../img/parallax_background_forest/capa-suelo.png");
+    animation: scroll 45s infinite linear;
+}
+
+#bird {
+    width: 50px;
+    height: 35px;
+    margin: auto;
+    background: url("../img/birds.png") repeat-x;
+    animation: rotate-bird .8s steps(4) infinite;
+    position: absolute;
+    left: 130px;
+    top: 50%;
+}
+
+
+
+@keyframes rotate-bird {
+    0% {
+        background-position: 0px;
+    }
+
+    100% {
+        background-position: -200px;
+    }
+}
+
+.moneda {
+    width: 46px;
+    height: 42px;
+    position: absolute;
+    background: url('../img/coin/monedas.png') repeat-x;
+    animation: rotate-coin .8s steps(6) infinite;
+    z-index: 999;
+    pointer-events: none;
+}
+
+@keyframes rotate-coin {
+    0% {
+        background-position: 0px;
+    }
+
+    100% {
+        background-position: -280px;
+    }
+}
+
+.tuberia {
+    position: absolute;
+    top: 0;
+    width: 90px;
+    height: 360px;
+    /* igual que el game-container */
+    pointer-events: none;
+}
+
+.tuberia-arriba,
+.tuberia-abajo {
+    position: absolute;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 360px;
+    z-index: 9999;
+}
+
+/* imagen de arriba */
+.tuberia-arriba {
+    background-image: url("../img/pipe/pipe_green_top.png");
+    /* background-color: aqua; */
+    background-position: bottom;
+}
+
+/* imagen de abajo */
+.tuberia-abajo {
+    background-image: url("../img/pipe/pipe_green_bottom.png");
+    background-position: top;
+}
+
+
+
+
+
+.heart {
+    width: 46px;
+    height: 42px;
+    position: absolute;
+    z-index: 999;
+    pointer-events: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.heart-game {
+    width: 44.9px;
+    height: 46px;
+    position: absolute;
+    z-index: 999;
+    pointer-events: none;
+    background: url('../img/corazon2.png') repeat-x;
+    animation: heart-game-rotate 0.8s steps(10) infinite;
+}
+
+
+@keyframes heart-game-rotate {
+
+    0% {
+        background-position: 0px
+    }
+
+    100% {
+        background-position: -449px
+    }
+
+}
+
+#score-container {
+    position: absolute;
+    top: 15px;
+    left: 95%;
+    z-index: 1000;
+    pointer-events: none;
+    user-select: none;
+}
+
+#score {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFD700;
+    text-shadow: 1px 1px 0 #000;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 4px 10px;
+    border: 2px solid #FFD700;
+    border-radius: 6px;
+    box-shadow: 0 0 6px #FFD700;
+}
+
+#score.pop {
+    animation: pop-score 0.2s ease-out forwards;
+}
+
+@keyframes pop-score {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#hud {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 1000;
+    font-family: 'Press Start 2P', cursive;
+}
+
+#lives {
+    display: flex;
+    gap: 5px;
+}
+
+.life {
+    width: 32px;
+    height: 32px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.life.full {
+    background-image: url('../img/heart/corazon.png');
+}
+
+.life.empty {
+    background-image: url('../img/heart/corazon-vacio.png');
+}
+
+#game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 420px;
+    padding: 25px;
+    background: #000000cc;
+    border: 6px solid #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    font-family: 'Press Start 2P', cursive;
+    color: white;
+    z-index: 999999;
+    opacity: 0;
+    pointer-events: none;
+    /* No bloquea el juego mientras aparece */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+#game-over.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.go-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow: 3px 3px 0px black;
+}
+
+.go-sub {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+.hidden {
+    display: none;
+}
+
+.enemy-bird {
+    width: 50px;
+    height: 50px;
+    background: url("../img/enemig.png") repeat-x;
+    background-position: 0px;
+    animation: enemy-bird-fly 0.8s steps(4) infinite;
+    position: absolute;
+    pointer-events: none;
+}
+
+@keyframes enemy-bird-fly {
+    0% {
+        background-position: 0px;
+    }
+    100% {
+        background-position: -200px;
+    }
+}
+.pause-capa{
+    
+    animation-play-state: paused !important
+}
