@@ -34,7 +34,7 @@ class Game {
                 minSeparacionHorizontal: 250,     // minima separacion a la que llega
 
                 // VELOCIDAD 
-                velocidadInicial: 100,            // velocidad de movimineto de las tuberias
+                velocidadInicial: 150,            // velocidad de movimineto de las tuberias
 
                 // Reducion de dificultad del juego
                 factorDificultad: 0.9999,         //si se hacerca a uno la dificultad de va haciendo mas lenta 
